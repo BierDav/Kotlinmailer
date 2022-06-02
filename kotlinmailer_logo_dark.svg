@@ -16,6 +16,7 @@
         xmlns:svg="http://www.w3.org/2000/svg">
     <style id="style307">
         .logo_text {
+        fill:white;
         }
     </style>
     <sodipodi:namedview
