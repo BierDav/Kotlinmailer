@@ -9,10 +9,9 @@ This project is a hard fork from [SimpleKotlinMail](https://github.com/jakobkmar
 
 - build emails
 - send emails (using an external SMTP server)
-- receive and process emails
 - TLS support
 
-## To get started, visit the **[Documentation](https://jakobkmar.github.io/SimpleKotlinMail/)**.
+## To get started, visit the **[Documentation](https://bierdav.github.io/Kotinmailer/)**.
 
 ## Examples
 
@@ -41,18 +40,6 @@ Send that email:
 suspend fun main() = email.send()
 ```
 
-### Server / Receive
-
-Create a custom SMTPServer:
-
-```kotlin
-val smtpServer = smtpServer {
-    mailListener {
-        println(it.email.plainText)
-    }
-}.start(keepAlive = true)
-```
-
 ### Convert
 
 ```kotlin
@@ -79,7 +66,7 @@ emailBuilder {
 
 ### And more
 
-To learn more about SimpleKotlinMail, visit the **[Documentation](https://jakobkmar.github.io/SimpleKotlinMail/)**.
+To learn more about SimpleKotlinMail, visit the **[Documentation](https://bierdav.github.io/Kotinmailer/)**.
 
 ## Project information
 
