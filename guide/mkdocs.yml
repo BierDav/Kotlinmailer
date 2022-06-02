@@ -1,0 +1,40 @@
+site_name: SimpleKotlinMail
+site_description: A simple, modern and coroutine based Kotlin Email API, supporting both clientside and serverside projects
+site_author: Jakob K
+
+theme:
+  name: material
+  language: en
+  favicon: img/logo.png
+  icon:
+    repo: fontawesome/brands/github
+  logo: img/logo.png
+  palette:
+    scheme: preference
+    primary: black
+    accent: amber
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+      toc_depth: 4
+
+repo_url: https://github.com/BierDav/Kotinmailer/
+repo_name: BierDav/Kotinmailer
+
+edit_uri: edit/main/guide/docs/
+
+nav:
+  - Home: index.md
+  - Setup:
+      - Setup using Gradle: setup_gradle.md
+      - Setup using Maven: setup_maven.md
+  - Core:
+      - Email API: core.md
+      - Kotlin HTML DSL: html.md
+      - Convert: convert.md
+  - Server (receive): server.md
+  - Client (send): client.md
+  - TLS: tls.md
