@@ -1,8 +1,9 @@
-<img src="simplekotlinmail_logo.svg" width="500" alt="SimpleKotlinMail Logo">
+![Kotlinmailer Logo](kotlinmailer_logo_dark.svg#gh-dark-mode-only)
+![Kotlinmailer Logo](kotlinmailer_logo_light.svg#ggh-light-mode-only)
 
-_SimpleKotlinMail is a Kotlin Mail API, using coroutines and providing DSLs._
+Kotlinmailer is a Kotlin Mail API, using coroutines and providing DSLs. It may be used in a Ktor Backend for verification mails.
 
-This project is **not actively being worked on anymore**, for an explanation and alternatives see https://github.com/jakobkmar/SimpleKotlinMail/issues/6#issuecomment-1082247403 .
+This project is a hard fork from [SimpleKotlinMail](https://github.com/jakobkmar/SimpleKotlinMail) which is no more actively worked on
 
 ## Features
 
@@ -15,7 +16,8 @@ This project is **not actively being worked on anymore**, for an explanation and
 
 ## Examples
 
-The purpose of the following code snippets is to provide an insight into the API. However, they are not suitable for learning the API, you should use the actual documentation for this.
+The purpose of the following code snippets is to provide an insight into the API. However, they are not suitable for
+learning the API, you should use the actual documentation for this.
 
 ### Build
 
@@ -63,6 +65,7 @@ mimeMessage.email
 ### HTML
 
 Inside the email builder, you can easily access kotlinx.html:
+
 ```kotlin
 emailBuilder {
     withHTML {
