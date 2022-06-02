@@ -11,7 +11,7 @@ theme:
   logo: img/logo.png
   palette:
     scheme: preference
-    primary: deep orange
+    primary: black
     accent: amber
 
 markdown_extensions:
@@ -21,8 +21,8 @@ markdown_extensions:
       permalink: true
       toc_depth: 4
 
-repo_url: https://github.com/jakobkmar/SimpleKotlinMail
-repo_name: jakobkmar/SimpleKotlinMail
+repo_url: https://github.com/BierDav/Kotinmailer/
+repo_name: BierDav/Kotinmailer
 
 edit_uri: edit/main/guide/docs/
 
