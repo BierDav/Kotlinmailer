@@ -3,7 +3,7 @@
 
 Kotlinmailer is a Kotlin Mail API, using coroutines and providing DSLs. It may be used in a Ktor Backend for verification mails.
 
-This project is a hard fork from [SimpleKotlinMail](https://github.com/jakobkmar/SimpleKotlinMail) which is no more actively worked on
+This project is a hard fork from [SimpleKotlinMail](https://github.com/jakobkmar/SimpleKotlinMail) which is no more actively worked on.
 
 ## Features
 
@@ -66,7 +66,7 @@ emailBuilder {
 
 ### And more
 
-To learn more about SimpleKotlinMail, visit the **[Documentation](https://bierdav.github.io/Kotinmailer/)**.
+To learn more about Kotlinmailer, visit the **[Documentation](https://bierdav.github.io/Kotinmailer/)**.
 
 ## Project information
 

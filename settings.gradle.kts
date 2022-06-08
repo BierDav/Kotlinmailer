@@ -1,4 +1,4 @@
-val projectName = "simplekotlinmail"
+val projectName = "kotlinmailer"
 
 rootProject.name = projectName
 
