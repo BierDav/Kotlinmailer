@@ -1,4 +1,4 @@
-name: pages-build-deployment
+name: Build MKDocs and push to gh-pages branch
 on:
   push:
     branches:
@@ -11,5 +11,6 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
+      - run: cd guide
       - run: pip install mkdocs-material
       - run: mkdocs gh-deploy --force

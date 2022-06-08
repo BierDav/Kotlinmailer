@@ -1,6 +1,6 @@
 site_name: SimpleKotlinMail
-site_description: A simple, modern and coroutine based Kotlin Email API, supporting both clientside and serverside projects
-site_author: Jakob K
+site_description: A simple, modern and coroutine based Kotlin Email API for clientside projects
+site_author: David Bieregger
 
 theme:
   name: material
@@ -12,7 +12,7 @@ theme:
   palette:
     scheme: preference
     primary: black
-    accent: amber
+    accent: black
 
 markdown_extensions:
   - pymdownx.highlight
