@@ -1,18 +1,16 @@
 [versions]
 
-kotlinxVersion = "1.6.21"
+kotlinVersion = "1.6.21"
 
 simpleJavaMail = "7.1.1"
-
-subethasmtp = "6.0.1"
 
 [libraries]
 
 simpleJavaMail = { module = "org.simplejavamail:simple-java-mail", version.ref = "simpleJavaMail" }
 simpleJavaMail-batch = { module = "org.simplejavamail:batch-module", version.ref = "simpleJavaMail" }
 simpleJavaMail-smime = { module = "org.simplejavamail:smime-module", version.ref = "simpleJavaMail" }
-kt-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxVersion" }
-kt-coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "kotlinxVersion" }
-kt-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxVersion" }
-kt-html = { module = "org.jetbrains.kotlinx:kotlinx-html-jvm", version.ref = "kotlinxVersion" }
+kt-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinVersion" }
+kt-coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "kotlinVersion" }
+kt-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinVersion" }
+kt-html = { module = "org.jetbrains.kotlinx:kotlinx-html-jvm", version.ref = "kotlinVersion" }
 
