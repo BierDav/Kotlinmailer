@@ -2,7 +2,7 @@
 
 ## Repository
 
-SimpleKotlinMail is available on Maven Central.
+Kotlinmailer is available on Maven Central.
 
 ```kotlin
 repositories {
@@ -16,7 +16,7 @@ Kotlin DSL
 
 ```kotlin
 dependencies {
-    implementation("net.axay:MODULE:VERSION")
+    implementation("at.quickme:MODULE:VERSION")
 }
 ```
 
@@ -24,22 +24,22 @@ or Groovy DSL
 
 ```groovy
 dependencies {
-    implementation 'net.axay:MODULE:VERSION'
+    implementation 'at.quickme:MODULE:VERSION'
 }
 ```
 
 **Replace**:
 
 - `VERSION` with the version you wish to use (you
-  can [find the latest version on github](https://github.com/bluefireoly/SimpleKotlinMail/releases))
+  can [find the latest version on github](https://github.com/BierDav/Kotlinmailer/releases))
 
 - `MODULE` with the names of the following modules:
 
 ### Modules
 
-- **`simplekotlinmail-core`** **(required)**
-- **`simplekotlinmail-client`** if you want to send emails
-- **`simplekotlinmail-html`** if you want to use kotlinx.html inside your email builders
+- **`kotlinmailer-core`** **(required)**
+- **`kotlinmailer-client`** if you want to send emails
+- **`kotlinmailer-html`** if you want to use kotlinx.html inside your email builders
 
 ## JVM Version
 
