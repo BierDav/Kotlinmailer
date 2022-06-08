@@ -1,4 +1,4 @@
-package net.axay.simplekotlinmail.email
+package at.quickme.kotlinmailer.email
 
 import jakarta.mail.internet.MimeMessage
 import org.simplejavamail.api.email.Email

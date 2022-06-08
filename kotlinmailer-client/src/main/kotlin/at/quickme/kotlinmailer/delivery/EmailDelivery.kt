@@ -1,4 +1,4 @@
-package net.axay.simplekotlinmail.delivery
+package at.quickme.kotlinmailer.delivery
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.future.asDeferred

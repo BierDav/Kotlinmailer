@@ -1,4 +1,4 @@
-package net.axay.simplekotlinmail.data
+package at.quickme.kotlinmailer.data
 
 import kotlinx.serialization.Serializable
 

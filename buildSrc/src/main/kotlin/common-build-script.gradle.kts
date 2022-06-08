@@ -1,5 +1,5 @@
-group = "net.axay"
-version = "1.4.0"
+group = "at.quickme"
+version = "0.1.0"
 
 repositories {
     mavenCentral()

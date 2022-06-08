@@ -1,4 +1,4 @@
-package net.axay.simplekotlinmail.html
+package at.quickme.kotlinmailer.html
 
 import kotlinx.html.TagConsumer
 import kotlinx.html.stream.appendHTML

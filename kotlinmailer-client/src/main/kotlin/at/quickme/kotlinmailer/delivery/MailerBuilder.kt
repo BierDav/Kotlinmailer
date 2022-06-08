@@ -1,6 +1,6 @@
-package net.axay.simplekotlinmail.delivery
+package at.quickme.kotlinmailer.delivery
 
-import net.axay.simplekotlinmail.data.SMTPLoginInfo
+import at.quickme.kotlinmailer.data.SMTPLoginInfo
 import org.simplejavamail.api.mailer.Mailer
 import org.simplejavamail.mailer.MailerBuilder
 import org.simplejavamail.mailer.internal.MailerRegularBuilderImpl
