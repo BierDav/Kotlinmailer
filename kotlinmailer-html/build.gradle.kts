@@ -1,11 +1,10 @@
 plugins {
-    `common-build-script`
-    `java-version-script`
-    `maven-publish-script`
+    id("common-build-script")
+    id("maven-publish-script")
 }
 
 dependencies {
     api(project(":${rootProject.name}-core"))
 
-    api(libs.kt.html)
+    api("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.5")
 }

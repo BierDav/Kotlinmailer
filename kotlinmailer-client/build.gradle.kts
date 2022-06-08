@@ -1,14 +1,11 @@
 plugins {
-    `common-build-script`
-    `java-version-script`
-    `maven-publish-script`
+    id("common-build-script")
+    id("maven-publish-script")
 }
 
 dependencies {
     api(project(":${rootProject.name}-core"))
 
-    api(libs.kt.coroutines)
-    api(libs.kt.coroutines.jdk8)
-
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
     api(libs.simpleJavaMail.batch)
 }
