@@ -1,6 +1,6 @@
-val githubProject = "jakobkmar/SimpleKotlinMail"
+val githubProject = "BierDav/Kotinmailer"
 
-description = "A simple coroutine based Kotlin Email API for client- and server-side projects"
+description = "A simple coroutine based Kotlin Email API for client projects"
 
 plugins {
     kotlin("jvm")
@@ -40,7 +40,7 @@ publishing {
 
                 developers {
                     developer {
-                        name.set("jakobkmar")
+                        name.set("BierDav")
                     }
                 }
 
