@@ -1,4 +1,4 @@
-site_name: SimpleKotlinMail
+site_name: Kotlinmailer
 site_description: A simple, modern and coroutine based Kotlin Email API for clientside projects
 site_author: David Bieregger
 

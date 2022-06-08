@@ -1,6 +1,6 @@
 # HTML
 
-SimpleKotlinMail provides a convenient way for setting the HTML content of a message. Instead of just passing in the
+Kotlinmailer provides a convenient way for setting the HTML content of a message. Instead of just passing in the
 HTML text, you can use the HTML DSL of [kotlinx.html](https://github.com/Kotlin/kotlinx.html) to create the HTML
 content.
 

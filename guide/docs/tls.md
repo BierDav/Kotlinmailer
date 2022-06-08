@@ -8,7 +8,7 @@ this guide is for TLS in tests.**
 
 ## TLSContext (SSLContext)
 
-SimpleKotlinMail provides a utility function allowing you to easily create a new TLSContext (actually an SSLContext).
+Kotlinmailer provides a utility function allowing you to easily create a new TLSContext (actually an SSLContext).
 
 ```kotlin
 val tlsContext = TLSContext(
