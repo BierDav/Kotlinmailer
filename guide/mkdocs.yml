@@ -35,6 +35,5 @@ nav:
       - Email API: core.md
       - Kotlin HTML DSL: html.md
       - Convert: convert.md
-  - Server (receive): server.md
   - Client (send): client.md
   - TLS: tls.md

@@ -39,7 +39,6 @@ dependencies {
 
 - **`simplekotlinmail-core`** **(required)**
 - **`simplekotlinmail-client`** if you want to send emails
-- **`simplekotlinmail-server`** if you want to receive emails
 - **`simplekotlinmail-html`** if you want to use kotlinx.html inside your email builders
 
 ## JVM Version
