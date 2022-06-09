@@ -23,7 +23,7 @@ jobs:
       - name: Print
         run: pwd && ls ~/.gnupg
       - name: Publish artifact
-        run: ./gradlew publish -Psigning.keyId=${{secrets.SIGNING_KEY_ID}} -Psigning.password=${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}} -Psigning.secretKeyRingFile=$(echo ~/.gradle/secring.gpg)
+        run: ./gradlew publish -Psigning.keyId=${{secrets.SIGNING_KEY_ID}} -Psigning.password=${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}} -Psigning.secretKeyRingFile=$(echo ~/.gradle/secring.gpg) -Psignatory.keyId=${{secrets.OSSRH_GPG_SECRET_KEY_ID}}
         env:
           MAVEN_USERNAME: ${{secrets.OSSRH_USERNAME}}
           MAVEN_PASSWORD: ${{secrets.OSSRH_TOKEN}}
