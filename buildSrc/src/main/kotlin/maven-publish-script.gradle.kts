@@ -4,8 +4,7 @@ description = "A simple coroutine based Kotlin Email API for client projects"
 
 plugins {
     kotlin("jvm")
-    `java-library`
-    `maven-publish`
+    id("maven-publish")
     signing
 }
 
