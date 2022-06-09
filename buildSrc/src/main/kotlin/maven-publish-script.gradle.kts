@@ -9,6 +9,7 @@ plugins {
 }
 
 signing {
+    useGpgCmd()
     sign(publishing.publications)
 }
 
