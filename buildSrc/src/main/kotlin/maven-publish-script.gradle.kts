@@ -9,7 +9,7 @@ plugins {
 }
 
 signing {
-    useInMemoryPgpKeys(System.getenv("MAVEN_GPG_KEY"), System.getenv("MAVEN_GPG_PASSPHRASE"))
+    useGpgCmd()
     sign(publishing.publications)
 }
 
