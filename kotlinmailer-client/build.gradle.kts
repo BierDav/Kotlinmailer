@@ -7,5 +7,6 @@ dependencies {
     api(project(":${rootProject.name}-core"))
 
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
-    api(libs.simpleJavaMail.batch)
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.2")
+    api("org.simplejavamail:batch-module:7.1.1")
 }
