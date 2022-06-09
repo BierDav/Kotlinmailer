@@ -5,10 +5,11 @@ description = "A simple coroutine based Kotlin Email API for client projects"
 plugins {
     kotlin("jvm")
     id("maven-publish")
-    signing
+    id("signing")
 }
 
 signing {
+
     sign(publishing.publications)
 }
 
@@ -19,9 +20,12 @@ java {
 
 publishing {
     repositories {
-        maven("https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+        maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
             name = "ossrh"
-            credentials(PasswordCredentials::class)
+            credentials {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
         }
     }
 
@@ -40,6 +44,8 @@ publishing {
                 developers {
                     developer {
                         name.set("BierDav")
+                        organization.set("QuickMe")
+                        organizationUrl.set("https://quickme.at")
                     }
                 }
 
