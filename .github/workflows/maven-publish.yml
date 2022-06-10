@@ -21,7 +21,7 @@ jobs:
           gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
           gpg-passphrase: ${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}}
       - name: Publish artifact
-        run: ./gradlew publish --info --debug -Psigning.gnupg.keyName=${{secrets.OSSRH_GPG_SECRET_KEY_ID}} -Psigning.gnupg.passphrase=${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}} -Psigning.gnupg.optionsFile=${GITHUB_WORKSPACE}/gpg.conf
+        run: ./gradlew publish -Psigning.gnupg.keyName=${{secrets.OSSRH_GPG_SECRET_KEY_ID}} -Psigning.gnupg.passphrase=${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}} -Psigning.gnupg.optionsFile=${GITHUB_WORKSPACE}/gpg.conf
         env:
           MAVEN_USERNAME: ${{secrets.OSSRH_USERNAME}}
           MAVEN_PASSWORD: ${{secrets.OSSRH_TOKEN}}
