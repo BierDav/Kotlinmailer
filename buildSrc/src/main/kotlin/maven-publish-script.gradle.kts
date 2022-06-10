@@ -1,3 +1,5 @@
+import java.net.URI
+
 val githubProject = "BierDav/Kotinmailer"
 
 description = "A simple coroutine based Kotlin Email API for client projects"
@@ -20,11 +22,16 @@ java {
 
 publishing {
     repositories {
-        maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        maven {
+            val snapshotRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            val releaseRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            val repoUrl = if (project.version.toString().endsWith("SNAPSHOT")) snapshotRepoUrl else releaseRepoUrl
+
+            url = URI.create(repoUrl)
             name = "ossrh"
             credentials {
-                username = System.getenv("MAVEN_USERNAME")
-                password = System.getenv("MAVEN_PASSWORD")
+                username = System.getenv("MAVEN_USERNAME") ?: property("credentials.username") as String
+                password = System.getenv("MAVEN_PASSWORD") ?: property("credentials.password") as String
             }
         }
     }
