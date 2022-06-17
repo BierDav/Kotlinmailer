@@ -18,13 +18,13 @@ jobs:
           server-id: ossrh
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
-          gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
-          gpg-passphrase: ${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}}
       - name: Publish artifact
-        run: ./gradlew publish -Psigning.gnupg.keyName=${{secrets.OSSRH_GPG_SECRET_KEY_ID}} -Psigning.gnupg.passphrase=${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}} -Psigning.gnupg.optionsFile=${GITHUB_WORKSPACE}/gpg.conf
+        run: ./gradlew publish
         env:
           MAVEN_USERNAME: ${{secrets.OSSRH_USERNAME}}
           MAVEN_PASSWORD: ${{secrets.OSSRH_TOKEN}}
+          GPG_PRIVATE_KEY: ${{secrets.OSSRH_GPG_SECRET_KEY}}
+          GPG_PRIVATE_KEY_PASSWORD: ${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}}
       - name: Setup upterm session
         if: always()
         uses: lhotari/action-upterm@v1

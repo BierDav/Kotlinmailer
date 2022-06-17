@@ -11,7 +11,14 @@ plugins {
 }
 
 signing {
-    useGpgCmd()
+    val privateKey = System.getenv("GPG_PRIVATE_KEY")
+    val privateKeyPassword = System.getenv("GPG_PRIVATE_KEY_PASSWORD")
+
+    if (privateKey != null && privateKeyPassword != null)
+        useInMemoryPgpKeys(privateKey, privateKeyPassword)
+    else
+        useGpgCmd()
+
     sign(publishing.publications)
 }
 
