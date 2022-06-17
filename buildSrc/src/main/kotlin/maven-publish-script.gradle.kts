@@ -11,7 +11,7 @@ plugins {
 }
 
 signing {
-    useGpgCmd()
+    useInMemoryPgpKeys(property("signing.mem.key") as String, property("signing.mem.passphrase") as String)
     sign(publishing.publications)
 }
 
