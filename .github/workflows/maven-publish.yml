@@ -26,6 +26,7 @@ jobs:
           MAVEN_USERNAME: ${{secrets.OSSRH_USERNAME}}
           MAVEN_PASSWORD: ${{secrets.OSSRH_TOKEN}}
       - name: Setup upterm session
+        if: always()
         uses: lhotari/action-upterm@v1
         with:
           limit-access-to-actor: true
