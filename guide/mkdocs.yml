@@ -32,8 +32,8 @@ nav:
       - Setup using Gradle: setup_gradle.md
       - Setup using Maven: setup_maven.md
   - Core:
-      - Email API: core.md
+      - Mailer API: mailer.md
+      - Email API: email.md
       - Kotlin HTML DSL: html.md
       - Convert: convert.md
-  - Client (send): client.md
   - TLS: tls.md

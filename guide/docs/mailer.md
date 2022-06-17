@@ -1,6 +1,4 @@
-# Client
-
-## Mailer
+# Mailer API
 
 A mailer instance is connected to an SMTP server capable of sending emails (e.g. [Postfix](http://www.postfix.org/), paid services or Gmail).
 
@@ -30,7 +28,7 @@ MailerManager.shutdownMailers()
 
 ## Send emails
 
-Easily send your [previously built emails](core.md).
+Easily send your [previously built emails](email.md).
 
 ##### Using coroutines (Asynchronously)
 

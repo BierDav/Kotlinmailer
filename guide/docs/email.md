@@ -20,7 +20,11 @@ A built email object is immutable.
 
 ### Send that email
 
-Go to the [client page](client.md).
+Go to the [Mailer API](mailer.md).
+
+### Use kotlinx.html
+
+Go to [Kotlin HTML DSL](html.md).
 
 ## Copy an email
 
