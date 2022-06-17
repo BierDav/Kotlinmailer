@@ -1,6 +1,7 @@
 plugins {
     id("common-build-script")
     id("maven-publish-script")
+    kotlin("plugin.serialization")
 }
 
 dependencies {
