@@ -50,20 +50,14 @@ dependencies {
 }
 ```
 
-### Maven
+#### JVM Version
+To be able to use the inline functions of the API, you have to configure the JVM version (if you have not done that
+already).
 
-```xml
-<dependency>
-    <groupId>at.quickme.kotlinmailer</groupId>
-    <artifactId>kotlinmailer-core</artifactId>
-    <version>0.2.0</version>
-</dependency>
-<!-- Optional for Kotlinx HTML DSL support -->
-<dependency>
-    <groupId>at.quickme.kotlinmailer</groupId>
-    <artifactId>kotlinmailer-html</artifactId>
-    <version>0.2.0</version>
-</dependency>
+```kotlin
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = jvmVersionString // <- e.g. 11
+}
 ```
 
 ## Examples
