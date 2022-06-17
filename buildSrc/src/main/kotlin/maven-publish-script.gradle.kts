@@ -37,8 +37,8 @@ publishing {
             url = URI.create(repoUrl)
             name = "ossrh"
             credentials {
-                username = System.getenv("MAVEN_USERNAME") ?: property("credentials.username") as String
-                password = System.getenv("MAVEN_PASSWORD") ?: property("credentials.password") as String
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
             }
         }
     }
