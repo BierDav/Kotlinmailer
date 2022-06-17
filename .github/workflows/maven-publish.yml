@@ -25,9 +25,3 @@ jobs:
           MAVEN_PASSWORD: ${{secrets.OSSRH_TOKEN}}
           GPG_PRIVATE_KEY: ${{secrets.OSSRH_GPG_SECRET_KEY}}
           GPG_PRIVATE_KEY_PASSWORD: ${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}}
-      - name: Setup upterm session
-        if: always()
-        uses: lhotari/action-upterm@v1
-        with:
-          limit-access-to-actor: true
-          limit-access-to-users: BierDav
