@@ -124,7 +124,7 @@ To learn more about Kotlinmailer, visit the **[Documentation](https://bierdav.gi
 ## Project information
 
 This project uses [SimpleJavaMail](https://www.simplejavamail.org/) to deal with java MimeMessages in a more elegant
-way. On the server side, this projects depends on a fork of [SubEthaSMTP](https://github.com/davidmoten/subethasmtp).
+way.
 
 If you use the documented functionality of SimpleKotlinMail, everything will make use
 of [kotlinx.coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html).
