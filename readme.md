@@ -1,9 +1,11 @@
 ![Kotlinmailer Logo](kotlinmailer_logo_dark.svg#gh-dark-mode-only)
 ![Kotlinmailer Logo](kotlinmailer_logo_light.svg#gh-light-mode-only)
 
-Kotlinmailer is a Kotlin Mail API, using coroutines and providing DSLs. It may be used in a Ktor Backend for verification mails.
+Kotlinmailer is a Kotlin Mail API, using coroutines and providing DSLs. It may be used in a Ktor Backend for
+verification mails.
 
-This project is a hard fork from [SimpleKotlinMail](https://github.com/jakobkmar/SimpleKotlinMail) which is no more actively worked on.
+This project is a hard fork from [SimpleKotlinMail](https://github.com/jakobkmar/SimpleKotlinMail) which is no more
+actively worked on.
 
 ## Features
 
@@ -12,6 +14,57 @@ This project is a hard fork from [SimpleKotlinMail](https://github.com/jakobkmar
 - TLS support
 
 ## To get started, visit the **[Documentation](https://bierdav.github.io/Kotinmailer/)**.
+
+## Setup
+
+Using Kotlinmailer requires Kotlin compiler `1.4.0` or higher due to the dependency
+on [Kotlin Serialization](https://github.com/Kotlin/kotlinx.serialization)
+
+### Gradle
+
+Kotlin DSL:
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("at.quickme.kotlinmailer:kotlinmailer-core:0.2.0")
+    // Optional for Kotlinx HTML DSL support
+    implementation("at.quickme.kotlinmailer:kotlinmailer-html:0.2.0")
+}
+```
+
+Groovy DSL:
+
+```groovy
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "at.quickme.kotlinmailer:kotlinmailer-core:0.2.0"
+    // Optional for Kotlinx HTML DSL support
+    implementation "at.quickme.kotlinmailer:kotlinmailer-html:0.2.0"
+}
+```
+
+### Maven
+
+```xml
+<dependency>
+    <groupId>at.quickme.kotlinmailer</groupId>
+    <artifactId>kotlinmailer-core</artifactId>
+    <version>0.2.0</version>
+</dependency>
+<!-- Optional for Kotlinx HTML DSL support -->
+<dependency>
+    <groupId>at.quickme.kotlinmailer</groupId>
+    <artifactId>kotlinmailer-html</artifactId>
+    <version>0.2.0</version>
+</dependency>
+```
 
 ## Examples
 
