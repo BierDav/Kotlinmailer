@@ -16,15 +16,15 @@ Kotlin DSL
 
 ```kotlin
 dependencies {
-    implementation("at.quickme:MODULE:VERSION")
+    implementation("at.quickme.kotlinmailer:MODULE:VERSION")
 }
 ```
 
-or Groovy DSL
+Groovy DSL
 
 ```groovy
 dependencies {
-    implementation 'at.quickme:MODULE:VERSION'
+    implementation 'at.quickme.kotlinmailer:MODULE:VERSION'
 }
 ```
 
