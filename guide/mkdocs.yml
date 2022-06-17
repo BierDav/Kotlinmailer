@@ -5,7 +5,7 @@ site_author: David Bieregger
 theme:
   name: material
   language: en
-  favicon: img/logo.png
+  favicon: img/favicon.png
   icon:
     repo: fontawesome/brands/github
   logo: img/logo.png
