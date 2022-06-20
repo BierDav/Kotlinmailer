@@ -14,10 +14,9 @@ signing {
     val privateKey = System.getenv("GPG_PRIVATE_KEY")
     val privateKeyPassword = System.getenv("GPG_PRIVATE_KEY_PASSWORD")
 
-    if (privateKey != null && privateKeyPassword != null)
-        useInMemoryPgpKeys(privateKey, privateKeyPassword)
-    else
-        useGpgCmd()
+    if (privateKey == null || privateKeyPassword == null)
+        throw Error("Private key and/or associated Password missing")
+    useInMemoryPgpKeys(privateKey, privateKeyPassword)
 
     sign(publishing.publications)
 }
