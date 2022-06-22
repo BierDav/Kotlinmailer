@@ -1,11 +1,7 @@
-<div style="align-content: center">
-
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/BierDav/Kotlinmailer/main/.github/images/kotlinmailer_logo_dark.svg">
-    <img alt="Ktor logo" src="https://raw.githubusercontent.com/BierDav/Kotlinmailer/main/.github/images/kotlinmailer_logo_light.svg.svg">
-  </picture>
-
-</div>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/BierDav/Kotlinmailer/main/.github/images/kotlinmailer_logo_dark.svg">
+  <img alt="Ktor logo" src="https://raw.githubusercontent.com/BierDav/Kotlinmailer/main/.github/images/kotlinmailer_logo_light.svg.svg">
+</picture>
 
 Kotlinmailer is a Kotlin Mail API, using coroutines and providing DSLs. It may be used in a Ktor Backend for
 verification mails.
@@ -57,6 +53,7 @@ dependencies {
 ```
 
 #### JVM Version
+
 To be able to use the inline functions of the API, you have to configure the JVM version (if you have not done that
 already).
 
