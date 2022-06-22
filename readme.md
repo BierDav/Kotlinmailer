@@ -1,5 +1,11 @@
-![Kotlinmailer Logo](kotlinmailer_logo_dark.svg#gh-dark-mode-only)
-![Kotlinmailer Logo](kotlinmailer_logo_light.svg#gh-light-mode-only)
+<div align="center">
+
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/BierDav/Kotlinmailer/main/.github/images/kotlinmailer_logo_dark.svg">
+    <img alt="Ktor logo" src="https://raw.githubusercontent.com/BierDav/Kotlinmailer/main/.github/images/kotlinmailer_logo_light.svg.svg">
+  </picture>
+
+</div>
 
 Kotlinmailer is a Kotlin Mail API, using coroutines and providing DSLs. It may be used in a Ktor Backend for
 verification mails.
