@@ -6,8 +6,8 @@ dependencies {
     implementation(project(":${rootProject.name}-core"))
     implementation(project(":${rootProject.name}-html"))
 
-    testImplementation("org.slf4j:slf4j-simple:1.7.32")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+    testImplementation("org.slf4j:slf4j-simple:2.0.7")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
 }
 
 tasks.test {

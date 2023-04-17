@@ -9,19 +9,19 @@ private typealias ContextlessHtmlBuilder = TagConsumer<StringBuilder>.() -> Stri
 /**
  * Set the html of the message.
  */
-inline fun EmailPopulatingBuilder.withHTML(builder: ContextlessHtmlBuilder): EmailPopulatingBuilder =
+fun EmailPopulatingBuilder.withHTML(builder: ContextlessHtmlBuilder): EmailPopulatingBuilder =
     withHTMLText(builder.build())
 
 /**
  * Append html to the message.
  */
-inline fun EmailPopulatingBuilder.appendHTML(builder: ContextlessHtmlBuilder): EmailPopulatingBuilder =
+fun EmailPopulatingBuilder.appendHTML(builder: ContextlessHtmlBuilder): EmailPopulatingBuilder =
     appendTextHTML(builder.build())
 
 /**
  * Prepend html to the message.
  */
-inline fun EmailPopulatingBuilder.prependHTML(builder: ContextlessHtmlBuilder): EmailPopulatingBuilder =
+fun EmailPopulatingBuilder.prependHTML(builder: ContextlessHtmlBuilder): EmailPopulatingBuilder =
     prependTextHTML(builder.build())
 
 @Suppress("NOTHING_TO_INLINE")
