@@ -15,7 +15,7 @@ signing {
     val privateKeyPassword = System.getenv("GPG_PRIVATE_KEY_PASSWORD")
 
     if (privateKey == null || privateKeyPassword == null) {
-        println("Private key and/or associated Password for signing is missing. This is not a problem for local development.")
+        println("Private key and/or associated Password for signing is missing. For local development this can be ignored, because it is only required for publishing.")
         return@signing
     }
     useInMemoryPgpKeys(privateKey, privateKeyPassword)
