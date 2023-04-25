@@ -4,8 +4,6 @@
 build/
 */build/
 
-# IntelliJ IDEA
-.idea/
 
 # MkDocs
 guide/site/

@@ -8,7 +8,7 @@ theme:
   favicon: img/favicon.png
   icon:
     repo: fontawesome/brands/github
-  logo: img/logo.png
+  logo: img/icon.png
   palette:
     scheme: preference
     primary: black
