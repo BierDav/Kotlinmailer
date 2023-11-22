@@ -116,7 +116,7 @@ emailBuilder {
 
 ### And more
 
-To learn more about Kotlinmailer, visit the **[Documentation](https://bierdav.github.io/Kotinmailer/)**.
+To learn more about Kotlinmailer, visit the **[Documentation](https://bierdav.github.io/Kotlinmailer/)**.
 
 ## Project information
 
