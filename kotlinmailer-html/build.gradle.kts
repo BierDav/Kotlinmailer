@@ -6,5 +6,5 @@ plugins {
 dependencies {
     api(project(":${rootProject.name}-core"))
 
-    api("org.jetbrains.kotlinx:kotlinx-html-jvm:0.8.0")
+    api("org.jetbrains.kotlinx:kotlinx-html-jvm:0.11.0")
 }

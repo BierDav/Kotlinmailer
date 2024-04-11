@@ -6,7 +6,7 @@ repositories {
     mavenCentral()
 }
 
-val kotlinVersion = "1.8.20"
+val kotlinVersion = "1.9.23"
 
 dependencies {
     implementation(kotlin("gradle-plugin", kotlinVersion))
