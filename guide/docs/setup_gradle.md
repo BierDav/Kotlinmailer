@@ -37,8 +37,8 @@ dependencies {
 
 ### Modules
 
-- **`kotlinmailer-core`** **(required)**
-- **`kotlinmailer-html`** if you want to use kotlinx.html inside your email builders
+- **`core`** **(required)**
+- **`html`** if you want to use kotlinx.html inside your email builders
 
 ## JVM Version
 
