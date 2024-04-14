@@ -46,9 +46,9 @@ repositories {
 }
 
 dependencies {
-    implementation "at.quickme.kotlinmailer:kotlinmailer-core:1.0.0"
+    implementation "at.quickme.kotlinmailer:core:1.0.0"
     // Optional for Kotlinx HTML DSL support
-    implementation "at.quickme.kotlinmailer:kotlinmailer-html:1.0.0"
+    implementation "at.quickme.kotlinmailer:html:1.0.0"
 }
 ```
 

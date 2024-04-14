@@ -1,7 +1,5 @@
-val projectName = "kotlinmailer"
+rootProject.name = "kotlinmailer"
 
-rootProject.name = projectName
-
-include("$projectName-core")
-include("$projectName-html")
-include("$projectName-test")
+include("packages:core")
+include("packages:html")
+include("packages:test")
