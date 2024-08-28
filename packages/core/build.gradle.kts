@@ -1,7 +1,7 @@
 plugins {
     id("common-build-script")
     id("maven-publish-script")
-    id(libs.plugins.kotlin.serialization.get().pluginId) apply false
+    alias(libs.plugins.kotlin.serialization)
 }
 
 dependencies {
