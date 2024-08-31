@@ -6,8 +6,12 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.simplejavamail.api.mailer.Mailer
 
+
 object MailerManager {
-    private val LOCAL_MAILER by lazy { mailerBuilder("localhost", 25) }
+    private const val DEFAULT_SMTP_HOST = "localhost"
+    private const val DEFAULT_SMTP_PORT = 25
+
+    private val LOCAL_MAILER by lazy { mailerBuilder(DEFAULT_SMTP_HOST, DEFAULT_SMTP_PORT) }
 
     private var DEFAULT_MAILER: Mailer? = null
 

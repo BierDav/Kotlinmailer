@@ -1,8 +1,8 @@
 # HTML
 
-Kotlinmailer provides a convenient way for setting the HTML content of a message. Instead of just passing in the
-HTML text, you can use the HTML DSL of [kotlinx.html](https://github.com/Kotlin/kotlinx.html) to create the HTML
-content.
+Kotlinmailer provides a convenient way for setting the HTML content of a message.
+Instead of passing in the HTML text, you can use the HTML DSL of [kotlinx.html](https://github.com/Kotlin/kotlinx.html)
+to create the HTML content.
 
 ## Set HTML content
 

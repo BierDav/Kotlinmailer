@@ -1,0 +1,109 @@
+name: Build documentation website
+
+on:
+  release:
+    types: [ created ]
+
+permissions:
+  id-token: write
+  pages: write
+
+env:
+  WRITERSIDE_INSTANCE: 'Writerside/default'
+  WRITERSIDE_ARTIFACT: 'webHelpDEFAULT2-all.zip'
+  WRITERSIDE_DOCKER_VERSION: '241.18775'
+
+  DOKKA_ARTIFACT: 'webApi-all.zip'
+
+jobs:
+  build-writerside:
+    runs-on: ubuntu-latest
+    permissions:
+        contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build docs using Writerside Docker builder
+        uses: JetBrains/writerside-github-action@v4
+        with:
+          instance: ${{ env.WRITERSIDE_INSTANCE }}
+          artifact: ${{ env.WRITERSIDE_ARTIFACT }}
+          docker-version: ${{ env.WRITERSIDE_DOCKER_VERSION }}
+          location: docs
+
+      - name: Save artifact with build results
+        uses: actions/upload-artifact@v4
+        with:
+          name: writerside-docs
+          path: |
+            artifacts/${{ env.WRITERSIDE_ARTIFACT }}
+          retention-days: 7
+  build-dokka:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build API documentation with Dokka
+        run: ./gradlew dokkaHtmlMultiModule
+
+      - name: Zip output to artifact
+        run: zip -r ${{ env.DOKKA_ARTIFACT }} build/dokka/htmlMultiModule
+
+      - name: Save artifact with build results
+        uses: actions/upload-artifact@v4
+        with:
+          name: dokka-docs
+          path: |
+            ${{ env.DOKKA_ARTIFACT }}
+          retention-days: 7
+  deploy-docs:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: [ build-writerside, build-dokka ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download writerside artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: writerside-docs
+
+      - name: Unzip writerside artifact
+        run: unzip -O UTF-8 -qq '${{ env.WRITERSIDE_ARTIFACT }}' -d www
+
+      - name: Download dokka artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dokka-docs
+
+      - name: Unzip dokka artifact
+        run: unzip -O UTF-8 -qq '${{ env.DOKKA_ARTIFACT }}' -d www/api
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Package and upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: www
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

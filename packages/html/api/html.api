@@ -1,0 +1,7 @@
+public final class at/quickme/kotlinmailer/html/EmailBuilderHtmlKt {
+	public static final fun appendHTML (Lorg/simplejavamail/api/email/EmailPopulatingBuilder;Lkotlin/jvm/functions/Function1;)Lorg/simplejavamail/api/email/EmailPopulatingBuilder;
+	public static final fun build (Lkotlin/jvm/functions/Function1;)Ljava/lang/String;
+	public static final fun prependHTML (Lorg/simplejavamail/api/email/EmailPopulatingBuilder;Lkotlin/jvm/functions/Function1;)Lorg/simplejavamail/api/email/EmailPopulatingBuilder;
+	public static final fun withHTML (Lorg/simplejavamail/api/email/EmailPopulatingBuilder;Lkotlin/jvm/functions/Function1;)Lorg/simplejavamail/api/email/EmailPopulatingBuilder;
+}
+

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Get Started with Kotlinmailer" id="get_started">
+
+    <p>
+        In this tutorial, you will learn how to send emails using Kotlinmailer and integrate it within your existing
+        projects.
+    </p>
+    <p>
+        By the end of this tutorial, you will be able to do the following:
+    </p>
+    <list>
+        <li>Configure an SMTP server connection</li>
+        <li>Send emails using Kotlinmailer</li>
+    </list>
+
+    <chapter title="Prerequisites" id="prerequisites">
+
+        Before starting this tutorial, you should have the following prerequisites:
+
+        <list>
+            <li>The latest <a href="https://gradle.org/install/">Gradle</a> distribution.</li>
+            <li>A <a href="https://www.oracle.com/java/technologies/downloads/">Java Development Kit</a>, version 8 or later.</li>
+            <li>An integrated development environment (IDE) such as <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>
+                or <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li>
+        </list>
+    </chapter>
+    <chapter title="Create a new project" id="new-project">
+        <p>
+            First, you will need a basic Kotlin project setup to build upon.
+            You can
+            <resource src="../snippets/init-kotlin-gradle-app.zip">download a preinitialized project</resource>
+            or follow
+            the steps below to generate a new project with Gradle.
+        </p>
+
+        <procedure id="create-new-project-procedure">
+            <step>
+                <p>In a terminal window, navigate to the destination where you want to create your project and run
+                    the following commands to create a new folder and change directory into it:
+                </p>
+                <code-block lang="console" prompt="$" show-white-spaces="false">
+                    mkdir kotlinmailer-app
+                    cd kotlinmailer-app
+                </code-block>
+            </step>
+            <step>
+                <p>Run the <code>gradle init</code> task to initialize a new Gradle project:</p>
+                <code-block lang="console" prompt="$">
+                    gradle init
+                </code-block>
+                <p>
+                    When prompted, select the following options:
+                </p>
+                <list>
+                    <li><code>1: Application</code> project type.</li>
+                    <li><code>2: Kotlin</code> implementation language.</li>
+                </list>
+                <p>
+                    For the other questions, press enter to use the default values.
+                    The output will look like the following:
+                </p>
+                <code-block lang="console" noinject="true">
+                    Select type of build to generate:
+                    1: Application
+                    2: Library
+                    3: Gradle plugin
+                    4: Basic (build structure only)
+                    Enter selection (default: Application) [1..4]
+                    Select implementation language:
+                    1: Java
+                    2: Kotlin
+                    3: Groovy
+                    4: Scala
+                    5: C++
+                    6: Swift
+                    Enter selection (default: Java) [1..6] 2
+                    Enter target Java version (min: 7, default: 21):
+                    Project name (default: exposed-kotlin-app):
+                    Select application structure:
+                    1: Single application project
+                    2: Application and library project
+                    Enter selection (default: Single application project) [1..2]
+                    Select build script DSL:
+                    1: Kotlin
+                    2: Groovy
+                    Enter selection (default: Kotlin) [1..2]
+                    Select test framework:
+                    1: kotlin.test
+                    2: JUnit Jupiter
+                    Enter selection (default: kotlin.test) [1..2]
+                    Generate build using new APIs and behavior (some features may change in the next minor release)?
+                    (default: no) [yes, no]
+                    > Task :init
+                    To learn more about Gradle by exploring our Samples at
+                    https://docs.gradle.org/8.8/samples/sample_building_kotlin_applications.html
+                    BUILD SUCCESSFUL in 28s
+                    1 actionable task: 1 executed
+                </code-block>
+            </step>
+            <step>
+                <p>
+                    Once the project has been initialized, open the project folder in your IDE.
+                    To open the project, use the following command:
+                </p>
+                <tabs>
+                    <tab title="IntelliJ IDEA" group-key="ide-intellij" id="intellij-idea">
+                        <code-block lang="shell">
+                            idea .
+                        </code-block>
+                    </tab>
+                    <tab title="Visual Studio Code" group-key="ide-vscode" id="visual-studio-code">
+                        <code-block lang="shell">
+                            code .
+                        </code-block>
+                    </tab>
+                </tabs>
+            </step>
+        </procedure>
+    </chapter>
+    <chapter title="Add dependencies" id="add-dependencies">
+        <p>
+            Before you start using Kotlinmailer, you need to provide dependencies to your project.
+        </p>
+        <procedure id="add-dependencies-procedure">
+            <step>
+                <p>
+                    Navigate to the
+                    <path>gradle/libs.versions.toml</path>
+                    file and define the Kotlinmailer version and libraries:
+                </p>
+                <code-block lang="text" noinject="true">
+                    [versions]
+                    //...
+                    kotlinmailer = "%kotlinmailer_version%"
+
+                    [libraries]
+                    //...
+                    kotlinmailer-core = { module = "at.quickme.kotlinmailer", name = "core", version.ref = "kotlinmailer" }
+                </code-block>
+                <list>
+                    <li>
+                        The <code>core</code> module provides the foundational components and abstractions
+                        needed to work with databases in a type-safe manner and includes the DSL API.
+                    </li>
+                    <li>
+                        The <code>html</code> module provides the HTML DSL API to create emails with <a
+                            href="https://github.com/Kotlin/kotlinx.html">kotlinx.html</a>.
+                    </li>
+                </list>
+            </step>
+            <step>
+                <p>
+                    Navigate to the
+                    <path>app/build.gradle.kts</path>
+                    file and add the Exposed and H2 database modules into the <code>dependencies</code> block:
+                </p>
+                <code-block lang="kotlin">
+                    dependencies {
+                        //...
+                        implementation(libs.kotlinmailer.core)
+                        // Optional
+                        implementation(libs.kotlinmailer.html)
+                        //...
+                    }
+                </code-block>
+            </step>
+            <step>
+                Last but not least, load the Gradle changes in your IDE:
+                <include from="lib.topic" element-id="load_gradle_changes"/>
+            </step>
+        </procedure>
+    </chapter>
+    <chapter title="Configure an SMTP Server" id="configure-smtp-server">
+        <p>
+            For Kotlinmailer to send emails, you need to configure an SMTP server connection.
+        </p>
+        <procedure id="config-db-connection-procedure">
+            <step>
+                <p>
+                    Navigate to
+                    <path>app/src/main/kotlin/org/example/</path>
+                    and open the
+                    <path>
+                        App.kt
+                    </path>
+                    file.
+                </p>
+            </step>
+            <step>
+                <p>
+                    Replace the contents of the
+                    <path>
+                        App.kt
+                    </path>
+                    file with the following implementation:
+                </p>
+                <code-block lang="kotlin">
+                    package org.example
+
+                    import at.quickme.kotlinmailer.delivery.mailerBuilder
+
+                    fun main() {
+                        val mailer = mailerBuilder(
+                            host = "smtp.example.com", port = 25,
+                            username = "john.doe@example.com",
+                            password = "secure-password"
+                        )
+                    }
+                </code-block>
+                <tip>
+                    Remember to replace the SMTP server values with your actual SMTP server connection details.
+                </tip>
+                <p>
+                    The <code>mailerBuilder()</code> function creates an instance of a class that represents
+                    the SMTP server connection.
+                </p>
+                <note>
+                    Note that invoking <code>mailerBuilder()</code> only configures the connection settings,
+                    but it doesn't immediately establish a connection with the SMTP server. The actual connection
+                    will be established later when an email is sent.
+                </note>
+                <p>
+                    With this, you've added Kotlinmailer to your Kotlin project and configured a SMTP server connection.
+                    You're now ready to send your first email.
+                </p>
+            </step>
+        </procedure>
+    </chapter>
+
+    <chapter title="Send a simple text email" id="update-and-delete-task">
+        <p>Let us add the app’s functionality by sending an email.</p>
+        <procedure id="update-and-delete-task-procedure">
+            <step>
+                <p>In the same <code>App.kt</code> file, add the following code to your implementation:</p>
+                <code-block lang="kotlin">
+                    package org.example
+
+                    import at.quickme.kotlinmailer.delivery.mailerBuilder
+
+                    fun main() {
+                        val mailer = mailerBuilder(
+                            host = "smtp.example.com", port = 25,
+                            username = "john.doe@example.com",
+                            password = "secure-password"
+                        )
+
+                        val sender = InternetAddress("John Doe &lt;john.doe@example.com&gt;")
+                        emailBuilder {
+                            from(sender)
+                            to("alice.doe@exmaple.com")
+                            withSubject("Let's get married 💍")
+                            withPlainText("My dear Alice, I love you! Will you marry me?")
+                        }.send(mailer)
+                    }
+                </code-block>
+                <tip>
+                    Remember to replace the recipient email addresses with an actual email address,
+                    so that you confirm that the email has been sent.
+                </tip>
+
+                <p>Here's the breakdown:</p>
+                <p>
+                    The <code>InternetAddress()</code> function creates an instance of the <code>InternetAddress</code>
+                    class, which represents the sender's email identity. The first part `John Doe` is the sender's name,
+                    and the second part consists of the sender's email address.
+                </p>
+                <code-block lang="kotlin">
+                    val sender = InternetAddress("John Doe &lt;john.doe@example.com&gt;")
+                </code-block>
+                <note>
+                    Spoofing the sender's email using this may be blocked by some SMTP servers.
+                    To avoid this, be sure to use an email address assigned to your SMTP user account.
+                </note>
+                <p>
+                    The <code>emailBuilder</code> function creates an instance of the <code>Email</code> class,
+                    which represents the email to be sent. The <code>emailBuilder</code> function is a DSL function
+                    that allows you to build an email using a set of functions.
+                    As you can see, we set parameters such as recipient, subject and body text for the email.
+                </p>
+                <code-block lang="kotlin">
+                    emailBuilder {
+                        from(sender)
+                        to("alice.doe@exmaple.com")
+                        withSubject("Let's get married 💍")
+                        withPlainText("My dear Alice, I love you! Will you marry me?")
+                    }
+                </code-block>
+                <p>
+                    The <code>send()</code> function finalises the process and sends the email using the previously
+                    configured SMTP connection.
+                </p>
+            </step>
+            <step>
+                <p>
+                    You should now see in the recipents email inbox that your email with the subject "Let's get married
+                    💍" has been successfully sent.
+                </p>
+            </step>
+        </procedure>
+    </chapter>
+    <chapter title="Next steps">
+        Great job!
+        You've now implemented a simple console application that uses Kotlinmailer to send simple text emails. Now
+        that you’ve covered the basics, you're ready to explore what else you can do with Kotlinmailer.
+    </chapter>
+</topic>

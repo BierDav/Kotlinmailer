@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Contributing to Kotlinmailer" id="Contributing-to-Kotlinmailer">
+
+    <p>We're delighted that you're considering contributing to Kotlinmailer!</p>
+    <p>There are multiple ways you can contribute:</p>
+    <list>
+        <li>Code</li>
+        <li>Documentation</li>
+        <li>Community Support</li>
+        <li>Issues and Feature Requests</li>
+    </list>
+    <p>This project is proudly built and maintained by developers like you! 💖</p>
+
+    <chapter title="Setup" id="setup">
+        <chapter title="Pull Requests" id="pull-requests">
+            Contributions are made using Github <a href="https://help.github.com/en/articles/about-pull-requests">pull
+            requests</a>:
+            <list type="decimal">
+                <li>Fork the Kotlinmailer repository because imitation is the sincerest form of flattery.</li>
+                <li>Clone your fork to your local machine.</li>
+                <li>Create a new branch for your changes.</li>
+                <li><a href="https://github.com/BierDav/Kotlinmailer/compare">Create</a> a new PR with a request to
+                    merge to the
+                    **master** branch.
+                </li>
+                <li>Ensure that the description is clear and refers to an existing ticket/bug if applicable</li>
+                <li>When contributing a new feature, provide motivation and use-cases describing why the feature not
+                    only provides value to Exposed, but also why it would make sense to be part of the
+                    Exposed framework itself.
+                </li>
+                <li>If the contribution requires updates to documentation (be it updating existing contents or creating
+                    a new one), file a new ticket on <a href="https://github.com/BierDav/Kotlinmailer/issues">GitHub</a>.
+                </li>
+                <li>Make sure any code contributed is covered by tests and no existing tests are broken. We use Docker
+                    containers to run tests.
+                </li>
+                <li>Execute the `detekt` task in Gradle to perform code style validation.</li>
+                <li>Finally, make sure to run the `apiCheck` Gradle task. If it is not successful, run the `apiDump`
+                    Gradle task.
+                    Further information can be found <a href="https://github.com/Kotlin/binary-compatibility-validator">here</a>.
+                </li>
+            </list>
+        </chapter>
+        <chapter title="Commit messages" id="commit-messages">
+            <list>
+                <li>Commit messages should be written in English</li>
+                <li>They should be written in present tense using imperative mood ("Fix" instead of "Fixes", "Improve"
+                    instead of "Improved"). See <a href="https://cbea.ms/git-commit/">How to Write a Git Commit
+                        Message</a>.
+                </li>
+                <li>Add the related bug reference to a commit message (bug number after a hash character between round
+                    braces).
+                </li>
+            </list>
+        </chapter>
+    </chapter>
+    <chapter title="Documentation" id="documentation">
+        There are multiple ways in which you can contribute to Exposed docs:
+        <list>
+            <li>Create an issue in <a href="https://github.com/BierDav/Kotlinmailer/issues">GitHub</a>.</li>
+            <li>Submit a pull request containing your proposed changes. Ensure that these modifications are applied
+                directly within the <code>docs</code> directory.
+            </li>
+        </list>
+    </chapter>
+    <chapter title="Issues and Feature Requests">
+        If you encounter a bug or have an idea for a new feature, submit it to us through <a
+            href="https://github.com/BierDav/Kotlinmailer/issues">GitHub</a>.
+
+        Before submitting an issue or feature request, search GitHub's existing issues to avoid reporting duplicates.
+
+        When submitting an issue or feature request, provide as much detail as possible, including a clear and concise
+        description of the problem or desired functionality, steps to reproduce the issue, and any relevant code
+        snippets or error messages.
+
+        Thank you for your cooperation and for helping to improve Kotlinmailer. 🫶
+    </chapter>
+</topic>

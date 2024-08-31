@@ -1,0 +1,49 @@
+name: Prepare repository for release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        type: string
+        required: true
+
+permissions:
+  packages: write
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract version from tag
+        run: echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - name: Update gradle.properties
+        run: sed -i "s/^version=.*/version=${{ env.VERSION }}/" gradle.properties
+
+      - name: Update Writerside variable
+        run: sed -i 's/\(<var name="kotlinmailer_version" value="\)[^"]*\("\/>\)/\1${{ env.VERSION }}\2/' v.list
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: Update config files to ${{ env.VERSION }}"
+
+      - name: Tag the commit
+        run: git tag v${{ env.VERSION }}
+
+      - name: Push changes
+        run: git push origin ${{ env.VERSION }}
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          prerelease: ${{ contains(inputs.version, '-') }}

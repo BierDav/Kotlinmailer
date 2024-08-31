@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="lib" id="lib" is-library="true">
+
+    <snippet id="load_gradle_changes">
+        <tabs>
+            <tab title="IntelliJ IDEA" group-key="ide-intellij" id="load-intellij-gradle-changes">
+                <p>
+                    In IntelliJ IDEA, click the notification Gradle icon
+                    (<img alt="intelliJ IDEA gradle icon"
+                          src="intellij_idea_gradle_icon.svg" width="16" height="26"/>)
+                    on the right side of the editor to load Gradle changes.
+                </p>
+            </tab>
+            <tab title="Visual Studio Code" group-key="ide-vscode" id="load-vscode-gradle-changes">
+                <p>
+                    In Visual Studio Code, open the terminal and execute:
+                </p>
+                <code-block lang="shell">
+                    ./gradlew
+                </code-block>
+                <note>
+                    This is documentation is based on this <a href="https://stackoverflow.com/questions/54684022/how-ro-refresh-sync-a-gradle-project-in-visualstudiocode">stack overflow post</a>
+                    and has not been tested by the Kotlinmailer team.
+                </note>
+            </tab>
+        </tabs>
+
+    </snippet>
+</topic>

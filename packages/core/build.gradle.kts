@@ -14,3 +14,5 @@ dependencies {
     implementation(libs.simpleJavaMail.simpleJavaMail)
     implementation(libs.simpleJavaMail.smimeModule)
 }
+
+

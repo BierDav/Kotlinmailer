@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "https://resources.jetbrains.com/writerside/1.0/html-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Kotlinmailer Documentation" id="index">
+
+    <section-starting-page>
+        <title>Kotlinmailer Documentation</title>
+        <description>
+            Kotlinmailer is a Kotlin Email API - coroutine based, easy to use and modern!
+            You can use it for both clientside and serverside projects, meaning you can **send** and **receive** emails.
+            It builds mainly upon [SimpleJavaMail](https://www.simplejavamail.org/) which limits its use to JVM projects
+            only.
+        </description>
+        <spotlight>
+            <title>Learn More</title>
+            <a href="get_started.topic" type="learn"
+               summary="Learn how to use Kotlinmailer in Kotlin with Kotlinmailer DSL">Get Started with Kotlinmailer</a>
+            <a href="https://bierdav.github.io/Kotlinmailer/api" type="server" summary="External API Documentation">API
+                Reference</a>
+        </spotlight>
+        <primary>
+            <title>Learn More</title>
+            <a href="html.md">Kotlin HTML DSL</a>
+            <a href="tls.md">TLS</a>
+        </primary>
+        <secondary>
+            <title>Release and Contribution</title>
+            <a href="Contributing-to-Kotlinmailer.topic">Contributing to Kotlinmailer</a>
+            <a href="Migration-Guide.md">Migration Guide</a>
+        </secondary>
+    </section-starting-page>
+
+    <!--### Coroutines-->
+
+    <!--Send emails without blocking the current thread.-->
+
+    <!--### Easy to use-->
+
+    <!--Create emails, mailers and SMTP servers with the help of intuitive Kotlin builders.-->
+
+    <!--### Modern-->
+
+    <!--Kotlinmailer hides unnecessary and overly complicated parts of the mail protocol from you.-->
+    <!--Additionally, the API is typesafe.-->
+
+    <!--## Get Started-->
+
+    <!--Follow the [setup guide](setup_gradle.md) to get started quickly.-->
+
+    <!--## Links-->
+
+    <!-- - [GitHub](https://github.com/BierDav/Kotlinmailer) repository-->
+</topic>

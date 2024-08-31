@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="3f03a1f5">
+        <description>Created after removal of "How to" from Kotlinmailer</description>
+        <accepts>How-to.html</accepts>
+    </rule>
+    <rule id="3c250fbe">
+        <description>Created after removal of "Setup (Maven)" from Kotlinmailer</description>
+        <accepts>setup_maven.html</accepts>
+    </rule>
+    <rule id="5842659e">
+        <description><![CDATA[Created after removal of "<setup_gradle.md>" from Kotlinmailer]]></description>
+        <accepts>setup_gradle.html</accepts>
+    </rule>
+    <rule id="c50d704">
+        <description>Created after removal of "Starter" from Kotlinmailer</description>
+        <accepts>Starter.html</accepts>
+    </rule>
+    <rule id="28770b8d">
+        <description>Created after removal of "Overview" from Kotlinmailer</description>
+        <accepts>Overview.html</accepts>
+    </rule>
+    <rule id="34101a5e">
+        <description>Created after removal of "Reference" from Kotlinmailer</description>
+        <accepts>Reference.html</accepts>
+    </rule>
+</rules>

@@ -1,0 +1,71 @@
+public final class at/quickme/kotlinmailer/data/SMTPLoginInfo {
+	public static final field Companion Lat/quickme/kotlinmailer/data/SMTPLoginInfo$Companion;
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)Lat/quickme/kotlinmailer/data/SMTPLoginInfo;
+	public static synthetic fun copy$default (Lat/quickme/kotlinmailer/data/SMTPLoginInfo;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lat/quickme/kotlinmailer/data/SMTPLoginInfo;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHost ()Ljava/lang/String;
+	public final fun getPassword ()Ljava/lang/String;
+	public final fun getPort ()I
+	public final fun getUsername ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class at/quickme/kotlinmailer/data/SMTPLoginInfo$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lat/quickme/kotlinmailer/data/SMTPLoginInfo$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lat/quickme/kotlinmailer/data/SMTPLoginInfo;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lat/quickme/kotlinmailer/data/SMTPLoginInfo;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class at/quickme/kotlinmailer/data/SMTPLoginInfo$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class at/quickme/kotlinmailer/delivery/EmailDeliveryKt {
+	public static final fun send (Lorg/simplejavamail/api/email/Email;Lorg/simplejavamail/api/mailer/Mailer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun send$default (Lorg/simplejavamail/api/email/Email;Lorg/simplejavamail/api/mailer/Mailer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun sendSync (Lorg/simplejavamail/api/email/Email;Lorg/simplejavamail/api/mailer/Mailer;)Ljava/util/concurrent/CompletableFuture;
+	public static synthetic fun sendSync$default (Lorg/simplejavamail/api/email/Email;Lorg/simplejavamail/api/mailer/Mailer;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
+}
+
+public final class at/quickme/kotlinmailer/delivery/MailerBuilderKt {
+	public static final fun mailerBuilder (Lat/quickme/kotlinmailer/data/SMTPLoginInfo;Lkotlin/jvm/functions/Function1;)Lorg/simplejavamail/api/mailer/Mailer;
+	public static final fun mailerBuilder (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lorg/simplejavamail/api/mailer/Mailer;
+	public static synthetic fun mailerBuilder$default (Lat/quickme/kotlinmailer/data/SMTPLoginInfo;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/simplejavamail/api/mailer/Mailer;
+	public static synthetic fun mailerBuilder$default (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/simplejavamail/api/mailer/Mailer;
+}
+
+public final class at/quickme/kotlinmailer/delivery/MailerManager {
+	public static final field INSTANCE Lat/quickme/kotlinmailer/delivery/MailerManager;
+	public final fun getDefaultMailer ()Lorg/simplejavamail/api/mailer/Mailer;
+	public final fun registerMailer (Lorg/simplejavamail/api/mailer/Mailer;)Z
+	public final fun setDefaultMailer (Lorg/simplejavamail/api/mailer/Mailer;)V
+	public final fun shutdownMailers (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class at/quickme/kotlinmailer/email/EmailBuilderKt {
+	public static final fun copy (Lorg/simplejavamail/api/email/Email;Lkotlin/jvm/functions/Function1;)Lorg/simplejavamail/api/email/Email;
+	public static final fun emailBuilder (Lkotlin/jvm/functions/Function1;)Lorg/simplejavamail/api/email/Email;
+	public static final fun forward (Lorg/simplejavamail/api/email/Email;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lorg/simplejavamail/api/email/Email;
+	public static synthetic fun forward$default (Lorg/simplejavamail/api/email/Email;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/simplejavamail/api/email/Email;
+	public static final fun reply (Lorg/simplejavamail/api/email/Email;Ljava/lang/String;ZLkotlin/jvm/functions/Function1;)Lorg/simplejavamail/api/email/Email;
+	public static synthetic fun reply$default (Lorg/simplejavamail/api/email/Email;Ljava/lang/String;ZLkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/simplejavamail/api/email/Email;
+}
+
+public final class at/quickme/kotlinmailer/email/EmailConverterKt {
+	public static final fun getEmail (Ljakarta/mail/internet/MimeMessage;)Lorg/simplejavamail/api/email/Email;
+	public static final fun getEml (Lorg/simplejavamail/api/email/Email;)Ljava/lang/String;
+	public static final fun getMimeMessage (Lorg/simplejavamail/api/email/Email;)Ljakarta/mail/internet/MimeMessage;
+	public static final fun toEmail (Ljava/lang/String;)Lorg/simplejavamail/api/email/Email;
+}
+

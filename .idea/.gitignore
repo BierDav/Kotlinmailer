@@ -19,3 +19,4 @@ compiler.xml
 kotlinScripting.xml
 gradle.xml
 vcs.xml
+jsonSchemas.xml

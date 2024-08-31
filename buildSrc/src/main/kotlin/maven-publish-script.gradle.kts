@@ -1,3 +1,8 @@
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinJvm
+import com.vanniktech.maven.publish.SonatypeHost
+import org.jetbrains.dokka.DokkaConfiguration.Visibility
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import java.net.URI
 
 val githubProject = "BierDav/Kotinmailer"
@@ -6,78 +11,68 @@ description = "A simple coroutine based Kotlin Email API for client projects"
 
 plugins {
     kotlin("jvm")
+    id("org.jetbrains.dokka")
     id("maven-publish")
     id("signing")
+    id("com.vanniktech.maven.publish")
 }
 
-signing {
-    val privateKey = System.getenv("GPG_PRIVATE_KEY")
-    val privateKeyPassword = System.getenv("GPG_PRIVATE_KEY_PASSWORD")
+mavenPublishing {
+    coordinates(
+        groupId = project.group.toString(),
+        artifactId = project.name,
+        version = project.version.toString()
+    )
 
-    if (privateKey == null || privateKeyPassword == null) {
-        println("Private key and/or associated Password for signing is missing. For local development this can be ignored, because it is only required for publishing.")
-        return@signing
-    }
-    useInMemoryPgpKeys(privateKey, privateKeyPassword)
+    configure(
+        KotlinJvm(
+            javadocJar = JavadocJar.Dokka("dokkaHtml"),
+        )
+    )
 
-    sign(publishing.publications)
-}
+    pom {
+        name.set(project.name)
+        description.set(project.description)
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-}
-
-publishing {
-    repositories {
-        maven {
-            val snapshotRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-            val releaseRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-            val repoUrl = if (project.version.toString().endsWith("SNAPSHOT")) snapshotRepoUrl else releaseRepoUrl
-
-            url = URI.create(repoUrl)
-            name = "ossrh"
-            credentials {
-                username = System.getenv("MAVEN_USERNAME")
-                password = System.getenv("MAVEN_PASSWORD")
+        developers {
+            developer {
+                name.set("BierDav")
+                organization.set("QuickMe")
+                organizationUrl.set("https://quickme.at")
             }
+        }
+
+        licenses {
+            license {
+                name.set("The Apache License, Version 2.0")
+                url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+            }
+        }
+
+        url.set("https://github.com/$githubProject")
+
+        scm {
+            connection.set("scm:git:git://github.com/$githubProject.git")
+            url.set("https://github.com/$githubProject/tree/main")
         }
     }
 
-    publications {
-        create<MavenPublication>(project.name) {
-            from(components["java"])
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
+}
 
-            this.groupId = project.group.toString()
-            this.artifactId = project.name
-            this.version = project.version.toString()
+tasks.withType<DokkaTaskPartial>().configureEach {
+    dokkaSourceSets.configureEach {
+        displayName.set("kotlinmailer-$name")
+        documentedVisibilities.set(setOf(Visibility.PUBLIC, Visibility.PROTECTED))
 
-            pom {
-                name.set(project.name)
-                description.set(project.description)
+        // Read docs for more details: https://kotlinlang.org/docs/dokka-gradle.html#source-link-configuration
+        sourceLink {
+            val exampleDir = "https://github.com/BierDav/Kotlinmailer/tree/master/packages"
 
-                developers {
-                    developer {
-                        name.set("BierDav")
-                        organization.set("QuickMe")
-                        organizationUrl.set("https://quickme.at")
-                    }
-                }
-
-                licenses {
-                    license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
-                    }
-                }
-
-                url.set("https://github.com/$githubProject")
-
-                scm {
-                    connection.set("scm:git:git://github.com/$githubProject.git")
-                    url.set("https://github.com/$githubProject/tree/main")
-                }
-            }
+            localDirectory.set(rootProject.projectDir)
+            remoteUrl.set(URI(exampleDir).toURL())
+            remoteLineSuffix.set("#L")
         }
     }
 }

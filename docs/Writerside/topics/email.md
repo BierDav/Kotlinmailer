@@ -1,23 +1,5 @@
 # Email API
 
-## Create an email
-
-You can create an email using the `emailBuilder` function. Inside an email builder you set everything you need.
-
-```kotlin
-val email = emailBuilder {
-    from("foo@bar.com")
-    to("info@example.org")
-
-    withSubject("Important question")
-    withPlainText("Hey, how are you today?")
-
-    // and much more
-}
-```
-
-A built email object is immutable.
-
 ### Send that email
 
 Go to the [Mailer API](mailer.md).

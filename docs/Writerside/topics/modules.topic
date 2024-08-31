@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Kotlinmailer Modules" id="modules">
+
+    <title>
+        Kotlinmailer Modules
+    </title>
+    <chapter title="Dependencies" id="dependencies">
+        <p>Kotlinmailer modules are available from Maven Central repository. To use them you have to add appropriate
+            dependency into your repositories mapping.</p>
+        <tabs group="build">
+            <tab title="Kotlin Gradle" group-key="build-gradle-kotlin">
+                <code-block lang="kotlin">
+                    repositories {
+                        mavenCentral()
+                    }
+                </code-block>
+            </tab>
+            <tab title="Maven" group-key="build-maven">
+                The Maven Central repository is enabled by default for Maven users.
+            </tab>
+            <tab title="Groovy Gradle" group-key="build-gradle-groovy">
+                <code-block lang="groovy">
+                    repositories {
+                        mavenCentral()
+                    }
+                </code-block>
+            </tab>
+        </tabs>
+
+    </chapter>
+    <chapter title="Base Modules" id="base-modules">
+        Kotlinmailer is split into multiple modules so that you can select only those dependencies you need and thereby
+        eliminate unnecessary peer dependencies. The `core` module is required for all other modules to work.
+
+        <list>
+            <li>
+                <control><code>core</code></control>
+                <control>(required)</control>
+            </li>
+            <li>
+                <control><code>html</code></control>
+                if you want to use kotlinx.html inside your email builders.
+                You can find more information <a href="html.md">here</a>.
+            </li>
+        </list>
+
+        <tabs group="build">
+            <tab title="Kotlin Gradle" group-key="build-gradle-kotlin">
+                <code-block lang="kotlin">
+                    val kotlinmailer_version = "%kotlinmailer_version%"
+                    dependencies {
+                        implementation("at.quickme.kotlinmailer:core:$kotlinmailer_version")
+                        // optional html
+                        implementation("at.quickme.kotlinmailer:html:$kotlinmailer_version")
+                    }
+                </code-block>
+                Alternatively, if you use gradle version catalogues you can use the following:
+                <code-block lang="text">
+                    [versions]
+                    //...
+                    kotlinmailer = "%kotlinmailer_version%"
+
+                    [libraries]
+                    //...
+                    kotlinmailer-core = { module = "at.quickme.kotlinmailer", name = "core", version.ref =
+                    "kotlinmailer" }
+                    // optional html
+                    kotlinmailer-html = { module = "at.quickme.kotlinmailer", name = "html, version.ref = "kotlinmailer"
+                    }
+                </code-block>
+
+                <code-block lang="kotlin">
+                    dependencies {
+                        implementation(libs.kotlinmailer.core)
+                        // optional html
+                        implementation(libs.kotlinmailer.html)
+                    }
+                </code-block>
+            </tab>
+            <tab title="Maven" group-key="build-maven">
+                <code-block lang="xml">
+                    <![CDATA[
+                     <dependencies>
+                         <dependency>
+                             <groupId>at.quickme.kotlinmailer</groupId>
+                             <artifactId>core</artifactId>
+                             <version>%kotlinmailer_version%</version>
+                         </dependency>
+                         <!-- optional html -->
+                         <dependency>
+                             <groupId>at.quickme.kotlinmailer</groupId>
+                             <artifactId>html</artifactId>
+                             <version>%kotlinmailer_version%</version>
+                         </dependency>
+                     </dependencies>
+                    ]]>
+                </code-block>
+            </tab>
+            <tab title="Groovy Gradle" group-key="build-gradle-groovy">
+                <code-block lang="groovy">
+                    def kotlinmailer_version = "$kotlinmailer_version"
+                    dependencies {
+                        implementation "at.quickme.kotlinmailer:core:$kotlinmailer_version"
+                        // optional html
+                        implementation "at.quickme.kotlinmailer:html:$kotlinmailer_version"
+                    }
+                </code-block>
+            </tab>
+        </tabs>
+    </chapter>
+
+</topic>
