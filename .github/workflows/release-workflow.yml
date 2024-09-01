@@ -11,6 +11,8 @@ on:
 permissions:
   packages: write
   contents: write
+  pages: write
+  id-token: write
 
 env:
   VERSION_PATTERN: '^\d+\.\d+\.\d+(-alpha\d\d|-rc\d\d)?$'
