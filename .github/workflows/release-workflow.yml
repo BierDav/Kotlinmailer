@@ -26,7 +26,7 @@ jobs:
 
       - name: Check if version is valid
         run: |
-          if [[ "${{ inputs.version }}" =~ ${{ env.VERSION_PATTERN }} ]]; then
+          if [[ "${{ inputs.version }}" =~ "${{ env.VERSION_PATTERN }}" ]]; then
             echo "Check passed"
             echo "VERSION=${{ inputs.version }}" >> $GITHUB_ENV
           else
