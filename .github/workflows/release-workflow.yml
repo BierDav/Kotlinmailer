@@ -25,14 +25,15 @@ jobs:
           fetch-depth: 0
 
       - name: Check if version is valid
-        run: |
-          if [[ "${{ inputs.version }}" =~ ${{ env.VERSION_PATTERN }} ]]; then
-            echo "Check passed"
-            echo "VERSION=${{ inputs.version }}" >> $GITHUB_ENV
-          else
-            echo "Given version "${{ inputs.version }}" does not match the regex pattern "${{ env.VERSION_PATTERN }}""
-            exit 1
-          fi
+        uses: actions-ecosystem/action-regex-match@v2
+        id: regex-match
+        with:
+          text: ${{ inputs.version }}
+          regex: ${{ env.VERSION_PATTERN }}
+
+      - name: Version does not match the given pattern
+        if: steps.regex-match.outputs.match == 'false'
+        run: exit 1
 
       - name: Update gradle.properties
         run: sed -i "s/^version=.*/version=${{ env.VERSION }}/" gradle.properties
