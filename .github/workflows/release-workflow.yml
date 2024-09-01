@@ -13,7 +13,7 @@ permissions:
   contents: write
 
 env:
-  VERSION_PATTERN: '^\d+\.\d+\.\d+(-alpha\d\d|-rc\d\d)?$'
+  VERSION_PATTERN: '^[0-9]+\.[0-9]+\.[0-9]+(-alpha[0-9][0-9]|-rc[0-9][0-9])?$'
 
 jobs:
   release:
@@ -26,7 +26,7 @@ jobs:
 
       - name: Check if version is valid
         run: |
-          if [[ "${{ inputs.version }}" =~ "${{ env.VERSION_PATTERN }}" ]]; then
+          if [[ "${{ inputs.version }}" =~ ${{ env.VERSION_PATTERN }} ]]; then
             echo "Check passed"
             echo "VERSION=${{ inputs.version }}" >> $GITHUB_ENV
           else
