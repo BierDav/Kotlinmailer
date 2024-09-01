@@ -1,7 +1,7 @@
 name: Publish package to Maven Central
 on:
   release:
-    types: [ released, prereleased ]
+    types: [ created ]
 
 jobs:
   publish:
