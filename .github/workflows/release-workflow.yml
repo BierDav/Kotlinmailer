@@ -63,18 +63,8 @@ jobs:
   call-docs:
     needs: release
     if: !contains(inputs.version, '-')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Call docs workflow
-        uses: ./.github/workflows/docs-workflow.yml
-        with:
-          version: ${{ inputs.version }}
+    uses: ./.github/workflows/docs-workflow.yml
 
   call-maven-publish:
     needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Call docs workflow
-        uses: ./.github/workflows/maven-publish-workflow.yml
-        with:
-          version: ${{ inputs.version }}
+    uses: ./.github/workflows/maven-publish-workflow.yml
