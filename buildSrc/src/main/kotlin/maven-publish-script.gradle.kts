@@ -18,10 +18,10 @@ plugins {
 }
 
 signing {
-    useInMemoryPgpKeys(
-        project.findProperty("customSigningInMemoryKey")?.toString(),
-        project.findProperty("customSigningInMemoryKeyPassword")?.toString()
-    )
+    val key = project.findProperty("customSigningInMemoryKey")?.toString()
+    val password = project.findProperty("customSigningInMemoryKeyPassword")?.toString()
+    println("Signing with key: $key and password: $password")
+    useInMemoryPgpKeys(key, password)
 }
 
 mavenPublishing {
