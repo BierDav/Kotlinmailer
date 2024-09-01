@@ -1,8 +1,8 @@
-name: Build documentation website
+name: Build and deploy documentation website
 
 on:
   release:
-    types: [ created ]
+    types: [ released ]
 
 permissions:
   id-token: write
