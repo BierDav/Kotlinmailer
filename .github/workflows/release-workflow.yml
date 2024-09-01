@@ -52,7 +52,7 @@ jobs:
 
       - name: Push changes
         run: |
-          git push origin ${{ inputs.version }}
+          git push
           git push origin tag v${{ inputs.version }}
 
       - name: Release
