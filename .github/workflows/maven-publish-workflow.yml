@@ -26,10 +26,15 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Publish artifact
+        env:
+            MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+            MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+            MAVEN_CENTRAL_GPG_SECRET_KEY: ${{ secrets.MAVEN_CENTRAL_GPG_SECRET_KEY }}
+            MAVEN_CENTRAL_GPG_SECRET_KEY_PASSWORD: ${{ secrets.MAVEN_CENTRAL_GPG_SECRET_KEY_PASSWORD }}
         run: >
           ./gradlew publish
-          -DmavenCentralUsername=${{secrets.MAVEN_CENTRAL_USERNAME}}
-          -DmavenCentralPassword=${{secrets.MAVEN_CENTRAL_TOKEN}}
-          -DcustomSigningInMemoryKey=${{secrets.MAVEN_CENTRAL_GPG_SECRET_KEY}}
-          -DcustomSigningInMemoryKeyPassword=${{secrets.MAVEN_CENTRAL_GPG_SECRET_KEY_PASSWORD}}
+          -DmavenCentralUsername=$MAVEN_CENTRAL_USERNAME
+          -DmavenCentralPassword=$MAVEN_CENTRAL_TOKEN
+          -DcustomSigningInMemoryKey=$MAVEN_CENTRAL_GPG_SECRET_KEY
+          -DcustomSigningInMemoryKeyPassword=$MAVEN_CENTRAL_GPG_SECRET_KEY_PASSWORD
 
