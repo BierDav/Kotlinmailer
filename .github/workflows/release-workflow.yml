@@ -13,7 +13,7 @@ permissions:
   contents: write
 
 env:
-  VERSION_PATTERN: '^[0-9]+\.[0-9]+\.[0-9]+(-alpha[0-9][0-9]|-rc[0-9][0-9])?$'
+  VERSION_PATTERN: '^\d+\.\d+\.\d+(-alpha\d\d|-rc\d\d)?$'
 
 jobs:
   release:
@@ -39,7 +39,7 @@ jobs:
         run: sed -i "s/^version=.*/version=${{ env.VERSION }}/" gradle.properties
 
       - name: Update Writerside variable
-        run: sed -i 's/\(<var name="kotlinmailer_version" value="\)[^"]*\("\/>\)/\1${{ env.VERSION }}\2/' v.list
+        run: sed -i 's/\(<var name="kotlinmailer_version" value="\)[^"]*\("\/>\)/\1${{ env.VERSION }}\2/' docs/Writerside/v.list
 
       - name: Commit changes
         run: |
