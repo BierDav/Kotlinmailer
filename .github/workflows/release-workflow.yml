@@ -62,6 +62,7 @@ jobs:
           prerelease: ${{ contains(inputs.version, '-') }}
   call-docs:
     needs: release
+    if: ${{ !contains(inputs.version, '-') }}
     uses: ./.github/workflows/docs-workflow.yml
     with:
         version: ${{ inputs.version }}
