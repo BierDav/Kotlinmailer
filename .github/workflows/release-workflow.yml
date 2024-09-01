@@ -35,10 +35,6 @@ jobs:
         if: steps.regex-match.outputs.match == ''
         run: exit 1
 
-      - name: Print match
-        run: | 
-          echo "Version is valid: ${{ steps.regex-match.outputs.match }}" 
-
       - name: Update gradle.properties
         run: sed -i "s/^version=.*/version=${{ inputs.version }}/" gradle.properties
 
