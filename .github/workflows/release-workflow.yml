@@ -12,6 +12,9 @@ permissions:
   packages: write
   contents: write
 
+env:
+  VERSION_PATTERN: '^\d+\.\d+\.\d+(-alpha\d\d|-rc\d\d)?$'
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -21,8 +24,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Extract version from tag
-        run: echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+      - name: Check if version is valid
+        run: |
+          if [[ "${{ inputs.version }}" =~ ${{ env.VERSION_PATTERN }} ]]; then
+            echo "Check passed"
+            echo "VERSION=${{ inputs.version }}" >> $GITHUB_ENV
+          else
+            echo "Given version "${{ inputs.version }}" does not match the regex pattern "${{ env.VERSION_PATTERN }}""
+            exit 1
+          fi
 
       - name: Update gradle.properties
         run: sed -i "s/^version=.*/version=${{ env.VERSION }}/" gradle.properties
