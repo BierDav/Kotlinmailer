@@ -60,3 +60,21 @@ jobs:
         with:
           tag_name: v${{ inputs.version }}
           prerelease: ${{ contains(inputs.version, '-') }}
+  call-docs:
+    needs: release
+    if: !contains(inputs.version, '-')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call docs workflow
+        uses: ./.github/workflows/docs-workflow.yml
+        with:
+          version: ${{ inputs.version }}
+
+  call-maven-publish:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call docs workflow
+        uses: ./.github/workflows/maven-publish-workflow.yml
+        with:
+          version: ${{ inputs.version }}
