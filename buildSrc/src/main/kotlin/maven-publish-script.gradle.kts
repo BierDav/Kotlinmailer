@@ -17,6 +17,13 @@ plugins {
     id("com.vanniktech.maven.publish")
 }
 
+signing {
+    useInMemoryPgpKeys(
+        project.findProperty("customSigningInMemoryKey")?.toString(),
+        project.findProperty("customSigningInMemoryKeyPassword")?.toString()
+    )
+}
+
 mavenPublishing {
     coordinates(
         groupId = project.group.toString(),
@@ -68,7 +75,7 @@ tasks.withType<DokkaTaskPartial>().configureEach {
 
         // Read docs for more details: https://kotlinlang.org/docs/dokka-gradle.html#source-link-configuration
         sourceLink {
-            val exampleDir = "https://github.com/BierDav/Kotlinmailer/tree/master/packages"
+            val exampleDir = "https://github.com/$githubProject/tree/master/packages"
 
             localDirectory.set(rootProject.projectDir)
             remoteUrl.set(URI(exampleDir).toURL())

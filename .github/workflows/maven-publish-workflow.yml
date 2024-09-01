@@ -30,6 +30,6 @@ jobs:
           ./gradlew publish
           -DmavenCentralUsername=${{secrets.MAVEN_CENTRAL_USERNAME}}
           -DmavenCentralPassword=${{secrets.MAVEN_CENTRAL_TOKEN}}
-          -DsigningInMemoryKey=${{secrets.MAVEN_CENTRAL_GPG_SECRET_KEY}}
-          -DsigningInMemoryKeyPassword=${{secrets.MAVEN_CENTRAL_GPG_SECRET_KEY_PASSWORD}}
+          -DcustomSigningInMemoryKey=${{secrets.MAVEN_CENTRAL_GPG_SECRET_KEY}}
+          -DcustomSigningInMemoryKeyPassword=${{secrets.MAVEN_CENTRAL_GPG_SECRET_KEY_PASSWORD}}
 
