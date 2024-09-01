@@ -36,22 +36,24 @@ jobs:
         run: exit 1
 
       - name: Update gradle.properties
-        run: sed -i "s/^version=.*/version=${{ env.VERSION }}/" gradle.properties
+        run: sed -i "s/^version=.*/version=${{ inputs.version }}/" gradle.properties
 
       - name: Update Writerside variable
-        run: sed -i 's/\(<var name="kotlinmailer_version" value="\)[^"]*\("\/>\)/\1${{ env.VERSION }}\2/' docs/Writerside/v.list
+        run: sed -i 's/\(<var name="kotlinmailer_version" value="\)[^"]*\("\/>\)/\1${{ inputs.version }}\2/' docs/Writerside/v.list
 
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -a -m "chore: Update config files to ${{ env.VERSION }}"
+          git commit -a -m "chore: Update config files to ${{ inputs.version }}"
 
       - name: Tag the commit
-        run: git tag v${{ env.VERSION }}
+        run: git tag v${{ inputs.version }}
 
       - name: Push changes
-        run: git push origin ${{ env.VERSION }}
+        run: |
+          git push origin ${{ inputs.version }}
+          git push origin tag v${{ inputs.version }}
 
       - name: Release
         uses: softprops/action-gh-release@v2
