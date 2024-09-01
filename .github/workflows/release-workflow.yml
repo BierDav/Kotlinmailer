@@ -64,7 +64,11 @@ jobs:
     needs: release
     if: !contains(inputs.version, '-')
     uses: ./.github/workflows/docs-workflow.yml
+    with:
+        version: ${{ inputs.version }}
 
   call-maven-publish:
     needs: release
     uses: ./.github/workflows/maven-publish-workflow.yml
+    with:
+      version: ${{ inputs.version }}
