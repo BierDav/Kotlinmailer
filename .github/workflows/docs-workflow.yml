@@ -51,7 +51,7 @@ jobs:
           name: writerside-docs
           path: |
             artifacts/${{ env.WRITERSIDE_ARTIFACT }}
-          retention-days: 7
+          retention-days: 1
   build-dokka:
     runs-on: ubuntu-latest
     permissions:
@@ -77,10 +77,7 @@ jobs:
 
       - name: Zip output to artifact
         run: |
-          pwd
-          echo "Workspace is: ${{ github.workspace }}"
           cd build/dokka/htmlMultiModule
-          pwd
           zip ${{ github.workspace }}/${{ env.DOKKA_ARTIFACT }} ./*
 
       - name: Save artifact with build results
@@ -89,7 +86,7 @@ jobs:
           name: dokka-docs
           path: |
             ${{ env.DOKKA_ARTIFACT }}
-          retention-days: 7
+          retention-days: 1
   deploy-docs:
     environment:
       name: github-pages
