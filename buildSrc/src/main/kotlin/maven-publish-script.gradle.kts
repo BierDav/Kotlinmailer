@@ -17,14 +17,12 @@ plugins {
     id("com.vanniktech.maven.publish")
 }
 
-val repositoryUsername = project.providers.gradleProperty("mavenCentralUsername")
-val repositoryPassword = project.providers.gradleProperty("mavenCentralPassword")
-println("username: ${repositoryUsername.get()}, password: ${repositoryPassword.get()}")
+project.extensions.extraProperties["mavenCentralUsername"] = project.findProperty("mavenCentralUsername")?.toString()
+project.extensions.extraProperties["mavenCentralPassword"] = project.findProperty("mavenCentralPassword")?.toString()
 
 signing {
     val key = project.findProperty("customSigningInMemoryKey")?.toString()
     val password = project.findProperty("customSigningInMemoryKeyPassword")?.toString()
-    println("Signing with key: $key and password: $password")
     useInMemoryPgpKeys(key, password)
 }
 
