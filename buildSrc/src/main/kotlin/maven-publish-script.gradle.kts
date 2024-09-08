@@ -17,20 +17,21 @@ plugins {
     id("com.vanniktech.maven.publish")
 }
 
-project.extensions.extraProperties["mavenCentralUsername"] = project.findProperty("mavenCentralUsername")?.toString()
-project.extensions.extraProperties["mavenCentralPassword"] = project.findProperty("mavenCentralPassword")?.toString()
+extensions.extraProperties["mavenCentralUsername"] = findProperty("mavenCentralUsername")?.toString()
+extensions.extraProperties["mavenCentralPassword"] = findProperty("mavenCentralPassword")?.toString()
+println("Maven Central Username: ${project.providers.gradleProperty("mavenCentralUsername").get()}")
 
 signing {
-    val key = project.findProperty("customSigningInMemoryKey")?.toString()
-    val password = project.findProperty("customSigningInMemoryKeyPassword")?.toString()
+    val key = findProperty("customSigningInMemoryKey")?.toString()
+    val password = findProperty("customSigningInMemoryKeyPassword")?.toString()
     useInMemoryPgpKeys(key, password)
 }
 
 mavenPublishing {
     coordinates(
-        groupId = project.group.toString(),
-        artifactId = project.name,
-        version = project.version.toString()
+        groupId = group.toString(),
+        artifactId = name,
+        version = version.toString()
     )
 
     configure(
