@@ -77,8 +77,11 @@ jobs:
 
       - name: Zip output to artifact
         run: |
+          pwd
+          echo "Workspace is: ${{ github.workspace }}"
           cd build/dokka/htmlMultiModule
-          zip  ${{ github.workspace }}/${{ env.DOKKA_ARTIFACT }} ./*
+          pwd
+          zip ${{ github.workspace }}/${{ env.DOKKA_ARTIFACT }} ./*
 
       - name: Save artifact with build results
         uses: actions/upload-artifact@v4
