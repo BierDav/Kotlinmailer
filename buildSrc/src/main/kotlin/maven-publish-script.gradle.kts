@@ -17,6 +17,10 @@ plugins {
     id("com.vanniktech.maven.publish")
 }
 
+val repositoryUsername = project.providers.gradleProperty("mavenCentralUsername")
+val repositoryPassword = project.providers.gradleProperty("mavenCentralPassword")
+println("username: ${repositoryUsername.get()}, password: ${repositoryPassword.get()}")
+
 signing {
     val key = project.findProperty("customSigningInMemoryKey")?.toString()
     val password = project.findProperty("customSigningInMemoryKeyPassword")?.toString()
