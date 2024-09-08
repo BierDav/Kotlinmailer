@@ -7,9 +7,10 @@
     <section-starting-page>
         <title>Kotlinmailer Documentation</title>
         <description>
-            Kotlinmailer is a Kotlin Email API - coroutine based, easy to use and modern!
-            You can use it for both clientside and serverside projects, meaning you can **send** and **receive** emails.
-            It builds mainly upon [SimpleJavaMail](https://www.simplejavamail.org/) which limits its use to JVM projects
+            Kotlinmailer is a Kotlin Email API – coroutine-based, easy to use, and modern!
+            You can use it for both clientside and serverside projects,
+            meaning you can write once and send emails from everywhere.
+            It builds mainly upon SimpleJavaMail, which limits its use to JVM projects
             only.
         </description>
         <spotlight>
@@ -30,25 +31,4 @@
             <a href="Migration-Guide.md">Migration Guide</a>
         </secondary>
     </section-starting-page>
-
-    <!--### Coroutines-->
-
-    <!--Send emails without blocking the current thread.-->
-
-    <!--### Easy to use-->
-
-    <!--Create emails, mailers and SMTP servers with the help of intuitive Kotlin builders.-->
-
-    <!--### Modern-->
-
-    <!--Kotlinmailer hides unnecessary and overly complicated parts of the mail protocol from you.-->
-    <!--Additionally, the API is typesafe.-->
-
-    <!--## Get Started-->
-
-    <!--Follow the [setup guide](setup_gradle.md) to get started quickly.-->
-
-    <!--## Links-->
-
-    <!-- - [GitHub](https://github.com/BierDav/Kotlinmailer) repository-->
 </topic>

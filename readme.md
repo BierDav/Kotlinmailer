@@ -15,7 +15,7 @@ actively worked on.
 - send emails (using an external SMTP server)
 - TLS support
 
-## To get started, visit the **[Documentation](https://bierdav.github.io/Kotinmailer/)**.
+## To get started, visit the **[Documentation](https://bierdav.github.io/Kotlinmailer/)**.
 
 ## Setup
 
