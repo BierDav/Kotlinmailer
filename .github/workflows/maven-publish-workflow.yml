@@ -27,6 +27,7 @@ jobs:
 
       - name: Setup gradle.properties
         run: |
+          echo "" >> gradle.properties
           echo "mavenCentralUsername=${{ secrets.MAVEN_CENTRAL_USERNAME }}" >> gradle.properties
           echo "mavenCentralPassword=${{ secrets.MAVEN_CENTRAL_TOKEN }}" >> gradle.properties
           echo "customSigningInMemoryKey=${{ secrets.MAVEN_CENTRAL_GPG_SECRET_KEY }}" >> gradle.properties
@@ -35,6 +36,6 @@ jobs:
       - name: Publish artifact
         run: |
           chmod +x gradlew
-          ./gradlew publishAndReleaseToMavenCentral --stacktrace
+          ./gradlew publishAndReleaseToMavenCentral
           
 
