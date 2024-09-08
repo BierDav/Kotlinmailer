@@ -35,6 +35,6 @@ jobs:
       - name: Publish artifact
         run: |
           chmod +x gradlew
-          ./gradlew publishAndReleaseToMavenCentral
+          ./gradlew publishAndReleaseToMavenCentral --stacktrace --debug
           
 
