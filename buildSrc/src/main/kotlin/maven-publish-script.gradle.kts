@@ -17,10 +17,6 @@ plugins {
     id("com.vanniktech.maven.publish")
 }
 
-extensions.extraProperties["mavenCentralUsername"] = findProperty("mavenCentralUsername")?.toString()
-extensions.extraProperties["mavenCentralPassword"] = findProperty("mavenCentralPassword")?.toString()
-println("Maven Central Username: ${project.providers.gradleProperty("mavenCentralUsername").get()}")
-
 signing {
     val key = findProperty("customSigningInMemoryKey")?.toString()
     val password = findProperty("customSigningInMemoryKeyPassword")?.toString()
