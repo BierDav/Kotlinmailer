@@ -41,7 +41,9 @@ jobs:
         run: sed -i "s/^version=.*/version=${{ inputs.version }}/" gradle.properties
 
       - name: Update Writerside variable
-        run: sed -i 's/\(<var name="kotlinmailer_version" value="\)[^"]*\("\/>\)/\1${{ inputs.version }}\2/' docs/Writerside/v.list
+        run: |
+          sed -i 's/\(<var name="kotlinmailer_version" value="\)[^"]*\("\/>\)/\1${{ inputs.version }}\2/' docs/Writerside/v.list
+          sed -i 's/\(<instance src="default.tree" web-path="[^"]*" version="\)[^"]*\("\/>\)/\1v${{ inputs.version }}\2/' docs/Writerside/writerside.cfg
 
       - name: Commit changes
         run: |
@@ -67,7 +69,7 @@ jobs:
     if: ${{ !contains(inputs.version, '-') }}
     uses: ./.github/workflows/docs-workflow.yml
     with:
-        version: ${{ inputs.version }}
+      version: ${{ inputs.version }}
 
   call-maven-publish:
     needs: release
