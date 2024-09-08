@@ -21,7 +21,6 @@ env:
 
 jobs:
   build-writerside:
-    if: ${{ github.event.workflow_run == 'success' }}
     runs-on: ubuntu-latest
     permissions:
         contents: write
