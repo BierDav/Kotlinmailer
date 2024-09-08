@@ -78,7 +78,7 @@ jobs:
       - name: Zip output to artifact
         run: |
           cd build/dokka/htmlMultiModule
-          zip  ${{ env.GITHUB_WORKSPACE }}/${{ env.DOKKA_ARTIFACT }} ./*
+          zip  ${{ github.workspace }}/${{ env.DOKKA_ARTIFACT }} ./*
 
       - name: Save artifact with build results
         uses: actions/upload-artifact@v4
