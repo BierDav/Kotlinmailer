@@ -1,5 +1,11 @@
 name: Publish package to Maven Central
 on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        type: string
+        required: true
   workflow_call:
     inputs:
       version:
