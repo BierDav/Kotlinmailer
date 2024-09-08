@@ -4,7 +4,7 @@ import kotlinx.html.TagConsumer
 import kotlinx.html.stream.appendHTML
 import org.simplejavamail.api.email.EmailPopulatingBuilder
 
-private typealias ContextlessHtmlBuilder = TagConsumer<StringBuilder>.() -> StringBuilder
+typealias ContextlessHtmlBuilder = TagConsumer<StringBuilder>.() -> StringBuilder
 
 /**
  * Set the html of the message.

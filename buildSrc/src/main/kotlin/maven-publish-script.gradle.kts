@@ -69,12 +69,10 @@ mavenPublishing {
 
 tasks.withType<DokkaTaskPartial>().configureEach {
     dokkaSourceSets.configureEach {
-        displayName.set("kotlinmailer-$name")
         documentedVisibilities.set(setOf(Visibility.PUBLIC, Visibility.PROTECTED))
 
-        // Read docs for more details: https://kotlinlang.org/docs/dokka-gradle.html#source-link-configuration
         sourceLink {
-            val exampleDir = "https://github.com/$githubProject/tree/master/packages"
+            val exampleDir = "https://github.com/$githubProject/tree/master/"
 
             localDirectory.set(rootProject.projectDir)
             remoteUrl.set(URI(exampleDir).toURL())
