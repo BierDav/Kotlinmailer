@@ -50,7 +50,7 @@
 
         <warning>
             Since version 1.0.1, the module names have changed.
-            Before modules were prefixed with <code>kotlinmailer-</code> for example <code>kotlinmailer-core</code>. Those modules are outdated but unfortunately, can't be removed due to the policies of sonatype.
+            Before modules were prefixed with <code>kotlinmailer-</code> as for example <code>kotlinmailer-core</code>. These modules are deprecated but unfortunately, can't be removed from maven central due to sonatype's policy.
         </warning>
 
         <tabs group="build">
