@@ -15,7 +15,7 @@ permissions:
   id-token: write
 
 env:
-  VERSION_PATTERN: '^\d+\.\d+\.\d+(-alpha\d\d|-rc\d\d)?$'
+  VERSION_PATTERN: '^\d+\.\d+\.\d+(-alpha[1-9]\d*|-rc[1-9]\d*)?$'
 
 jobs:
   release:
