@@ -6,6 +6,6 @@ plugins {
 dependencies {
     project(":packages:core")
 
-    implementation(libs.kotlinx.html)
-    implementation(libs.simpleJavaMail.simpleJavaMail)
+    api(libs.kotlinx.html)
+    api(libs.simpleJavaMail.simpleJavaMail)
 }

@@ -10,9 +10,9 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.jdk8)
 
-    implementation(libs.simpleJavaMail.batchModule)
-    implementation(libs.simpleJavaMail.simpleJavaMail)
-    implementation(libs.simpleJavaMail.smimeModule)
+    api(libs.simpleJavaMail.batchModule)
+    api(libs.simpleJavaMail.simpleJavaMail)
+    api(libs.simpleJavaMail.smimeModule)
 }
 
 
