@@ -76,7 +76,9 @@ jobs:
         run: ./gradlew dokkaHtmlMultiModule
 
       - name: Zip output to artifact
-        run: zip -r ${{ env.DOKKA_ARTIFACT }} build/dokka/htmlMultiModule
+        run: |
+          cd build/dokka/htmlMultiModule
+          zip  ${{ env.GITHUB_WORKSPACE }}/${{ env.DOKKA_ARTIFACT }} ./*
 
       - name: Save artifact with build results
         uses: actions/upload-artifact@v4

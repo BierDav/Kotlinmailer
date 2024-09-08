@@ -2,7 +2,7 @@
 <!DOCTYPE topic SYSTEM "https://resources.jetbrains.com/writerside/1.0/html-entities.dtd">
 <topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
-       title="Kotlinmailer Documentation" id="index">
+       title="Kotlinmailer Documentation" id="home" help-id="index">
 
     <section-starting-page>
         <title>Kotlinmailer Documentation</title>
@@ -27,8 +27,8 @@
         </primary>
         <secondary>
             <title>Release and Contribution</title>
-            <a href="Contributing-to-Kotlinmailer.topic">Contributing to Kotlinmailer</a>
-            <a href="Migration-Guide.md">Migration Guide</a>
+            <a href="contributions.topic">Contributing to Kotlinmailer</a>
+            <a href="migration.md">Migration Guide</a>
         </secondary>
     </section-starting-page>
 </topic>
