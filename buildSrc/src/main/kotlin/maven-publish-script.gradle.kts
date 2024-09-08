@@ -17,10 +17,6 @@ plugins {
     id("com.vanniktech.maven.publish")
 }
 
-val repositoryUsername = project.providers.gradleProperty("mavenCentralUsername")
-val repositoryPassword = project.providers.gradleProperty("mavenCentralPassword")
-println("username: $repositoryUsername, password: $repositoryPassword")
-
 signing {
     val key = project.findProperty("customSigningInMemoryKey")?.toString()
     val password = project.findProperty("customSigningInMemoryKeyPassword")?.toString()
@@ -68,7 +64,7 @@ mavenPublishing {
         }
     }
 
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
     signAllPublications()
 }
 
