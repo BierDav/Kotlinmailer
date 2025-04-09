@@ -1,14 +1,14 @@
 [versions]
-kotlin = "2.0.20"
+kotlin = "2.1.20"
 
-simpleJavaMail = "8.11.2"
+simpleJavaMail = "8.12.5"
 kotlinx-html = "0.11.0"
-kotlinx-coroutines = "1.8.0"
+kotlinx-coroutines = "1.10.2"
 kotlinx-serialization-json = "1.6.3"
 
-gradle-maven-publish-plugin = "0.29.0"
+gradle-maven-publish-plugin = "0.31.0"
 dokka = "1.9.20"
-detekt = "1.23.6"
+detekt = "1.23.8"
 binary-compatibility-validator = "0.17.0"
 
 [libraries]
