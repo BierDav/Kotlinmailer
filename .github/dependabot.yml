@@ -1,0 +1,10 @@
+# `dependabot.yml` file with updates
+# disabled for Docker and limited for npm
+
+version: 2
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 1
