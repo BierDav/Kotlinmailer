@@ -7,7 +7,7 @@ kotlinx-coroutines = "1.8.0"
 kotlinx-serialization-json = "1.6.3"
 
 gradle-maven-publish-plugin = "0.29.0"
-dokka = "1.9.20"
+dokka = "2.0.0"
 detekt = "1.23.6"
 binary-compatibility-validator = "0.16.3"
 
