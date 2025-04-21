@@ -1,7 +1,7 @@
 [versions]
 kotlin = "2.1.20"
 
-simpleJavaMail = "8.12.5"
+simpleJavaMail = "8.12.6"
 kotlinx-html = "0.12.0"
 kotlinx-coroutines = "1.10.2"
 kotlinx-serialization-json = "1.8.1"
