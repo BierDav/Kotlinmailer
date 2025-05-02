@@ -27,13 +27,29 @@ tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
 }
 
 var projectName = project.name
+var projectGroup = project.group.toString()
 var projectDescription = project.description
+var projectVersion = project.version.toString()
+
+publishing {
+    publications {
+        repositories {
+            maven {
+                uri(layout.buildDirectory.dir("staging-deploy"))
+            }
+        }
+    }
+}
+
+
 
 // Configure JReleaser
 jreleaser {
     project {
         name = projectName
+        group = projectGroup
         description = projectDescription
+        version = projectVersion
         authors = listOf("BierDav")
 
         links {
@@ -60,7 +76,7 @@ jreleaser {
 
                     active = Active.ALWAYS
                     url = "https://central.sonatype.com/api/v1/publisher"
-                    stagingRepositories = listOf("target/staging-deploy")
+                    stagingRepositories = listOf("build/staging-deploy")
                 }
             }
         }
