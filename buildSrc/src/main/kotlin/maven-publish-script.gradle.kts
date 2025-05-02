@@ -25,11 +25,14 @@ tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
     outputDirectory.set(layout.buildDirectory.dir("dokka"))
 }
 
+var projectName = project.name
+var projectDescription = project.description
+
 // Configure JReleaser
 jreleaser {
     project {
-        name = project.name
-        description = project.description
+        name = projectName
+        description = projectDescription
         authors = listOf("BierDav")
 
         links {
