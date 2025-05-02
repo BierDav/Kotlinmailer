@@ -67,7 +67,6 @@ jreleaser {
         passphrase = providers.gradleProperty("signingPassphrase")
         secretKey = providers.gradleProperty("signingSecretKey")
         publicKey = providers.gradleProperty("signingPublicKey")
-
     }
 
     deploy {
