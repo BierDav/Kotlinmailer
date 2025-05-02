@@ -32,25 +32,17 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Setup Configuration
-        run: |
-          echo "" >> gradle.properties
-          
-          echo "${{ secrets.MAVEN_CENTRAL_GPG_SECRET_KEY }}" | base64 -d | gpg --import
-          gpg --export --armor > public_key.gpg
-          
-          
-          echo "mavenCentralUsername=${{ secrets.MAVEN_CENTRAL_USERNAME }}" >> gradle.properties
-          echo "mavenCentralPassword=${{ secrets.MAVEN_CENTRAL_TOKEN }}" >> gradle.properties
-          echo "customSigningInMemoryKey=${{ secrets.MAVEN_CENTRAL_GPG_SECRET_KEY }}" >> gradle.properties
-          echo "customSigningInMemoryKeyPassword=${{ secrets.MAVEN_CENTRAL_GPG_SECRET_KEY_PASSWORD }}" >> gradle.properties
-          echo "customSigningInMemoryPublicKey=$(cat public_key.gpg)" >> gradle.properties
-          chmod +x gradlew
-
       - name: Check binary compatibility
         run: ./gradlew apiCheck
 
       - name: Publish artifact
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername=${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword=${{ secrets.MAVEN_CENTRAL_TOKEN }}
+          
+          ORG_GRADLE_PROJECT_signingPassphrase=${{ secrets.MAVEN_CENTRAL_GPG_PASSPHRASE }}
+          ORG_GRADLE_PROJECT_signingSecretKey=${{ secrets.MAVEN_CENTRAL_GPG_SECRET_KEY }}
+          ORG_GRADLE_PROJECT_signingPublicKey=${{ secrets.MAVEN_CENTRAL_GPG_PUBLIC_KEY }}
         run: |
           mkdir -p target/staging-deploy
           ./gradlew publish jreleaserDeploy

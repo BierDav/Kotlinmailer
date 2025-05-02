@@ -64,9 +64,9 @@ jreleaser {
         armored = true
         mode = Signing.Mode.MEMORY
 
-        passphrase = providers.gradleProperty("customSigningInMemoryKeyPassword")
-        secretKey = providers.gradleProperty("customSigningInMemoryKey")
-        publicKey = providers.gradleProperty("customSigningInMemoryPublicKey")
+        passphrase = providers.gradleProperty("signingPassphrase")
+        secretKey = providers.gradleProperty("signingSecretKey")
+        publicKey = providers.gradleProperty("signingPublicKey")
 
     }
 
