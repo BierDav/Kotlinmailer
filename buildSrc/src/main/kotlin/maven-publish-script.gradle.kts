@@ -1,5 +1,6 @@
 import org.jetbrains.dokka.DokkaConfiguration.Visibility
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import org.jreleaser.model.Active
 import org.jreleaser.model.Signing
 import java.net.URI
 
@@ -41,13 +42,13 @@ jreleaser {
     }
 
     signing {
-        active.set(org.jreleaser.model.Active.ALWAYS)
-        armored.set(true)
+        active = Active.ALWAYS
+        armored = true
         mode = Signing.Mode.MEMORY
 
-        passphrase.set(findProperty("customSigningInMemoryKeyPassword")?.toString())
-        secretKey.set(findProperty("customSigningInMemoryKey")?.toString())
-        publicKey.set(findProperty("customSigningInMemoryKey")?.toString())
+        passphrase= findProperty("customSigningInMemoryKeyPassword")?.toString()
+        secretKey =findProperty("customSigningInMemoryKey")?.toString()
+        publicKey=findProperty("customSigningInMemoryKey")?.toString()
     }
 
     deploy {
@@ -57,9 +58,9 @@ jreleaser {
                     username = findProperty("mavenCentralUsername")?.toString()
                     password = findProperty("mavenCentralPassword")?.toString()
 
-                    setActive("ALWAYS")
+                    active = Active.ALWAYS
                     url = "https://central.sonatype.com/api/v1/publisher"
-                    stagingRepository("target/staging-deploy")
+                    stagingRepositories = listOf("target/staging-deploy")
                 }
             }
         }

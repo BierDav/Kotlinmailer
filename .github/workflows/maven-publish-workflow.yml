@@ -45,4 +45,6 @@ jobs:
         run: ./gradlew apiCheck
 
       - name: Publish artifact
-        run: ./gradlew publish jreleaserDeploy
+        run: |
+          mkdir target/staging-deploy
+          ./gradlew publish jreleaserDeploy
