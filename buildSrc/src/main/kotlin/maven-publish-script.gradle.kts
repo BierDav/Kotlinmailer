@@ -47,12 +47,16 @@ jreleaser {
 
         passphrase.set(findProperty("customSigningInMemoryKeyPassword")?.toString())
         secretKey.set(findProperty("customSigningInMemoryKey")?.toString())
+        publicKey.set(findProperty("customSigningInMemoryKey")?.toString())
     }
 
     deploy {
         maven {
             mavenCentral {
                 create("sonatype") {
+                    username = findProperty("mavenCentralUsername")?.toString()
+                    password = findProperty("mavenCentralPassword")?.toString()
+
                     setActive("ALWAYS")
                     url = "https://central.sonatype.com/api/v1/publisher"
                     stagingRepository("target/staging-deploy")
