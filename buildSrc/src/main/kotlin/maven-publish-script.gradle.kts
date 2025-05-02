@@ -1,8 +1,6 @@
-import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.KotlinJvm
-import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.dokka.DokkaConfiguration.Visibility
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import org.jreleaser.model.Signing
 import java.net.URI
 
 val githubProject = "BierDav/Kotinmailer"
@@ -11,60 +9,55 @@ description = "A simple coroutine based Kotlin Email API for client projects"
 
 plugins {
     kotlin("jvm")
+    `maven-publish`
     id("org.jetbrains.dokka")
-    id("maven-publish")
-    id("signing")
-    id("com.vanniktech.maven.publish")
+    id("org.jreleaser")
 }
 
-signing {
-    val key = findProperty("customSigningInMemoryKey")?.toString()
-    val password = findProperty("customSigningInMemoryKeyPassword")?.toString()
-    useInMemoryPgpKeys(key, password)
+// Configure Java publication
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
-mavenPublishing {
-    coordinates(
-        groupId = group.toString(),
-        artifactId = name,
-        version = version.toString()
-    )
+// Configure Dokka to generate documentation
+tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
+    outputDirectory.set(layout.buildDirectory.dir("dokka"))
+}
 
-    configure(
-        KotlinJvm(
-            javadocJar = JavadocJar.Dokka("dokkaHtml"),
-        )
-    )
 
-    pom {
-        name.set(project.name)
-        description.set(project.description)
+// Configure JReleaser
+jreleaser {
+    project {
+        name = project.name
+        description = project.description
+        authors = listOf("BierDav")
 
-        developers {
-            developer {
-                name.set("BierDav")
-                organization.set("QuickMe")
-                organizationUrl.set("https://quickme.at")
-            }
-        }
-
-        licenses {
-            license {
-                name.set("The Apache License, Version 2.0")
-                url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
-            }
-        }
-
-        url.set("https://github.com/$githubProject")
-
-        scm {
-            connection.set("scm:git:git://github.com/$githubProject.git")
-            url.set("https://github.com/$githubProject/tree/main")
+        links {
+            homepage = "https://bierdav.github.io/Kotlinmailer/"
         }
     }
 
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
-    signAllPublications()
+    signing {
+        active.set(org.jreleaser.model.Active.ALWAYS)
+        armored.set(true)
+        mode = Signing.Mode.MEMORY
+
+        passphrase.set(findProperty("customSigningInMemoryKeyPassword")?.toString())
+        secretKey.set(findProperty("customSigningInMemoryKey")?.toString())
+    }
+
+    deploy {
+        maven {
+            mavenCentral {
+                create("sonatype") {
+                    setActive("ALWAYS")
+                    url = "https://central.sonatype.com/api/v1/publisher"
+                    stagingRepository("target/staging-deploy")
+                }
+            }
+        }
+    }
 }
 
 tasks.withType<DokkaTaskPartial>().configureEach {
