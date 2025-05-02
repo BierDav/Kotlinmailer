@@ -46,5 +46,5 @@ jobs:
 
       - name: Publish artifact
         run: |
-          mkdir target/staging-deploy
+          mkdir -p target/staging-deploy
           ./gradlew publish jreleaserDeploy
