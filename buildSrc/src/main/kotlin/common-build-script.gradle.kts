@@ -1,8 +1,12 @@
+plugins {
+    kotlin("multiplatform")
+    id("io.gitlab.arturbosch.detekt")
+}
+
 repositories {
     mavenCentral()
 }
 
-plugins {
-    kotlin("jvm")
-    id("io.gitlab.arturbosch.detekt")
+kotlin {
+    jvm()
 }

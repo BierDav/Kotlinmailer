@@ -5,20 +5,16 @@ import org.jreleaser.model.Signing
 import java.net.URI
 
 val githubProject = "BierDav/Kotinmailer"
-
-description = "A simple coroutine based Kotlin Email API for client projects"
+var projectName = project.name
+var projectGroup = project.group.toString()
+var projectDescription = project.description
+var projectVersion = project.version.toString()
 
 plugins {
-    kotlin("jvm")
+    kotlin("multiplatform")
     `maven-publish`
     id("org.jetbrains.dokka")
     id("org.jreleaser")
-}
-
-// Configure Java publication
-java {
-    withJavadocJar()
-    withSourcesJar()
 }
 
 // Configure Dokka to generate documentation
@@ -26,24 +22,16 @@ tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
     outputDirectory.set(layout.buildDirectory.dir("dokka"))
 }
 
-var projectName = project.name
-var projectGroup = project.group.toString()
-var projectDescription = project.description
-var projectVersion = project.version.toString()
-
 publishing {
     publications {
         repositories {
             maven {
-                uri(layout.buildDirectory.dir("staging-deploy"))
+                setUrl(layout.buildDirectory.dir("staging-deploy"))
             }
         }
     }
 }
 
-
-
-// Configure JReleaser
 jreleaser {
     project {
         name = projectName

@@ -3,9 +3,13 @@ plugins {
     id("maven-publish-script")
 }
 
-dependencies {
-    project(":packages:core")
+kotlin {
+    sourceSets {
+        jvmMain.dependencies {
+            project(":packages:core")
 
-    api(libs.kotlinx.html)
-    api(libs.simpleJavaMail.simpleJavaMail)
+            api(libs.kotlinx.html)
+            api(libs.simpleJavaMail.simpleJavaMail)
+        }
+    }
 }

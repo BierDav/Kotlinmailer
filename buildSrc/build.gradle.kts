@@ -3,8 +3,8 @@ plugins {
 }
 
 repositories {
+    gradlePluginPortal()
     mavenCentral()
-    maven("https://plugins.gradle.org/m2/")
 }
 
 dependencies {
@@ -14,4 +14,8 @@ dependencies {
     implementation(libs.dokka.gradle.plugin)
     implementation(libs.detekt.gradle.plugin)
     implementation(libs.binary.compatibility.validator.gradle.plugin)
+}
+
+kotlin {
+    sourceSets.getByName("main").kotlin.srcDir("buildSrc/src/main/kotlin")
 }
