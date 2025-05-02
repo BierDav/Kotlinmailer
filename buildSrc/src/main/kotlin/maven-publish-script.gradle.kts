@@ -64,17 +64,18 @@ jreleaser {
         armored = true
         mode = Signing.Mode.MEMORY
 
-        passphrase = findProperty("customSigningInMemoryKeyPassword")?.toString()
-        secretKey = findProperty("customSigningInMemoryKey")?.toString()
-        publicKey = findProperty("customSigningInMemoryKey")?.toString()
+        passphrase = providers.gradleProperty("customSigningInMemoryKeyPassword")
+        secretKey = providers.gradleProperty("customSigningInMemoryKey")
+        publicKey = providers.gradleProperty("customSigningInMemoryPublicKey")
+
     }
 
     deploy {
         maven {
             mavenCentral {
                 create("sonatype") {
-                    username = findProperty("mavenCentralUsername")?.toString()
-                    password = findProperty("mavenCentralPassword")?.toString()
+                    username = providers.gradleProperty("mavenCentralUsername")
+                    password = providers.gradleProperty("mavenCentralPassword")
 
                     active = Active.ALWAYS
                     url = "https://central.sonatype.com/api/v1/publisher"

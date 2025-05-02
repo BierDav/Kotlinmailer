@@ -35,10 +35,16 @@ jobs:
       - name: Setup Configuration
         run: |
           echo "" >> gradle.properties
+          
+          echo "${{ secrets.MAVEN_CENTRAL_GPG_SECRET_KEY }}" | base64 -d | gpg --import
+          gpg --export --armor > public_key.gpg
+          
+          
           echo "mavenCentralUsername=${{ secrets.MAVEN_CENTRAL_USERNAME }}" >> gradle.properties
           echo "mavenCentralPassword=${{ secrets.MAVEN_CENTRAL_TOKEN }}" >> gradle.properties
           echo "customSigningInMemoryKey=${{ secrets.MAVEN_CENTRAL_GPG_SECRET_KEY }}" >> gradle.properties
           echo "customSigningInMemoryKeyPassword=${{ secrets.MAVEN_CENTRAL_GPG_SECRET_KEY_PASSWORD }}" >> gradle.properties
+          echo "customSigningInMemoryPublicKey=$(cat public_key.gpg)" >> gradle.properties
           chmod +x gradlew
 
       - name: Check binary compatibility
