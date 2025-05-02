@@ -23,6 +23,13 @@ tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
 }
 
 publishing {
+    publications.withType<MavenPublication>().configureEach {
+        pom {
+            description = projectDescription
+            url = githubProject
+        }
+    }
+
     publications {
         repositories {
             maven {
@@ -66,8 +73,6 @@ jreleaser {
                     active = Active.ALWAYS
                     url = "https://central.sonatype.com/api/v1/publisher"
                     stagingRepositories = listOf("build/staging-deploy")
-
-                    verifyPom = false
                 }
             }
         }
