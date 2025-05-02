@@ -41,6 +41,7 @@ jreleaser {
         authors = listOf("BierDav")
 
         links {
+            vcsBrowser = githubProject
             homepage = "https://bierdav.github.io/Kotlinmailer/"
         }
     }
@@ -65,6 +66,8 @@ jreleaser {
                     active = Active.ALWAYS
                     url = "https://central.sonatype.com/api/v1/publisher"
                     stagingRepositories = listOf("build/staging-deploy")
+
+                    verifyPom = false
                 }
             }
         }
