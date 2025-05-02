@@ -25,7 +25,6 @@ tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
     outputDirectory.set(layout.buildDirectory.dir("dokka"))
 }
 
-
 // Configure JReleaser
 jreleaser {
     project {
