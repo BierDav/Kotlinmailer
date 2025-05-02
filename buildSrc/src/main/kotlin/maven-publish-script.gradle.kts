@@ -4,11 +4,9 @@ import org.jreleaser.model.Active
 import org.jreleaser.model.Signing
 import java.net.URI
 
-val githubProject = "BierDav/Kotinmailer"
+val githubProject = "BierDav/Kotlinmailer"
 var projectName = project.name
-var projectGroup = project.group.toString()
 var projectDescription = project.description
-var projectVersion = project.version.toString()
 
 plugins {
     kotlin("multiplatform")
@@ -25,8 +23,29 @@ tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
 publishing {
     publications.withType<MavenPublication>().configureEach {
         pom {
+            name = projectName
             description = projectDescription
-            url = githubProject
+            url = "https://github.com/$githubProject"
+
+            developers {
+                developer {
+                    name.set("BierDav")
+                    organization.set("QuickMe")
+                    organizationUrl.set("https://quickme.at")
+                }
+            }
+
+            licenses {
+                license {
+                    name.set("The Apache License, Version 2.0")
+                    url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                }
+            }
+
+            scm {
+                connection.set("scm:git:git://github.com/$githubProject.git")
+                url.set("https://github.com/$githubProject/tree/main")
+            }
         }
     }
 
@@ -40,27 +59,14 @@ publishing {
 }
 
 jreleaser {
-    project {
-        name = projectName
-        group = projectGroup
-        description = projectDescription
-        version = projectVersion
-        authors = listOf("BierDav")
-
-        links {
-            vcsBrowser = githubProject
-            homepage = "https://bierdav.github.io/Kotlinmailer/"
-        }
-    }
-
     signing {
         active = Active.ALWAYS
         armored = true
         mode = Signing.Mode.MEMORY
 
-        passphrase= findProperty("customSigningInMemoryKeyPassword")?.toString()
-        secretKey =findProperty("customSigningInMemoryKey")?.toString()
-        publicKey=findProperty("customSigningInMemoryKey")?.toString()
+        passphrase = findProperty("customSigningInMemoryKeyPassword")?.toString()
+        secretKey = findProperty("customSigningInMemoryKey")?.toString()
+        publicKey = findProperty("customSigningInMemoryKey")?.toString()
     }
 
     deploy {
