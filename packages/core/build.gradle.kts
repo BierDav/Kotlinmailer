@@ -7,12 +7,11 @@ plugins {
 
 kotlin {
     sourceSets {
+        commonMain.dependencies {
+            api(libs.kotlinx.serialization.json)
+            api(libs.kotlinx.coroutines.core)
+        }
         jvmMain.dependencies {
-            implementation(libs.kotlinx.serialization.json)
-
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlinx.coroutines.jdk8)
-
             api(libs.simpleJavaMail.batchModule)
             api(libs.simpleJavaMail.simpleJavaMail)
             api(libs.simpleJavaMail.smimeModule)

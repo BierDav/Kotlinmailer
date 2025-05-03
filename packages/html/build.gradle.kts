@@ -5,10 +5,11 @@ plugins {
 
 kotlin {
     sourceSets {
-        jvmMain.dependencies {
-            project(":packages:core")
-
+        commonMain.dependencies {
+            api(project(":packages:core"))
             api(libs.kotlinx.html)
+        }
+        jvmMain.dependencies {
             api(libs.simpleJavaMail.simpleJavaMail)
         }
     }
