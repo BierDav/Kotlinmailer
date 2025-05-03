@@ -9,4 +9,7 @@ repositories {
 
 kotlin {
     jvm()
+    compilerOptions {
+        freeCompilerArgs.add("-opt-in=kotlin.contracts.ExperimentalContracts")
+    }
 }
