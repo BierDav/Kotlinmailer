@@ -20,8 +20,16 @@ tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
     outputDirectory.set(layout.buildDirectory.dir("dokka"))
 }
 
+val dokkaJar by tasks.registering(Jar::class) {
+    dependsOn(tasks.named("dokkaHtml"))
+    archiveClassifier.set("javadoc")
+    from(tasks.named("dokkaHtml"))
+}
+
 publishing {
     publications.withType<MavenPublication>().configureEach {
+        artifact(dokkaJar.get())
+
         pom {
             name = projectName
             description = projectDescription
