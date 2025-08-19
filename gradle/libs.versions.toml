@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.1.20"
+kotlin = "2.2.10"
 
 simpleJavaMail = "8.12.6"
 kotlinx-html = "0.12.0"
