@@ -8,7 +8,7 @@ kotlinx-serialization-json = "1.8.1"
 
 
 jreleaser = "1.18.0"
-dokka = "2.0.0"
+dokka = "2.1.0"
 detekt = "1.23.8"
 binary-compatibility-validator = "0.18.1"
 
