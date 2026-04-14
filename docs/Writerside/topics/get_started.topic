@@ -138,7 +138,7 @@
 
                     [libraries]
                     //...
-                    kotlinmailer-core = { module = "at.quickme.kotlinmailer", name = "core", version.ref = "kotlinmailer" }
+                    kotlinmailer-core = { module = "at.quickme.kotlinmailer:core", version.ref = "kotlinmailer" }
                 </code-block>
                 <list>
                     <li>
