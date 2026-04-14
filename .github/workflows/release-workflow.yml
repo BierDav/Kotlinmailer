@@ -27,15 +27,11 @@ jobs:
           fetch-depth: 0
 
       - name: Check if version is valid
-        uses: actions-ecosystem/action-regex-match@v2
-        id: regex-match
-        with:
-          text: ${{ inputs.version }}
-          regex: ${{ env.VERSION_PATTERN }}
-
-      - name: Version does not match the given pattern
-        if: steps.regex-match.outputs.match == ''
-        run: exit 1
+        run: |
+          if ! echo "${{ inputs.version }}" | grep -Pq "${{ env.VERSION_PATTERN }}"; then
+            echo "Version does not match the given pattern"
+            exit 1
+          fi
 
       - name: Update gradle.properties
         run: sed -i "s/^version=.*/version=${{ inputs.version }}/" gradle.properties
