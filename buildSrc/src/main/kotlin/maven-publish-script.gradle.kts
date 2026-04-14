@@ -1,5 +1,4 @@
 import org.jetbrains.dokka.DokkaConfiguration.Visibility
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jreleaser.model.Active
 import org.jreleaser.model.Signing
 import java.net.URI
@@ -15,21 +14,8 @@ plugins {
     id("org.jreleaser")
 }
 
-// Configure Dokka to generate documentation
-tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
-    outputDirectory.set(layout.buildDirectory.dir("dokka"))
-}
-
-val dokkaJar by tasks.registering(Jar::class) {
-    dependsOn(tasks.named("dokkaHtml"))
-    archiveClassifier.set("javadoc")
-    from(tasks.named("dokkaHtml"))
-}
-
 publishing {
     publications.withType<MavenPublication>().configureEach {
-        artifact(dokkaJar.get())
-
         pom {
             name = projectName
             description = projectDescription
@@ -60,7 +46,7 @@ publishing {
     publications {
         repositories {
             maven {
-                setUrl(layout.buildDirectory.dir("staging-deploy"))
+                url = uri(layout.buildDirectory.dir("staging-deploy"))
             }
         }
     }
@@ -69,12 +55,19 @@ publishing {
 jreleaser {
     signing {
         active = Active.ALWAYS
-        armored = true
-        mode = Signing.Mode.MEMORY
+        pgp {
+            active = Active.ALWAYS
 
-        passphrase = providers.gradleProperty("signingPassphrase")
-        secretKey = providers.gradleProperty("signingSecretKey")
-        publicKey = providers.gradleProperty("signingPublicKey")
+            armored = true
+            mode = Signing.Mode.MEMORY
+
+            passphrase = providers.gradleProperty("cosignPassphrase")
+            secretKey = providers.gradleProperty("cosignSecretKey")
+        }
+    }
+
+    signing {
+
     }
 
     deploy {
@@ -93,16 +86,36 @@ jreleaser {
     }
 }
 
-tasks.withType<DokkaTaskPartial>().configureEach {
-    dokkaSourceSets.configureEach {
-        documentedVisibilities.set(setOf(Visibility.PUBLIC, Visibility.PROTECTED))
+//tasks.withType<DokkaTaskPartial>().configureEach {
+//    dokkaSourceSets.configureEach {
+//        documentedVisibilities.set(setOf(Visibility.PUBLIC, Visibility.PROTECTED))
+//
+//        sourceLink {
+//            val exampleDir = "https://github.com/$githubProject/tree/master/"
+//
+//            localDirectory.set(rootProject.projectDir)
+//            remoteUrl.set(URI(exampleDir).toURL())
+//            remoteLineSuffix.set("#L")
+//        }
+//    }
+//}
 
-        sourceLink {
-            val exampleDir = "https://github.com/$githubProject/tree/master/"
-
-            localDirectory.set(rootProject.projectDir)
-            remoteUrl.set(URI(exampleDir).toURL())
-            remoteLineSuffix.set("#L")
-        }
+dokka {
+    moduleName.set(rootProject.name)
+    dokkaPublications.html {
+        suppressInheritedMembers.set(true)
+        failOnWarning.set(true)
+    }
+//    dokkaSourceSets.configureEach {
+//        includes.from("README.md")
+//        sourceLink {
+//            localDirectory.set(file("src/main/kotlin"))
+//            remoteUrl("https://example.com/src")
+//            remoteLineSuffix.set("#L")
+//        }
+//    }
+    pluginsConfiguration.html {
+        customAssets.from(".idea/icon.png")
+        footerMessage.set("(c) David Emanuel Bieregger")
     }
 }

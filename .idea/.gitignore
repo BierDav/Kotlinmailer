@@ -22,3 +22,5 @@ gradle.xml
 vcs.xml
 jsonSchemas.xml
 dictionaries
+copilot.data.migration.agent.xml
+AndroidProjectSystem.xml
