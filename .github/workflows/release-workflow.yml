@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 0
 
       - name: Check if version is valid
-        uses: kaisugi/action-regex-match@v1.0.1
+        uses: actions-ecosystem/action-regex-match@v2
         id: regex-match
         with:
           text: ${{ inputs.version }}
