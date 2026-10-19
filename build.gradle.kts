@@ -1,8 +1,5 @@
-import io.gitlab.arturbosch.detekt.Detekt
-
 plugins {
     id(libs.plugins.dokka.get().pluginId)
-    id(libs.plugins.detekt.get().pluginId)
     id(libs.plugins.binary.compatibility.validator.get().pluginId)
 }
 
@@ -10,15 +7,17 @@ repositories {
     mavenCentral()
 }
 
-detekt {
-    buildUponDefaultConfig = true
+apiValidation {
+    @OptIn(kotlinx.validation.ExperimentalBCVApi::class)
+    klib {
+        enabled = true
+    }
 }
 
-tasks.withType<Detekt>().configureEach {
-    jvmTarget = "1.8"
+dependencies {
+    listOf("core", "smtp", "jmap", "html").forEach { dokka(project(":packages:$it")) }
 }
 
-tasks.dokkaHtmlMultiModule {
+dokka {
     moduleName.set("Kotlinmailer")
-    includes.from(File("docs").listFiles().filter { it.isFile })
 }

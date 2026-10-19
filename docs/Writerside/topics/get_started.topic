@@ -22,7 +22,7 @@
 
         <list>
             <li>The latest <a href="https://gradle.org/install/">Gradle</a> distribution.</li>
-            <li>A <a href="https://www.oracle.com/java/technologies/downloads/">Java Development Kit</a>, version 8 or later.</li>
+            <li>A <a href="https://www.oracle.com/java/technologies/downloads/">Java Development Kit</a>, version 11 or later.</li>
             <li>An integrated development environment (IDE) such as <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>
                 or <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li>
         </list>
@@ -139,11 +139,15 @@
                     [libraries]
                     //...
                     kotlinmailer-core = { module = "at.quickme.kotlinmailer:core", version.ref = "kotlinmailer" }
+                    kotlinmailer-smtp = { module = "at.quickme.kotlinmailer:smtp", version.ref = "kotlinmailer" }
+                    kotlinmailer-html = { module = "at.quickme.kotlinmailer:html", version.ref = "kotlinmailer" }
                 </code-block>
                 <list>
                     <li>
-                        The <code>core</code> module provides the foundational components and abstractions
-                        needed to work with databases in a type-safe manner and includes the DSL API.
+                        The <code>core</code> module provides the email model, the builder DSL and the MIME renderer.
+                    </li>
+                    <li>
+                        The <code>smtp</code> module sends emails to an SMTP server.
                     </li>
                     <li>
                         The <code>html</code> module provides the HTML DSL API to create emails with <a
@@ -155,12 +159,13 @@
                 <p>
                     Navigate to the
                     <path>app/build.gradle.kts</path>
-                    file and add the Exposed and H2 database modules into the <code>dependencies</code> block:
+                    file and add the Kotlinmailer modules into the <code>dependencies</code> block:
                 </p>
                 <code-block lang="kotlin">
                     dependencies {
                         //...
                         implementation(libs.kotlinmailer.core)
+                        implementation(libs.kotlinmailer.smtp)
                         // Optional
                         implementation(libs.kotlinmailer.html)
                         //...
@@ -200,25 +205,23 @@
                 <code-block lang="kotlin">
                     package org.example
 
-                    import at.quickme.kotlinmailer.delivery.mailerBuilder
+                    import at.quickme.kotlinmailer.smtp.smtpMailer
 
                     fun main() {
-                        val mailer = mailerBuilder(
-                            host = "smtp.example.com", port = 25,
-                            username = "john.doe@example.com",
-                            password = "secure-password"
-                        )
+                        val mailer = smtpMailer("smtp.example.com") {
+                            credentials("john.doe@example.com", "secure-password")
+                        }
                     }
                 </code-block>
                 <tip>
                     Remember to replace the SMTP server values with your actual SMTP server connection details.
                 </tip>
                 <p>
-                    The <code>mailerBuilder()</code> function creates an instance of a class that represents
-                    the SMTP server connection.
+                    The <code>smtpMailer()</code> function creates an <code>SmtpMailer</code>, which connects to
+                    the SMTP server on port 587 and encrypts the connection with STARTTLS.
                 </p>
                 <note>
-                    Note that invoking <code>mailerBuilder()</code> only configures the connection settings,
+                    Note that invoking <code>smtpMailer()</code> only configures the connection settings,
                     but it doesn't immediately establish a connection with the SMTP server. The actual connection
                     will be established later when an email is sent.
                 </note>
@@ -238,22 +241,26 @@
                 <code-block lang="kotlin">
                     package org.example
 
-                    import at.quickme.kotlinmailer.delivery.mailerBuilder
+                    import at.quickme.kotlinmailer.delivery.send
+                    import at.quickme.kotlinmailer.email.EmailAddress
+                    import at.quickme.kotlinmailer.email.emailBuilder
+                    import at.quickme.kotlinmailer.smtp.smtpMailer
+                    import kotlinx.coroutines.runBlocking
 
-                    fun main() {
-                        val mailer = mailerBuilder(
-                            host = "smtp.example.com", port = 25,
-                            username = "john.doe@example.com",
-                            password = "secure-password"
-                        )
+                    fun main() = runBlocking {
+                        val mailer = smtpMailer("smtp.example.com") {
+                            credentials("john.doe@example.com", "secure-password")
+                        }
 
-                        val sender = InternetAddress("John Doe &lt;john.doe@example.com&gt;")
+                        val sender = EmailAddress.parse("John Doe &lt;john.doe@example.com&gt;")
                         emailBuilder {
-                            from(sender)
-                            to("alice.doe@exmaple.com")
-                            withSubject("Let's get married 💍")
-                            withPlainText("My dear Alice, I love you! Will you marry me?")
+                            from = sender
+                            to("alice.doe@example.com")
+                            subject = "Let's get married 💍"
+                            text = "My dear Alice, I love you! Will you marry me?"
                         }.send(mailer)
+
+                        mailer.close()
                     }
                 </code-block>
                 <tip>
@@ -263,12 +270,12 @@
 
                 <p>Here's the breakdown:</p>
                 <p>
-                    The <code>InternetAddress()</code> function creates an instance of the <code>InternetAddress</code>
+                    The <code>EmailAddress.parse()</code> function creates an instance of the <code>EmailAddress</code>
                     class, which represents the sender's email identity. The first part `John Doe` is the sender's name,
                     and the second part consists of the sender's email address.
                 </p>
                 <code-block lang="kotlin">
-                    val sender = InternetAddress("John Doe &lt;john.doe@example.com&gt;")
+                    val sender = EmailAddress.parse("John Doe &lt;john.doe@example.com&gt;")
                 </code-block>
                 <note>
                     Spoofing the sender's email using this may be blocked by some SMTP servers.
@@ -282,15 +289,15 @@
                 </p>
                 <code-block lang="kotlin">
                     emailBuilder {
-                        from(sender)
-                        to("alice.doe@exmaple.com")
-                        withSubject("Let's get married 💍")
-                        withPlainText("My dear Alice, I love you! Will you marry me?")
+                        from = sender
+                        to("alice.doe@example.com")
+                        subject = "Let's get married 💍"
+                        text = "My dear Alice, I love you! Will you marry me?"
                     }
                 </code-block>
                 <p>
-                    The <code>send()</code> function finalises the process and sends the email using the previously
-                    configured SMTP connection.
+                    The <code>send()</code> function suspends until the SMTP server accepted the email. Finally,
+                    <code>close()</code> closes the connection to the server.
                 </p>
             </step>
             <step>

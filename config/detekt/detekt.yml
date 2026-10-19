@@ -106,6 +106,8 @@ complexity:
     ignoreOverloaded: false
   CyclomaticComplexMethod:
     active: true
+    # fake servers in tests are big `when` dispatchers
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
     threshold: 15
     ignoreSingleWhenExpression: false
     ignoreSimpleWhenEntries: false
@@ -133,7 +135,8 @@ complexity:
     active: true
     functionThreshold: 6
     constructorThreshold: 7
-    ignoreDefaultParameters: false
+    # configuration classes are made of optional settings
+    ignoreDefaultParameters: true
     ignoreDataClasses: true
     ignoreAnnotatedParameter: []
   MethodOverloading:
@@ -173,7 +176,8 @@ complexity:
     thresholdInObjects: 11
     thresholdInEnums: 11
     ignoreDeprecated: false
-    ignorePrivate: false
+    # small private helpers keep protocol code readable
+    ignorePrivate: true
     ignoreOverridden: false
     ignoreAnnotatedFunctions: []
 
@@ -606,6 +610,7 @@ style:
     excludedFunctions: []
   LoopWithTooManyJumpStatements:
     active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
     maxJumpCount: 1
   MagicNumber:
     active: true
@@ -622,7 +627,7 @@ style:
     ignoreCompanionObjectPropertyDeclaration: true
     ignoreAnnotation: false
     ignoreNamedArgument: true
-    ignoreEnums: false
+    ignoreEnums: true
     ignoreRanges: false
     ignoreExtensionFunctions: true
   MandatoryBracesLoops:
@@ -675,12 +680,14 @@ style:
     active: false
   ReturnCount:
     active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
     max: 2
     excludedFunctions:
       - 'equals'
     excludeLabeled: false
     excludeReturnFromLambda: true
-    excludeGuardClauses: false
+    # validation and parsing code relies on guard clauses
+    excludeGuardClauses: true
   SafeCast:
     active: true
   SerialVersionUIDInSerializableClass:
@@ -694,7 +701,7 @@ style:
   ThrowsCount:
     active: true
     max: 2
-    excludeGuardClauses: false
+    excludeGuardClauses: true
   TrailingWhitespace:
     active: false
   TrimMultilineRawString:

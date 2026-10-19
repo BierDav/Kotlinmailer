@@ -1,8 +1,7 @@
 # HTML
 
-Kotlinmailer provides a convenient way for setting the HTML content of a message.
-Instead of passing in the HTML text, you can use the HTML DSL of [kotlinx.html](https://github.com/Kotlin/kotlinx.html)
-to create the HTML content.
+The `html` module lets you build the HTML body with the DSL of [kotlinx.html](https://github.com/Kotlin/kotlinx.html)
+instead of passing in HTML text.
 
 ## Set HTML content
 
@@ -19,12 +18,14 @@ emailBuilder {
 }
 ```
 
+`appendHTML` and `prependHTML` add content to an existing HTML body.
+
 #### What are the advantages of using kotlinx.html?
 
 In the above example, there isn't any real advantage apart from the better readability. But as soon as you want to
 customize the messages, for example for a specific user, kotlinx.html shows its full power.
 
-Let's say that we want to greet the user with his name. Additionally, we want to list the items he bought:
+Let's say that we want to greet the user with their name. Additionally, we want to list the items they bought:
 
 ```kotlin
 val username = "foo"
@@ -47,4 +48,4 @@ emailBuilder {
 ```
 
 Here kotlinx.html allows us to use the existing data we have (`username` and `itemsBought`) without the need for an
-additional templating language.
+additional templating language. Text is escaped automatically.

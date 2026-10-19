@@ -1,68 +1,97 @@
 # Mailer API
 
-A mailer instance is connected to an SMTP server capable of sending emails (e.g. [Postfix](http://www.postfix.org/), paid services or Gmail).
+A `Mailer` delivers emails. Kotlinmailer ships two implementations:
 
-For a list of free SMTP servers have a look into [this list by mailtrap](https://blog.mailtrap.io/free-smtp-servers/). If you want to configure a send-only postfix server, read [this tutorial](https://blog.mailtrap.io/setup-smtp-server/).
+| Mailer       | Module | Protocol           | Platforms                                                    |
+|--------------|--------|--------------------|--------------------------------------------------------------|
+| `SmtpMailer` | `smtp` | SMTP (RFC 5321)    | JVM / Android, Node.js, macOS, iOS, Linux & Windows (no TLS)  |
+| `JmapMailer` | `jmap` | JMAP (RFC 8620/21) | every Kotlin target with a Ktor client engine, incl. browsers |
 
-#### Create a Mailer
+Both implement the same interface, so the rest of your code does not care which one you use.
 
-```kotlin
-val mailer = mailerBuilder(host = "your_hostname", port = 25)
-```
-
-#### Set the global default Mailer
-
-The default mailer will be used for sending emails if no specific mailer is passed as a parameter.
+## SMTP
 
 ```kotlin
-MailerManager.defaultMailer = mailer
+val mailer = smtpMailer("smtp.example.com") {
+    security = SmtpSecurity.STARTTLS // the default, port 587
+    credentials("john.doe@example.com", "app-password")
+}
 ```
 
-#### Shutdown all Mailers
+| Option                    | Default             | Description                                                                         |
+|---------------------------|---------------------|-------------------------------------------------------------------------------------|
+| `security`                | `STARTTLS`          | `TLS` (port 465), `STARTTLS` (587), `STARTTLS_IF_AVAILABLE` or `NONE` (25)          |
+| `port`                    | depends on security | The server port                                                                     |
+| `credentials(user, pass)` | none                | Authenticate with `PLAIN` or `LOGIN`                                                |
+| `oauth2(user) { token }`  | none                | Authenticate with `OAUTHBEARER` or `XOAUTH2`, the token is fetched per connection   |
+| `clientHostname`          | `localhost`         | The name sent with `EHLO`                                                           |
+| `maxConnections`          | `1`                 | Number of parallel connections                                                      |
+| `reuseConnections`        | `true`              | Keep connections open between emails                                                |
+| `failOnRejectedRecipient` | `true`              | Fail if any recipient is rejected, otherwise deliver to the accepted ones           |
+| `allowInsecureAuth`       | `false`             | Allow sending credentials without TLS                                               |
+| `connectTimeout`, `commandTimeout`, `dataTimeout` | 30 s, 5 min, 10 min | Timeouts as recommended by RFC 5321                             |
 
-The mailer instances keep your program alive. In order to exit your program safely, you have to shut down the mailer instances.
+The client supports the ESMTP extensions `STARTTLS`, `AUTH`, `PIPELINING`, `SIZE`, `8BITMIME`, `SMTPUTF8` and
+`ENHANCEDSTATUSCODES`. No connection is opened until the first email is sent; call `mailer.testConnection()` to check
+your configuration eagerly.
+
+## JMAP
+
+JMAP is a modern HTTP based protocol supported by e.g. Fastmail and Stalwart. As it only needs HTTP, it also works in
+browsers.
 
 ```kotlin
-MailerManager.shutdownMailers()
+val mailer = jmapMailer("https://api.fastmail.com/jmap/session") {
+    bearer("api-token")
+}
 ```
+
+If you only know the host, use `JmapConfig.wellKnownSessionUrl("example.com")`.
+
+The email is uploaded, imported into the Drafts mailbox and submitted, after which the server moves it to the Sent
+mailbox. The identity matching the `From` address is used; set `identityId` to choose a specific one.
+
+<note>
+The <code>jmap</code> module only depends on <code>ktor-client-core</code>. Add a
+<a href="https://ktor.io/docs/client-engines.html">Ktor client engine</a> such as <code>ktor-client-cio</code>,
+<code>ktor-client-darwin</code> or <code>ktor-client-js</code> to your project, or pass your own
+<code>httpClient</code>.
+</note>
 
 ## Send emails
 
-Easily send your [previously built emails](email.md).
-
-##### Using coroutines (Asynchronously)
-
-This approach allows you to send emails without blocking the current thread. These methods only work within a `CoroutineScope`.
+`send` suspends until the server accepted the email and returns a `SendReceipt`.
 
 ```kotlin
-email.send() // using the defult Mailer instance
-// or
-email.send(mailer)
+val receipt = email.send(mailer)
+println("Sent ${receipt.messageId} to ${receipt.acceptedRecipients}")
 ```
 
-###### Suspend until completion
-
-The send function returns a `Job`, therefore you can just join it.
+Failures are thrown as `MailException`; for SMTP this is an `SmtpException` with the server's `replyCode`,
+`enhancedStatusCode` and `isTransient`, for JMAP a `JmapException` with the JMAP error `type`.
 
 ```kotlin
-email.send().join()
+try {
+    email.send(mailer)
+} catch (e: SmtpException) {
+    if (e.isTransient) retryLater(email)
+}
 ```
 
-This can thrown an exception of the delivery failed, you can handle that like this:
+## Default mailer
+
+The default mailer is used if `send()` is called without a mailer.
 
 ```kotlin
-kotlin.runCatching { email.send().join() }
-    .onFailure { it.printStackTrace() }
-    .onSuccess { println("I just sent an email!") }
+MailerManager.defaultMailer = mailer
+email.send()
 ```
 
-##### Synchronously
+## Shut down
 
-If you need to send your emails synchronously for some reason, you can do that.
-This function will throw an exception if the action fails, otherwise (on success) it will just pass.
+Close mailers to release their connections. `smtpMailer` and `jmapMailer` register their mailers at the
+`MailerManager`, so you can close all of them at once:
 
 ```kotlin
-email.sendSync() // using the default Mailer instance
-// or
-email.sendSync(mailer)
+MailerManager.shutdownMailers()
 ```

@@ -15,7 +15,8 @@ on:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    # Apple targets can only be built on macOS
+    runs-on: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -32,8 +33,8 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
 
-      - name: Check binary compatibility
-        run: ./gradlew apiCheck
+      - name: Check
+        run: ./gradlew check
 
       - name: Publish artifact
         env:

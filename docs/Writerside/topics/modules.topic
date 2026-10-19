@@ -34,12 +34,22 @@
     </chapter>
     <chapter title="Base Modules" id="base-modules">
         Kotlinmailer is split into multiple modules so that you can select only those dependencies you need and thereby
-        eliminate unnecessary peer dependencies. The `core` module is required for all other modules to work.
+        eliminate unnecessary peer dependencies. The <code>core</code> module is required for all other modules to work.
 
         <list>
             <li>
                 <control><code>core</code></control>
                 <control>(required)</control>
+                the email model, builder DSL and MIME renderer.
+            </li>
+            <li>
+                <control><code>smtp</code></control>
+                to send emails via SMTP. You can find more information <a href="mailer.md">here</a>.
+            </li>
+            <li>
+                <control><code>jmap</code></control>
+                to send emails via JMAP. It needs a <a href="https://ktor.io/docs/client-engines.html">Ktor client
+                engine</a>.
             </li>
             <li>
                 <control><code>html</code></control>
@@ -47,6 +57,21 @@
                 You can find more information <a href="html.md">here</a>.
             </li>
         </list>
+
+        <table>
+            <tr>
+                <td>Module</td>
+                <td>Platforms</td>
+            </tr>
+            <tr>
+                <td><code>core</code>, <code>html</code>, <code>jmap</code></td>
+                <td>JVM, JS, Wasm, macOS, iOS, Linux, Windows</td>
+            </tr>
+            <tr>
+                <td><code>smtp</code></td>
+                <td>JVM (incl. Android), JS (Node.js only), macOS, iOS, Linux and Windows (without TLS)</td>
+            </tr>
+        </table>
 
         <warning>
             Since version 1.0.1, the module names have changed.
@@ -59,10 +84,13 @@
                     val kotlinmailer_version = "%kotlinmailer_version%"
                     dependencies {
                         implementation("at.quickme.kotlinmailer:core:$kotlinmailer_version")
-                        // optional html
+                        implementation("at.quickme.kotlinmailer:smtp:$kotlinmailer_version")
+                        // optional
+                        implementation("at.quickme.kotlinmailer:jmap:$kotlinmailer_version")
                         implementation("at.quickme.kotlinmailer:html:$kotlinmailer_version")
                     }
                 </code-block>
+                In Kotlin Multiplatform projects, add the dependencies to <code>commonMain</code>.
                 Alternatively, if you use gradle version catalogues you can use the following:
                 <code-block lang="text">
                     [versions]
@@ -71,16 +99,19 @@
 
                     [libraries]
                     //...
-                    kotlinmailer-core = { module = "at.quickme.kotlinmailer", name = "core", version.ref = "kotlinmailer" }
-                    // optional html
-                    kotlinmailer-html = { module = "at.quickme.kotlinmailer", name = "html, version.ref = "kotlinmailer"
-                    }
+                    kotlinmailer-core = { module = "at.quickme.kotlinmailer:core", version.ref = "kotlinmailer" }
+                    kotlinmailer-smtp = { module = "at.quickme.kotlinmailer:smtp", version.ref = "kotlinmailer" }
+                    // optional
+                    kotlinmailer-jmap = { module = "at.quickme.kotlinmailer:jmap", version.ref = "kotlinmailer" }
+                    kotlinmailer-html = { module = "at.quickme.kotlinmailer:html", version.ref = "kotlinmailer" }
                 </code-block>
                 And then in your dependencies block:
                 <code-block lang="kotlin">
                     dependencies {
                         implementation(libs.kotlinmailer.core)
-                        // optional html
+                        implementation(libs.kotlinmailer.smtp)
+                        // optional
+                        implementation(libs.kotlinmailer.jmap)
                         implementation(libs.kotlinmailer.html)
                     }
                 </code-block>
@@ -90,7 +121,9 @@
                     def kotlinmailer_version = "%kotlinmailer_version%"
                     dependencies {
                         implementation "at.quickme.kotlinmailer:core:$kotlinmailer_version"
-                        // optional html
+                        implementation "at.quickme.kotlinmailer:smtp:$kotlinmailer_version"
+                        // optional
+                        implementation "at.quickme.kotlinmailer:jmap:$kotlinmailer_version"
                         implementation "at.quickme.kotlinmailer:html:$kotlinmailer_version"
                     }
                 </code-block>
@@ -101,13 +134,18 @@
                      <dependencies>
                          <dependency>
                              <groupId>at.quickme.kotlinmailer</groupId>
-                             <artifactId>core</artifactId>
+                             <artifactId>core-jvm</artifactId>
+                             <version>%kotlinmailer_version%</version>
+                         </dependency>
+                         <dependency>
+                             <groupId>at.quickme.kotlinmailer</groupId>
+                             <artifactId>smtp-jvm</artifactId>
                              <version>%kotlinmailer_version%</version>
                          </dependency>
                          <!-- optional html -->
                          <dependency>
                              <groupId>at.quickme.kotlinmailer</groupId>
-                             <artifactId>html</artifactId>
+                             <artifactId>html-jvm</artifactId>
                              <version>%kotlinmailer_version%</version>
                          </dependency>
                      </dependencies>

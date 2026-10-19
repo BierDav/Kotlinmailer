@@ -24,18 +24,18 @@
                 <li>Create a new branch for your changes.</li>
                 <li><a href="https://github.com/BierDav/Kotlinmailer/compare">Create</a> a new PR with a request to
                     merge to the
-                    **master** branch.
+                    <code>main</code> branch.
                 </li>
                 <li>Ensure that the description is clear and refers to an existing ticket/bug if applicable</li>
                 <li>When contributing a new feature, provide motivation and use-cases describing why the feature not
-                    only provides value to Exposed, but also why it would make sense to be part of the
-                    Exposed framework itself.
+                    only provides value to you, but also why it would make sense to be part of
+                    Kotlinmailer itself.
                 </li>
                 <li>If the contribution requires updates to documentation (be it updating existing contents or creating
                     a new one), file a new ticket on <a href="https://github.com/BierDav/Kotlinmailer/issues">GitHub</a>.
                 </li>
-                <li>Make sure any code contributed is covered by tests and no existing tests are broken. We use Docker
-                    containers to run tests.
+                <li>Make sure any code contributed is covered by tests and no existing tests are broken.
+                    Run <code>./gradlew check</code>, which runs the tests on all platforms available on your machine.
                 </li>
                 <li>Execute the `detekt` task in Gradle to perform code style validation.</li>
                 <li>Finally, make sure to run the `apiCheck` Gradle task. If it is not successful, run the `apiDump`
@@ -58,7 +58,7 @@
         </chapter>
     </chapter>
     <chapter title="Documentation" id="documentation">
-        There are multiple ways in which you can contribute to Exposed docs:
+        There are multiple ways in which you can contribute to the Kotlinmailer docs:
         <list>
             <li>Create an issue in <a href="https://github.com/BierDav/Kotlinmailer/issues">GitHub</a>.</li>
             <li>Submit a pull request containing your proposed changes. Ensure that these modifications are applied

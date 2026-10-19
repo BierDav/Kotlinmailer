@@ -1,0 +1,219 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, linuxArm64, linuxX64, macosArm64, mingwX64, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <at.quickme.kotlinmailer:core>
+open annotation class at.quickme.kotlinmailer.email/EmailDsl : kotlin/Annotation { // at.quickme.kotlinmailer.email/EmailDsl|null[0]
+    constructor <init>() // at.quickme.kotlinmailer.email/EmailDsl.<init>|<init>(){}[0]
+}
+
+abstract interface at.quickme.kotlinmailer.delivery/Mailer { // at.quickme.kotlinmailer.delivery/Mailer|null[0]
+    abstract suspend fun close() // at.quickme.kotlinmailer.delivery/Mailer.close|close(){}[0]
+    abstract suspend fun send(at.quickme.kotlinmailer.email/Email): at.quickme.kotlinmailer.delivery/SendReceipt // at.quickme.kotlinmailer.delivery/Mailer.send|send(at.quickme.kotlinmailer.email.Email){}[0]
+}
+
+final class at.quickme.kotlinmailer.delivery/SendReceipt { // at.quickme.kotlinmailer.delivery/SendReceipt|null[0]
+    constructor <init>(kotlin/String, kotlin.collections/List<at.quickme.kotlinmailer.email/EmailAddress>, kotlin.collections/Map<at.quickme.kotlinmailer.email/EmailAddress, kotlin/String> = ..., kotlin/String? = ...) // at.quickme.kotlinmailer.delivery/SendReceipt.<init>|<init>(kotlin.String;kotlin.collections.List<at.quickme.kotlinmailer.email.EmailAddress>;kotlin.collections.Map<at.quickme.kotlinmailer.email.EmailAddress,kotlin.String>;kotlin.String?){}[0]
+
+    final val acceptedRecipients // at.quickme.kotlinmailer.delivery/SendReceipt.acceptedRecipients|{}acceptedRecipients[0]
+        final fun <get-acceptedRecipients>(): kotlin.collections/List<at.quickme.kotlinmailer.email/EmailAddress> // at.quickme.kotlinmailer.delivery/SendReceipt.acceptedRecipients.<get-acceptedRecipients>|<get-acceptedRecipients>(){}[0]
+    final val messageId // at.quickme.kotlinmailer.delivery/SendReceipt.messageId|{}messageId[0]
+        final fun <get-messageId>(): kotlin/String // at.quickme.kotlinmailer.delivery/SendReceipt.messageId.<get-messageId>|<get-messageId>(){}[0]
+    final val rejectedRecipients // at.quickme.kotlinmailer.delivery/SendReceipt.rejectedRecipients|{}rejectedRecipients[0]
+        final fun <get-rejectedRecipients>(): kotlin.collections/Map<at.quickme.kotlinmailer.email/EmailAddress, kotlin/String> // at.quickme.kotlinmailer.delivery/SendReceipt.rejectedRecipients.<get-rejectedRecipients>|<get-rejectedRecipients>(){}[0]
+    final val serverResponse // at.quickme.kotlinmailer.delivery/SendReceipt.serverResponse|{}serverResponse[0]
+        final fun <get-serverResponse>(): kotlin/String? // at.quickme.kotlinmailer.delivery/SendReceipt.serverResponse.<get-serverResponse>|<get-serverResponse>(){}[0]
+
+    final fun toString(): kotlin/String // at.quickme.kotlinmailer.delivery/SendReceipt.toString|toString(){}[0]
+}
+
+final class at.quickme.kotlinmailer.email/Attachment { // at.quickme.kotlinmailer.email/Attachment|null[0]
+    constructor <init>(kotlin/String, kotlin/ByteArray, kotlin/String = ..., kotlin/String? = ...) // at.quickme.kotlinmailer.email/Attachment.<init>|<init>(kotlin.String;kotlin.ByteArray;kotlin.String;kotlin.String?){}[0]
+
+    final val content // at.quickme.kotlinmailer.email/Attachment.content|{}content[0]
+        final fun <get-content>(): kotlin/ByteArray // at.quickme.kotlinmailer.email/Attachment.content.<get-content>|<get-content>(){}[0]
+    final val contentId // at.quickme.kotlinmailer.email/Attachment.contentId|{}contentId[0]
+        final fun <get-contentId>(): kotlin/String? // at.quickme.kotlinmailer.email/Attachment.contentId.<get-contentId>|<get-contentId>(){}[0]
+    final val contentType // at.quickme.kotlinmailer.email/Attachment.contentType|{}contentType[0]
+        final fun <get-contentType>(): kotlin/String // at.quickme.kotlinmailer.email/Attachment.contentType.<get-contentType>|<get-contentType>(){}[0]
+    final val isInline // at.quickme.kotlinmailer.email/Attachment.isInline|{}isInline[0]
+        final fun <get-isInline>(): kotlin/Boolean // at.quickme.kotlinmailer.email/Attachment.isInline.<get-isInline>|<get-isInline>(){}[0]
+    final val name // at.quickme.kotlinmailer.email/Attachment.name|{}name[0]
+        final fun <get-name>(): kotlin/String // at.quickme.kotlinmailer.email/Attachment.name.<get-name>|<get-name>(){}[0]
+
+    final fun toString(): kotlin/String // at.quickme.kotlinmailer.email/Attachment.toString|toString(){}[0]
+
+    final object Companion { // at.quickme.kotlinmailer.email/Attachment.Companion|null[0]
+        final fun guessContentType(kotlin/String): kotlin/String // at.quickme.kotlinmailer.email/Attachment.Companion.guessContentType|guessContentType(kotlin.String){}[0]
+    }
+}
+
+final class at.quickme.kotlinmailer.email/Email { // at.quickme.kotlinmailer.email/Email|null[0]
+    final val attachments // at.quickme.kotlinmailer.email/Email.attachments|{}attachments[0]
+        final fun <get-attachments>(): kotlin.collections/List<at.quickme.kotlinmailer.email/Attachment> // at.quickme.kotlinmailer.email/Email.attachments.<get-attachments>|<get-attachments>(){}[0]
+    final val bcc // at.quickme.kotlinmailer.email/Email.bcc|{}bcc[0]
+        final fun <get-bcc>(): kotlin.collections/List<at.quickme.kotlinmailer.email/EmailAddress> // at.quickme.kotlinmailer.email/Email.bcc.<get-bcc>|<get-bcc>(){}[0]
+    final val cc // at.quickme.kotlinmailer.email/Email.cc|{}cc[0]
+        final fun <get-cc>(): kotlin.collections/List<at.quickme.kotlinmailer.email/EmailAddress> // at.quickme.kotlinmailer.email/Email.cc.<get-cc>|<get-cc>(){}[0]
+    final val date // at.quickme.kotlinmailer.email/Email.date|{}date[0]
+        final fun <get-date>(): kotlin.time/Instant? // at.quickme.kotlinmailer.email/Email.date.<get-date>|<get-date>(){}[0]
+    final val from // at.quickme.kotlinmailer.email/Email.from|{}from[0]
+        final fun <get-from>(): at.quickme.kotlinmailer.email/EmailAddress // at.quickme.kotlinmailer.email/Email.from.<get-from>|<get-from>(){}[0]
+    final val headers // at.quickme.kotlinmailer.email/Email.headers|{}headers[0]
+        final fun <get-headers>(): kotlin.collections/List<at.quickme.kotlinmailer.email/Header> // at.quickme.kotlinmailer.email/Email.headers.<get-headers>|<get-headers>(){}[0]
+    final val html // at.quickme.kotlinmailer.email/Email.html|{}html[0]
+        final fun <get-html>(): kotlin/String? // at.quickme.kotlinmailer.email/Email.html.<get-html>|<get-html>(){}[0]
+    final val inReplyTo // at.quickme.kotlinmailer.email/Email.inReplyTo|{}inReplyTo[0]
+        final fun <get-inReplyTo>(): kotlin.collections/List<kotlin/String> // at.quickme.kotlinmailer.email/Email.inReplyTo.<get-inReplyTo>|<get-inReplyTo>(){}[0]
+    final val messageId // at.quickme.kotlinmailer.email/Email.messageId|{}messageId[0]
+        final fun <get-messageId>(): kotlin/String // at.quickme.kotlinmailer.email/Email.messageId.<get-messageId>|<get-messageId>(){}[0]
+    final val recipients // at.quickme.kotlinmailer.email/Email.recipients|{}recipients[0]
+        final fun <get-recipients>(): kotlin.collections/List<at.quickme.kotlinmailer.email/EmailAddress> // at.quickme.kotlinmailer.email/Email.recipients.<get-recipients>|<get-recipients>(){}[0]
+    final val references // at.quickme.kotlinmailer.email/Email.references|{}references[0]
+        final fun <get-references>(): kotlin.collections/List<kotlin/String> // at.quickme.kotlinmailer.email/Email.references.<get-references>|<get-references>(){}[0]
+    final val replyTo // at.quickme.kotlinmailer.email/Email.replyTo|{}replyTo[0]
+        final fun <get-replyTo>(): kotlin.collections/List<at.quickme.kotlinmailer.email/EmailAddress> // at.quickme.kotlinmailer.email/Email.replyTo.<get-replyTo>|<get-replyTo>(){}[0]
+    final val subject // at.quickme.kotlinmailer.email/Email.subject|{}subject[0]
+        final fun <get-subject>(): kotlin/String? // at.quickme.kotlinmailer.email/Email.subject.<get-subject>|<get-subject>(){}[0]
+    final val text // at.quickme.kotlinmailer.email/Email.text|{}text[0]
+        final fun <get-text>(): kotlin/String? // at.quickme.kotlinmailer.email/Email.text.<get-text>|<get-text>(){}[0]
+    final val to // at.quickme.kotlinmailer.email/Email.to|{}to[0]
+        final fun <get-to>(): kotlin.collections/List<at.quickme.kotlinmailer.email/EmailAddress> // at.quickme.kotlinmailer.email/Email.to.<get-to>|<get-to>(){}[0]
+
+    final fun newBuilder(): at.quickme.kotlinmailer.email/EmailBuilder // at.quickme.kotlinmailer.email/Email.newBuilder|newBuilder(){}[0]
+    final fun toString(): kotlin/String // at.quickme.kotlinmailer.email/Email.toString|toString(){}[0]
+}
+
+final class at.quickme.kotlinmailer.email/EmailAddress { // at.quickme.kotlinmailer.email/EmailAddress|null[0]
+    constructor <init>(kotlin/String, kotlin/String? = ...) // at.quickme.kotlinmailer.email/EmailAddress.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+    final val address // at.quickme.kotlinmailer.email/EmailAddress.address|{}address[0]
+        final fun <get-address>(): kotlin/String // at.quickme.kotlinmailer.email/EmailAddress.address.<get-address>|<get-address>(){}[0]
+    final val domain // at.quickme.kotlinmailer.email/EmailAddress.domain|{}domain[0]
+        final fun <get-domain>(): kotlin/String // at.quickme.kotlinmailer.email/EmailAddress.domain.<get-domain>|<get-domain>(){}[0]
+    final val isInternationalized // at.quickme.kotlinmailer.email/EmailAddress.isInternationalized|{}isInternationalized[0]
+        final fun <get-isInternationalized>(): kotlin/Boolean // at.quickme.kotlinmailer.email/EmailAddress.isInternationalized.<get-isInternationalized>|<get-isInternationalized>(){}[0]
+    final val localPart // at.quickme.kotlinmailer.email/EmailAddress.localPart|{}localPart[0]
+        final fun <get-localPart>(): kotlin/String // at.quickme.kotlinmailer.email/EmailAddress.localPart.<get-localPart>|<get-localPart>(){}[0]
+    final val name // at.quickme.kotlinmailer.email/EmailAddress.name|{}name[0]
+        final fun <get-name>(): kotlin/String? // at.quickme.kotlinmailer.email/EmailAddress.name.<get-name>|<get-name>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // at.quickme.kotlinmailer.email/EmailAddress.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // at.quickme.kotlinmailer.email/EmailAddress.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // at.quickme.kotlinmailer.email/EmailAddress.toString|toString(){}[0]
+
+    final object Companion { // at.quickme.kotlinmailer.email/EmailAddress.Companion|null[0]
+        final fun parse(kotlin/String): at.quickme.kotlinmailer.email/EmailAddress // at.quickme.kotlinmailer.email/EmailAddress.Companion.parse|parse(kotlin.String){}[0]
+    }
+}
+
+final class at.quickme.kotlinmailer.email/EmailBuilder { // at.quickme.kotlinmailer.email/EmailBuilder|null[0]
+    constructor <init>() // at.quickme.kotlinmailer.email/EmailBuilder.<init>|<init>(){}[0]
+
+    final val attachments // at.quickme.kotlinmailer.email/EmailBuilder.attachments|{}attachments[0]
+        final fun <get-attachments>(): kotlin.collections/MutableList<at.quickme.kotlinmailer.email/Attachment> // at.quickme.kotlinmailer.email/EmailBuilder.attachments.<get-attachments>|<get-attachments>(){}[0]
+    final val bcc // at.quickme.kotlinmailer.email/EmailBuilder.bcc|{}bcc[0]
+        final fun <get-bcc>(): kotlin.collections/MutableList<at.quickme.kotlinmailer.email/EmailAddress> // at.quickme.kotlinmailer.email/EmailBuilder.bcc.<get-bcc>|<get-bcc>(){}[0]
+    final val cc // at.quickme.kotlinmailer.email/EmailBuilder.cc|{}cc[0]
+        final fun <get-cc>(): kotlin.collections/MutableList<at.quickme.kotlinmailer.email/EmailAddress> // at.quickme.kotlinmailer.email/EmailBuilder.cc.<get-cc>|<get-cc>(){}[0]
+    final val headers // at.quickme.kotlinmailer.email/EmailBuilder.headers|{}headers[0]
+        final fun <get-headers>(): kotlin.collections/MutableList<at.quickme.kotlinmailer.email/Header> // at.quickme.kotlinmailer.email/EmailBuilder.headers.<get-headers>|<get-headers>(){}[0]
+    final val inReplyTo // at.quickme.kotlinmailer.email/EmailBuilder.inReplyTo|{}inReplyTo[0]
+        final fun <get-inReplyTo>(): kotlin.collections/MutableList<kotlin/String> // at.quickme.kotlinmailer.email/EmailBuilder.inReplyTo.<get-inReplyTo>|<get-inReplyTo>(){}[0]
+    final val references // at.quickme.kotlinmailer.email/EmailBuilder.references|{}references[0]
+        final fun <get-references>(): kotlin.collections/MutableList<kotlin/String> // at.quickme.kotlinmailer.email/EmailBuilder.references.<get-references>|<get-references>(){}[0]
+    final val replyTo // at.quickme.kotlinmailer.email/EmailBuilder.replyTo|{}replyTo[0]
+        final fun <get-replyTo>(): kotlin.collections/MutableList<at.quickme.kotlinmailer.email/EmailAddress> // at.quickme.kotlinmailer.email/EmailBuilder.replyTo.<get-replyTo>|<get-replyTo>(){}[0]
+    final val to // at.quickme.kotlinmailer.email/EmailBuilder.to|{}to[0]
+        final fun <get-to>(): kotlin.collections/MutableList<at.quickme.kotlinmailer.email/EmailAddress> // at.quickme.kotlinmailer.email/EmailBuilder.to.<get-to>|<get-to>(){}[0]
+
+    final var date // at.quickme.kotlinmailer.email/EmailBuilder.date|{}date[0]
+        final fun <get-date>(): kotlin.time/Instant? // at.quickme.kotlinmailer.email/EmailBuilder.date.<get-date>|<get-date>(){}[0]
+        final fun <set-date>(kotlin.time/Instant?) // at.quickme.kotlinmailer.email/EmailBuilder.date.<set-date>|<set-date>(kotlin.time.Instant?){}[0]
+    final var from // at.quickme.kotlinmailer.email/EmailBuilder.from|{}from[0]
+        final fun <get-from>(): at.quickme.kotlinmailer.email/EmailAddress? // at.quickme.kotlinmailer.email/EmailBuilder.from.<get-from>|<get-from>(){}[0]
+        final fun <set-from>(at.quickme.kotlinmailer.email/EmailAddress?) // at.quickme.kotlinmailer.email/EmailBuilder.from.<set-from>|<set-from>(at.quickme.kotlinmailer.email.EmailAddress?){}[0]
+    final var html // at.quickme.kotlinmailer.email/EmailBuilder.html|{}html[0]
+        final fun <get-html>(): kotlin/String? // at.quickme.kotlinmailer.email/EmailBuilder.html.<get-html>|<get-html>(){}[0]
+        final fun <set-html>(kotlin/String?) // at.quickme.kotlinmailer.email/EmailBuilder.html.<set-html>|<set-html>(kotlin.String?){}[0]
+    final var messageId // at.quickme.kotlinmailer.email/EmailBuilder.messageId|{}messageId[0]
+        final fun <get-messageId>(): kotlin/String? // at.quickme.kotlinmailer.email/EmailBuilder.messageId.<get-messageId>|<get-messageId>(){}[0]
+        final fun <set-messageId>(kotlin/String?) // at.quickme.kotlinmailer.email/EmailBuilder.messageId.<set-messageId>|<set-messageId>(kotlin.String?){}[0]
+    final var subject // at.quickme.kotlinmailer.email/EmailBuilder.subject|{}subject[0]
+        final fun <get-subject>(): kotlin/String? // at.quickme.kotlinmailer.email/EmailBuilder.subject.<get-subject>|<get-subject>(){}[0]
+        final fun <set-subject>(kotlin/String?) // at.quickme.kotlinmailer.email/EmailBuilder.subject.<set-subject>|<set-subject>(kotlin.String?){}[0]
+    final var text // at.quickme.kotlinmailer.email/EmailBuilder.text|{}text[0]
+        final fun <get-text>(): kotlin/String? // at.quickme.kotlinmailer.email/EmailBuilder.text.<get-text>|<get-text>(){}[0]
+        final fun <set-text>(kotlin/String?) // at.quickme.kotlinmailer.email/EmailBuilder.text.<set-text>|<set-text>(kotlin.String?){}[0]
+
+    final fun appendHtml(kotlin/String) // at.quickme.kotlinmailer.email/EmailBuilder.appendHtml|appendHtml(kotlin.String){}[0]
+    final fun appendText(kotlin/String) // at.quickme.kotlinmailer.email/EmailBuilder.appendText|appendText(kotlin.String){}[0]
+    final fun attach(kotlin/String, kotlin/ByteArray, kotlin/String = ...) // at.quickme.kotlinmailer.email/EmailBuilder.attach|attach(kotlin.String;kotlin.ByteArray;kotlin.String){}[0]
+    final fun bcc(kotlin/Array<out at.quickme.kotlinmailer.email/EmailAddress>...) // at.quickme.kotlinmailer.email/EmailBuilder.bcc|bcc(kotlin.Array<out|at.quickme.kotlinmailer.email.EmailAddress>...){}[0]
+    final fun bcc(kotlin/String, kotlin/String? = ...) // at.quickme.kotlinmailer.email/EmailBuilder.bcc|bcc(kotlin.String;kotlin.String?){}[0]
+    final fun build(): at.quickme.kotlinmailer.email/Email // at.quickme.kotlinmailer.email/EmailBuilder.build|build(){}[0]
+    final fun cc(kotlin/Array<out at.quickme.kotlinmailer.email/EmailAddress>...) // at.quickme.kotlinmailer.email/EmailBuilder.cc|cc(kotlin.Array<out|at.quickme.kotlinmailer.email.EmailAddress>...){}[0]
+    final fun cc(kotlin/String, kotlin/String? = ...) // at.quickme.kotlinmailer.email/EmailBuilder.cc|cc(kotlin.String;kotlin.String?){}[0]
+    final fun embed(kotlin/String, kotlin/ByteArray, kotlin/String, kotlin/String = ...) // at.quickme.kotlinmailer.email/EmailBuilder.embed|embed(kotlin.String;kotlin.ByteArray;kotlin.String;kotlin.String){}[0]
+    final fun from(kotlin/String, kotlin/String? = ...) // at.quickme.kotlinmailer.email/EmailBuilder.from|from(kotlin.String;kotlin.String?){}[0]
+    final fun header(kotlin/String, kotlin/String) // at.quickme.kotlinmailer.email/EmailBuilder.header|header(kotlin.String;kotlin.String){}[0]
+    final fun prependHtml(kotlin/String) // at.quickme.kotlinmailer.email/EmailBuilder.prependHtml|prependHtml(kotlin.String){}[0]
+    final fun prependText(kotlin/String) // at.quickme.kotlinmailer.email/EmailBuilder.prependText|prependText(kotlin.String){}[0]
+    final fun replyTo(kotlin/Array<out at.quickme.kotlinmailer.email/EmailAddress>...) // at.quickme.kotlinmailer.email/EmailBuilder.replyTo|replyTo(kotlin.Array<out|at.quickme.kotlinmailer.email.EmailAddress>...){}[0]
+    final fun replyTo(kotlin/String, kotlin/String? = ...) // at.quickme.kotlinmailer.email/EmailBuilder.replyTo|replyTo(kotlin.String;kotlin.String?){}[0]
+    final fun to(kotlin/Array<out at.quickme.kotlinmailer.email/EmailAddress>...) // at.quickme.kotlinmailer.email/EmailBuilder.to|to(kotlin.Array<out|at.quickme.kotlinmailer.email.EmailAddress>...){}[0]
+    final fun to(kotlin/String, kotlin/String? = ...) // at.quickme.kotlinmailer.email/EmailBuilder.to|to(kotlin.String;kotlin.String?){}[0]
+}
+
+final class at.quickme.kotlinmailer.email/Header { // at.quickme.kotlinmailer.email/Header|null[0]
+    constructor <init>(kotlin/String, kotlin/String) // at.quickme.kotlinmailer.email/Header.<init>|<init>(kotlin.String;kotlin.String){}[0]
+
+    final val name // at.quickme.kotlinmailer.email/Header.name|{}name[0]
+        final fun <get-name>(): kotlin/String // at.quickme.kotlinmailer.email/Header.name.<get-name>|<get-name>(){}[0]
+    final val value // at.quickme.kotlinmailer.email/Header.value|{}value[0]
+        final fun <get-value>(): kotlin/String // at.quickme.kotlinmailer.email/Header.value.<get-value>|<get-value>(){}[0]
+
+    final fun toString(): kotlin/String // at.quickme.kotlinmailer.email/Header.toString|toString(){}[0]
+}
+
+final class at.quickme.kotlinmailer.mime/RenderedEmail { // at.quickme.kotlinmailer.mime/RenderedEmail|null[0]
+    final val bytes // at.quickme.kotlinmailer.mime/RenderedEmail.bytes|{}bytes[0]
+        final fun <get-bytes>(): kotlin/ByteArray // at.quickme.kotlinmailer.mime/RenderedEmail.bytes.<get-bytes>|<get-bytes>(){}[0]
+    final val content // at.quickme.kotlinmailer.mime/RenderedEmail.content|{}content[0]
+        final fun <get-content>(): kotlin/String // at.quickme.kotlinmailer.mime/RenderedEmail.content.<get-content>|<get-content>(){}[0]
+    final val requires8BitMime // at.quickme.kotlinmailer.mime/RenderedEmail.requires8BitMime|{}requires8BitMime[0]
+        final fun <get-requires8BitMime>(): kotlin/Boolean // at.quickme.kotlinmailer.mime/RenderedEmail.requires8BitMime.<get-requires8BitMime>|<get-requires8BitMime>(){}[0]
+    final val requiresSmtpUtf8 // at.quickme.kotlinmailer.mime/RenderedEmail.requiresSmtpUtf8|{}requiresSmtpUtf8[0]
+        final fun <get-requiresSmtpUtf8>(): kotlin/Boolean // at.quickme.kotlinmailer.mime/RenderedEmail.requiresSmtpUtf8.<get-requiresSmtpUtf8>|<get-requiresSmtpUtf8>(){}[0]
+}
+
+open class at.quickme.kotlinmailer.delivery/MailException : kotlin/Exception { // at.quickme.kotlinmailer.delivery/MailException|null[0]
+    constructor <init>(kotlin/String, kotlin/Throwable? = ...) // at.quickme.kotlinmailer.delivery/MailException.<init>|<init>(kotlin.String;kotlin.Throwable?){}[0]
+}
+
+final object at.quickme.kotlinmailer.delivery/MailerManager { // at.quickme.kotlinmailer.delivery/MailerManager|null[0]
+    final val hasDefaultMailer // at.quickme.kotlinmailer.delivery/MailerManager.hasDefaultMailer|{}hasDefaultMailer[0]
+        final fun <get-hasDefaultMailer>(): kotlin/Boolean // at.quickme.kotlinmailer.delivery/MailerManager.hasDefaultMailer.<get-hasDefaultMailer>|<get-hasDefaultMailer>(){}[0]
+
+    final var defaultMailer // at.quickme.kotlinmailer.delivery/MailerManager.defaultMailer|{}defaultMailer[0]
+        final fun <get-defaultMailer>(): at.quickme.kotlinmailer.delivery/Mailer // at.quickme.kotlinmailer.delivery/MailerManager.defaultMailer.<get-defaultMailer>|<get-defaultMailer>(){}[0]
+        final fun <set-defaultMailer>(at.quickme.kotlinmailer.delivery/Mailer) // at.quickme.kotlinmailer.delivery/MailerManager.defaultMailer.<set-defaultMailer>|<set-defaultMailer>(at.quickme.kotlinmailer.delivery.Mailer){}[0]
+
+    final fun registerMailer(at.quickme.kotlinmailer.delivery/Mailer) // at.quickme.kotlinmailer.delivery/MailerManager.registerMailer|registerMailer(at.quickme.kotlinmailer.delivery.Mailer){}[0]
+    final suspend fun shutdownMailers() // at.quickme.kotlinmailer.delivery/MailerManager.shutdownMailers|shutdownMailers(){}[0]
+}
+
+final val at.quickme.kotlinmailer.mime/eml // at.quickme.kotlinmailer.mime/eml|@at.quickme.kotlinmailer.email.Email{}eml[0]
+    final fun (at.quickme.kotlinmailer.email/Email).<get-eml>(): kotlin/String // at.quickme.kotlinmailer.mime/eml.<get-eml>|<get-eml>@at.quickme.kotlinmailer.email.Email(){}[0]
+
+final fun (at.quickme.kotlinmailer.email/Email).at.quickme.kotlinmailer.email/forwardBuilder(at.quickme.kotlinmailer.email/EmailAddress): at.quickme.kotlinmailer.email/EmailBuilder // at.quickme.kotlinmailer.email/forwardBuilder|forwardBuilder@at.quickme.kotlinmailer.email.Email(at.quickme.kotlinmailer.email.EmailAddress){}[0]
+final fun (at.quickme.kotlinmailer.email/Email).at.quickme.kotlinmailer.email/replyBuilder(at.quickme.kotlinmailer.email/EmailAddress, kotlin/Boolean): at.quickme.kotlinmailer.email/EmailBuilder // at.quickme.kotlinmailer.email/replyBuilder|replyBuilder@at.quickme.kotlinmailer.email.Email(at.quickme.kotlinmailer.email.EmailAddress;kotlin.Boolean){}[0]
+final fun (at.quickme.kotlinmailer.email/Email).at.quickme.kotlinmailer.mime/render(kotlin.time/Instant = ...): at.quickme.kotlinmailer.mime/RenderedEmail // at.quickme.kotlinmailer.mime/render|render@at.quickme.kotlinmailer.email.Email(kotlin.time.Instant){}[0]
+final inline fun (at.quickme.kotlinmailer.email/Email).at.quickme.kotlinmailer.email/copy(kotlin/Function1<at.quickme.kotlinmailer.email/EmailBuilder, kotlin/Unit> = ...): at.quickme.kotlinmailer.email/Email // at.quickme.kotlinmailer.email/copy|copy@at.quickme.kotlinmailer.email.Email(kotlin.Function1<at.quickme.kotlinmailer.email.EmailBuilder,kotlin.Unit>){}[0]
+final inline fun (at.quickme.kotlinmailer.email/Email).at.quickme.kotlinmailer.email/forward(at.quickme.kotlinmailer.email/EmailAddress, kotlin/Function1<at.quickme.kotlinmailer.email/EmailBuilder, kotlin/Unit> = ...): at.quickme.kotlinmailer.email/Email // at.quickme.kotlinmailer.email/forward|forward@at.quickme.kotlinmailer.email.Email(at.quickme.kotlinmailer.email.EmailAddress;kotlin.Function1<at.quickme.kotlinmailer.email.EmailBuilder,kotlin.Unit>){}[0]
+final inline fun (at.quickme.kotlinmailer.email/Email).at.quickme.kotlinmailer.email/reply(at.quickme.kotlinmailer.email/EmailAddress, kotlin/Boolean = ..., kotlin/Function1<at.quickme.kotlinmailer.email/EmailBuilder, kotlin/Unit> = ...): at.quickme.kotlinmailer.email/Email // at.quickme.kotlinmailer.email/reply|reply@at.quickme.kotlinmailer.email.Email(at.quickme.kotlinmailer.email.EmailAddress;kotlin.Boolean;kotlin.Function1<at.quickme.kotlinmailer.email.EmailBuilder,kotlin.Unit>){}[0]
+final inline fun at.quickme.kotlinmailer.email/emailBuilder(kotlin/Function1<at.quickme.kotlinmailer.email/EmailBuilder, kotlin/Unit>): at.quickme.kotlinmailer.email/Email // at.quickme.kotlinmailer.email/emailBuilder|emailBuilder(kotlin.Function1<at.quickme.kotlinmailer.email.EmailBuilder,kotlin.Unit>){}[0]
+final suspend fun (at.quickme.kotlinmailer.email/Email).at.quickme.kotlinmailer.delivery/send(at.quickme.kotlinmailer.delivery/Mailer = ...): at.quickme.kotlinmailer.delivery/SendReceipt // at.quickme.kotlinmailer.delivery/send|send@at.quickme.kotlinmailer.email.Email(at.quickme.kotlinmailer.delivery.Mailer){}[0]

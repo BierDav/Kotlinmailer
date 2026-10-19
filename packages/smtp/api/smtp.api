@@ -1,0 +1,125 @@
+public final class at/quickme/kotlinmailer/smtp/KtorSmtpSocketFactory : at/quickme/kotlinmailer/smtp/SmtpSocketFactory {
+	public fun <init> ()V
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public synthetic fun <init> (Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun connect-zkXUZaI (Ljava/lang/String;IZJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class at/quickme/kotlinmailer/smtp/SmtpAuth {
+	public abstract fun getUsername ()Ljava/lang/String;
+}
+
+public final class at/quickme/kotlinmailer/smtp/SmtpAuth$OAuth2 : at/quickme/kotlinmailer/smtp/SmtpAuth {
+	public fun <init> (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun getAccessToken ()Lkotlin/jvm/functions/Function1;
+	public fun getUsername ()Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class at/quickme/kotlinmailer/smtp/SmtpAuth$Password : at/quickme/kotlinmailer/smtp/SmtpAuth {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getPassword ()Ljava/lang/String;
+	public fun getUsername ()Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class at/quickme/kotlinmailer/smtp/SmtpConfig {
+	public static final field MAX_PORT I
+	public synthetic fun <init> (Ljava/lang/String;ILat/quickme/kotlinmailer/smtp/SmtpSecurity;Lat/quickme/kotlinmailer/smtp/SmtpAuth;Ljava/lang/String;JJJIZZZLat/quickme/kotlinmailer/smtp/SmtpSocketFactory;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;ILat/quickme/kotlinmailer/smtp/SmtpSecurity;Lat/quickme/kotlinmailer/smtp/SmtpAuth;Ljava/lang/String;JJJIZZZLat/quickme/kotlinmailer/smtp/SmtpSocketFactory;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAllowInsecureAuth ()Z
+	public final fun getAuth ()Lat/quickme/kotlinmailer/smtp/SmtpAuth;
+	public final fun getClientHostname ()Ljava/lang/String;
+	public final fun getCommandTimeout-UwyO8pc ()J
+	public final fun getConnectTimeout-UwyO8pc ()J
+	public final fun getDataTimeout-UwyO8pc ()J
+	public final fun getFailOnRejectedRecipient ()Z
+	public final fun getHost ()Ljava/lang/String;
+	public final fun getMaxConnections ()I
+	public final fun getPort ()I
+	public final fun getReuseConnections ()Z
+	public final fun getSecurity ()Lat/quickme/kotlinmailer/smtp/SmtpSecurity;
+	public final fun getSocketFactory ()Lat/quickme/kotlinmailer/smtp/SmtpSocketFactory;
+}
+
+public final class at/quickme/kotlinmailer/smtp/SmtpConfigKt {
+	public static final fun smtpMailer (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lat/quickme/kotlinmailer/smtp/SmtpMailer;
+	public static synthetic fun smtpMailer$default (Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lat/quickme/kotlinmailer/smtp/SmtpMailer;
+}
+
+public final class at/quickme/kotlinmailer/smtp/SmtpException : at/quickme/kotlinmailer/delivery/MailException {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Throwable;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getEnhancedStatusCode ()Ljava/lang/String;
+	public final fun getReplyCode ()Ljava/lang/Integer;
+	public final fun isTransient ()Z
+}
+
+public final class at/quickme/kotlinmailer/smtp/SmtpMailer : at/quickme/kotlinmailer/delivery/Mailer {
+	public fun <init> (Lat/quickme/kotlinmailer/smtp/SmtpConfig;)V
+	public fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getConfig ()Lat/quickme/kotlinmailer/smtp/SmtpConfig;
+	public fun send (Lat/quickme/kotlinmailer/email/Email;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun testConnection (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class at/quickme/kotlinmailer/smtp/SmtpMailerBuilder {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun build ()Lat/quickme/kotlinmailer/smtp/SmtpConfig;
+	public final fun credentials (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getAllowInsecureAuth ()Z
+	public final fun getAuth ()Lat/quickme/kotlinmailer/smtp/SmtpAuth;
+	public final fun getClientHostname ()Ljava/lang/String;
+	public final fun getCommandTimeout-UwyO8pc ()J
+	public final fun getConnectTimeout-UwyO8pc ()J
+	public final fun getDataTimeout-UwyO8pc ()J
+	public final fun getFailOnRejectedRecipient ()Z
+	public final fun getHost ()Ljava/lang/String;
+	public final fun getMaxConnections ()I
+	public final fun getPort ()Ljava/lang/Integer;
+	public final fun getReuseConnections ()Z
+	public final fun getSecurity ()Lat/quickme/kotlinmailer/smtp/SmtpSecurity;
+	public final fun getSocketFactory ()Lat/quickme/kotlinmailer/smtp/SmtpSocketFactory;
+	public final fun oauth2 (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun setAllowInsecureAuth (Z)V
+	public final fun setAuth (Lat/quickme/kotlinmailer/smtp/SmtpAuth;)V
+	public final fun setClientHostname (Ljava/lang/String;)V
+	public final fun setCommandTimeout-LRDsOJo (J)V
+	public final fun setConnectTimeout-LRDsOJo (J)V
+	public final fun setDataTimeout-LRDsOJo (J)V
+	public final fun setFailOnRejectedRecipient (Z)V
+	public final fun setHost (Ljava/lang/String;)V
+	public final fun setMaxConnections (I)V
+	public final fun setPort (Ljava/lang/Integer;)V
+	public final fun setReuseConnections (Z)V
+	public final fun setSecurity (Lat/quickme/kotlinmailer/smtp/SmtpSecurity;)V
+	public final fun setSocketFactory (Lat/quickme/kotlinmailer/smtp/SmtpSocketFactory;)V
+}
+
+public final class at/quickme/kotlinmailer/smtp/SmtpPlatform {
+	public static final fun defaultSmtpSocketFactory ()Lat/quickme/kotlinmailer/smtp/SmtpSocketFactory;
+}
+
+public final class at/quickme/kotlinmailer/smtp/SmtpSecurity : java/lang/Enum {
+	public static final field NONE Lat/quickme/kotlinmailer/smtp/SmtpSecurity;
+	public static final field STARTTLS Lat/quickme/kotlinmailer/smtp/SmtpSecurity;
+	public static final field STARTTLS_IF_AVAILABLE Lat/quickme/kotlinmailer/smtp/SmtpSecurity;
+	public static final field TLS Lat/quickme/kotlinmailer/smtp/SmtpSecurity;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lat/quickme/kotlinmailer/smtp/SmtpSecurity;
+	public static fun values ()[Lat/quickme/kotlinmailer/smtp/SmtpSecurity;
+}
+
+public abstract interface class at/quickme/kotlinmailer/smtp/SmtpSocket {
+	public abstract fun close ()V
+	public abstract fun flush (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun isSecure ()Z
+	public abstract fun readLine (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun startTls (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun write ([BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class at/quickme/kotlinmailer/smtp/SmtpSocketFactory {
+	public abstract fun connect-zkXUZaI (Ljava/lang/String;IZJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+

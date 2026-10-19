@@ -1,0 +1,12 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, linuxArm64, linuxX64, macosArm64, mingwX64, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <at.quickme.kotlinmailer:html>
+final inline fun (at.quickme.kotlinmailer.email/EmailBuilder).at.quickme.kotlinmailer.html/appendHTML(kotlin/Function1<kotlinx.html/TagConsumer<kotlin.text/StringBuilder>, kotlin.text/StringBuilder>) // at.quickme.kotlinmailer.html/appendHTML|appendHTML@at.quickme.kotlinmailer.email.EmailBuilder(kotlin.Function1<kotlinx.html.TagConsumer<kotlin.text.StringBuilder>,kotlin.text.StringBuilder>){}[0]
+final inline fun (at.quickme.kotlinmailer.email/EmailBuilder).at.quickme.kotlinmailer.html/prependHTML(kotlin/Function1<kotlinx.html/TagConsumer<kotlin.text/StringBuilder>, kotlin.text/StringBuilder>) // at.quickme.kotlinmailer.html/prependHTML|prependHTML@at.quickme.kotlinmailer.email.EmailBuilder(kotlin.Function1<kotlinx.html.TagConsumer<kotlin.text.StringBuilder>,kotlin.text.StringBuilder>){}[0]
+final inline fun (at.quickme.kotlinmailer.email/EmailBuilder).at.quickme.kotlinmailer.html/withHTML(kotlin/Function1<kotlinx.html/TagConsumer<kotlin.text/StringBuilder>, kotlin.text/StringBuilder>) // at.quickme.kotlinmailer.html/withHTML|withHTML@at.quickme.kotlinmailer.email.EmailBuilder(kotlin.Function1<kotlinx.html.TagConsumer<kotlin.text.StringBuilder>,kotlin.text.StringBuilder>){}[0]
+final inline fun at.quickme.kotlinmailer.html/buildHtml(kotlin/Function1<kotlinx.html/TagConsumer<kotlin.text/StringBuilder>, kotlin.text/StringBuilder>): kotlin/String // at.quickme.kotlinmailer.html/buildHtml|buildHtml(kotlin.Function1<kotlinx.html.TagConsumer<kotlin.text.StringBuilder>,kotlin.text.StringBuilder>){}[0]

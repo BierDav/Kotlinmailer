@@ -1,59 +1,49 @@
 # TLS
 
-TLS ([Transport Layer Security](https://en.wikipedia.org/wiki/Transport_Layer_Security)) allows you to secure the Simple
-Mail Transfer Protocol.
+TLS ([Transport Layer Security](https://en.wikipedia.org/wiki/Transport_Layer_Security)) encrypts the connection to
+your SMTP server. Kotlinmailer verifies the server's certificate using the platform's trust store.
 
-**You probably want to [let your proxy handle TLS](https://docs.nginx.com/nginx/admin-guide/mail-proxy/mail-proxy/),
-this guide is for TLS in tests.**
-
-## TLSContext (SSLContext)
-
-Kotlinmailer provides a utility function allowing you to easily create a new TLSContext (actually an SSLContext).
+## Security modes
 
 ```kotlin
-val tlsContext = TLSContext(
-    File("path/to/keystore"), keyStorePassphrase = "passphrase",
-    File("path/to/truststore"), trustStorePassphrase = "passphrase"
-)
-```
-
-If you need a keystore and truststore for **testing purposes**, you can download
-both [from the OpenJDK repository](https://github.com/openjdk/jdk/tree/master/test/jdk/javax/net/ssl/etc).
-
-## Secure the SMTP server
-
-Use the `setupTLS` function inside an SMTP server builder.
-
-```kotlin
-smtpServer {
-    setupTLS(tlsContext)
+smtpMailer("smtp.example.com") {
+    // implicit TLS (SMTPS, RFC 8314), port 465
+    security = SmtpSecurity.TLS
+    // or upgrade with STARTTLS (RFC 3207), port 587; this is the default
+    security = SmtpSecurity.STARTTLS
 }
 ```
 
-_Currently, TLSv1.3 and TLSv1.2 are enabled by default, but you can change that (example below)._
+`SmtpSecurity.STARTTLS` fails if the server does not offer STARTTLS. `STARTTLS_IF_AVAILABLE` and `NONE` may send
+emails unencrypted and should only be used in trusted networks, e.g. for a relay on `localhost`. Credentials are
+never sent over an unencrypted connection unless you set `allowInsecureAuth = true`.
 
-or if you need more options
+## Platforms
+
+| Platform              | TLS implementation                       |
+|-----------------------|------------------------------------------|
+| JVM / Android         | Ktor (`ktor-network-tls`)                |
+| macOS, iOS            | Foundation streams (system TLS)          |
+| Node.js               | Node's `tls` module                      |
+| Linux, Windows native | not available, only `SmtpSecurity.NONE`  |
+
+## Custom certificates
+
+On the JVM you can configure the TLS handshake, e.g. to trust the self-signed certificate of a test server:
 
 ```kotlin
-setupTLS(
-    tlsContext,
-    requireTLS = true,
-    protocolVersions = listOf(TLSVersions.TLS_1_3),
-    requireClientAuth = true
-) {
-    // configure the SSLSocket to your liking
+smtpMailer("localhost") {
+    socketFactory = KtorSmtpSocketFactory {
+        trustManager = myTrustManager
+    }
 }
 ```
 
-## Secure the Mailer
+On Node.js, pass options to `tls.connect`, e.g. `NodeSmtpSocketFactory(js("({ ca: myCa })"))`.
 
-Inside a mailer builder, you can set the transport strategy:
+To run SMTP over a completely custom transport, implement `SmtpSocket` and `SmtpSocketFactory`.
 
-```kotlin
-mailerBuilder {
-    // STARTTLS
-    withTransportStrategy(TransportStrategy.SMTP_TLS)
-    // or complete TLS encryption
-    withTransportStrategy(TransportStrategy.SMTPS)
-}
-```
+<tip>
+Testing locally? Run a fake SMTP server such as <a href="https://greenmail-mail-test.github.io/greenmail/">GreenMail</a>
+or <a href="https://github.com/axllent/mailpit">Mailpit</a> with <code>SmtpSecurity.NONE</code>.
+</tip>

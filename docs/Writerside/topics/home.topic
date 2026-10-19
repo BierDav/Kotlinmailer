@@ -7,11 +7,11 @@
     <section-starting-page>
         <title>Kotlinmailer Documentation</title>
         <description>
-            Kotlinmailer is a Kotlin Email API – coroutine-based, easy to use, and modern!
+            Kotlinmailer is a Kotlin Multiplatform Email API – coroutine-based, easy to use, and modern!
             You can use it for both clientside and serverside projects,
-            meaning you can write once and send emails from everywhere.
-            It builds mainly upon SimpleJavaMail, which limits its use to JVM projects
-            only.
+            meaning you can write once and send emails from everywhere:
+            via SMTP on the JVM, Android, Node.js and Apple platforms, or via JMAP on every Kotlin target,
+            including the browser.
         </description>
         <spotlight>
             <title>Learn More</title>
@@ -22,6 +22,7 @@
         </spotlight>
         <primary>
             <title>Learn More</title>
+            <a href="mailer.md">SMTP and JMAP</a>
             <a href="html.md">Kotlin HTML DSL</a>
             <a href="tls.md">TLS</a>
         </primary>

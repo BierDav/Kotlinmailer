@@ -58,26 +58,26 @@ jobs:
       contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: v${{ inputs.version }}
 
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '25'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Build API documentation with Dokka
-        run: ./gradlew dokkaHtmlMultiModule
+        run: ./gradlew :dokkaGenerate
 
       - name: Zip output to artifact
         run: |
-          cd build/dokka/htmlMultiModule
+          cd build/dokka/html
           zip -r ${{ github.workspace }}/${{ env.DOKKA_ARTIFACT }} ./*
 
       - name: Save artifact with build results

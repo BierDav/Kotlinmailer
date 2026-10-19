@@ -1,11 +1,9 @@
-import org.jetbrains.dokka.DokkaConfiguration.Visibility
 import org.jreleaser.model.Active
 import org.jreleaser.model.Signing
-import java.net.URI
 
 val githubProject = "BierDav/Kotlinmailer"
-var projectName = project.name
-var projectDescription = project.description
+val projectName: String = project.name
+val projectDescription: String? = project.description
 
 plugins {
     kotlin("multiplatform")
@@ -43,11 +41,9 @@ publishing {
         }
     }
 
-    publications {
-        repositories {
-            maven {
-                url = uri(layout.buildDirectory.dir("staging-deploy"))
-            }
+    repositories {
+        maven {
+            url = uri(layout.buildDirectory.dir("staging-deploy"))
         }
     }
 }
@@ -57,17 +53,13 @@ jreleaser {
         active = Active.ALWAYS
         pgp {
             active = Active.ALWAYS
-
             armored = true
             mode = Signing.Mode.MEMORY
 
-            passphrase = providers.gradleProperty("cosignPassphrase")
-            secretKey = providers.gradleProperty("cosignSecretKey")
+            passphrase = providers.gradleProperty("signingPassphrase")
+            secretKey = providers.gradleProperty("signingSecretKey")
+            publicKey = providers.gradleProperty("signingPublicKey")
         }
-    }
-
-    signing {
-
     }
 
     deploy {
@@ -86,36 +78,21 @@ jreleaser {
     }
 }
 
-//tasks.withType<DokkaTaskPartial>().configureEach {
-//    dokkaSourceSets.configureEach {
-//        documentedVisibilities.set(setOf(Visibility.PUBLIC, Visibility.PROTECTED))
-//
-//        sourceLink {
-//            val exampleDir = "https://github.com/$githubProject/tree/master/"
-//
-//            localDirectory.set(rootProject.projectDir)
-//            remoteUrl.set(URI(exampleDir).toURL())
-//            remoteLineSuffix.set("#L")
-//        }
-//    }
-//}
-
 dokka {
-    moduleName.set(rootProject.name)
+    moduleName.set(projectName)
     dokkaPublications.html {
         suppressInheritedMembers.set(true)
         failOnWarning.set(true)
     }
-//    dokkaSourceSets.configureEach {
-//        includes.from("README.md")
-//        sourceLink {
-//            localDirectory.set(file("src/main/kotlin"))
-//            remoteUrl("https://example.com/src")
-//            remoteLineSuffix.set("#L")
-//        }
-//    }
+    dokkaSourceSets.configureEach {
+        sourceLink {
+            localDirectory.set(rootProject.projectDir)
+            remoteUrl("https://github.com/$githubProject/tree/main")
+            remoteLineSuffix.set("#L")
+        }
+    }
     pluginsConfiguration.html {
-        customAssets.from(".idea/icon.png")
+        customAssets.from(rootProject.file(".idea/icon.png"))
         footerMessage.set("(c) David Emanuel Bieregger")
     }
 }

@@ -1,0 +1,90 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, linuxArm64, linuxX64, macosArm64, mingwX64, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <at.quickme.kotlinmailer:jmap>
+sealed interface at.quickme.kotlinmailer.jmap/JmapAuth { // at.quickme.kotlinmailer.jmap/JmapAuth|null[0]
+    final class Basic : at.quickme.kotlinmailer.jmap/JmapAuth { // at.quickme.kotlinmailer.jmap/JmapAuth.Basic|null[0]
+        constructor <init>(kotlin/String, kotlin/String) // at.quickme.kotlinmailer.jmap/JmapAuth.Basic.<init>|<init>(kotlin.String;kotlin.String){}[0]
+
+        final val password // at.quickme.kotlinmailer.jmap/JmapAuth.Basic.password|{}password[0]
+            final fun <get-password>(): kotlin/String // at.quickme.kotlinmailer.jmap/JmapAuth.Basic.password.<get-password>|<get-password>(){}[0]
+        final val username // at.quickme.kotlinmailer.jmap/JmapAuth.Basic.username|{}username[0]
+            final fun <get-username>(): kotlin/String // at.quickme.kotlinmailer.jmap/JmapAuth.Basic.username.<get-username>|<get-username>(){}[0]
+
+        final fun toString(): kotlin/String // at.quickme.kotlinmailer.jmap/JmapAuth.Basic.toString|toString(){}[0]
+    }
+
+    final class Bearer : at.quickme.kotlinmailer.jmap/JmapAuth { // at.quickme.kotlinmailer.jmap/JmapAuth.Bearer|null[0]
+        constructor <init>(kotlin.coroutines/SuspendFunction0<kotlin/String>) // at.quickme.kotlinmailer.jmap/JmapAuth.Bearer.<init>|<init>(kotlin.coroutines.SuspendFunction0<kotlin.String>){}[0]
+        constructor <init>(kotlin/String) // at.quickme.kotlinmailer.jmap/JmapAuth.Bearer.<init>|<init>(kotlin.String){}[0]
+
+        final val token // at.quickme.kotlinmailer.jmap/JmapAuth.Bearer.token|{}token[0]
+            final fun <get-token>(): kotlin.coroutines/SuspendFunction0<kotlin/String> // at.quickme.kotlinmailer.jmap/JmapAuth.Bearer.token.<get-token>|<get-token>(){}[0]
+
+        final fun toString(): kotlin/String // at.quickme.kotlinmailer.jmap/JmapAuth.Bearer.toString|toString(){}[0]
+    }
+}
+
+final class at.quickme.kotlinmailer.jmap/JmapConfig { // at.quickme.kotlinmailer.jmap/JmapConfig|null[0]
+    constructor <init>(kotlin/String, at.quickme.kotlinmailer.jmap/JmapAuth, io.ktor.client/HttpClient? = ..., kotlin/String? = ...) // at.quickme.kotlinmailer.jmap/JmapConfig.<init>|<init>(kotlin.String;at.quickme.kotlinmailer.jmap.JmapAuth;io.ktor.client.HttpClient?;kotlin.String?){}[0]
+
+    final val auth // at.quickme.kotlinmailer.jmap/JmapConfig.auth|{}auth[0]
+        final fun <get-auth>(): at.quickme.kotlinmailer.jmap/JmapAuth // at.quickme.kotlinmailer.jmap/JmapConfig.auth.<get-auth>|<get-auth>(){}[0]
+    final val httpClient // at.quickme.kotlinmailer.jmap/JmapConfig.httpClient|{}httpClient[0]
+        final fun <get-httpClient>(): io.ktor.client/HttpClient? // at.quickme.kotlinmailer.jmap/JmapConfig.httpClient.<get-httpClient>|<get-httpClient>(){}[0]
+    final val identityId // at.quickme.kotlinmailer.jmap/JmapConfig.identityId|{}identityId[0]
+        final fun <get-identityId>(): kotlin/String? // at.quickme.kotlinmailer.jmap/JmapConfig.identityId.<get-identityId>|<get-identityId>(){}[0]
+    final val sessionUrl // at.quickme.kotlinmailer.jmap/JmapConfig.sessionUrl|{}sessionUrl[0]
+        final fun <get-sessionUrl>(): kotlin/String // at.quickme.kotlinmailer.jmap/JmapConfig.sessionUrl.<get-sessionUrl>|<get-sessionUrl>(){}[0]
+
+    final object Companion { // at.quickme.kotlinmailer.jmap/JmapConfig.Companion|null[0]
+        final fun wellKnownSessionUrl(kotlin/String): kotlin/String // at.quickme.kotlinmailer.jmap/JmapConfig.Companion.wellKnownSessionUrl|wellKnownSessionUrl(kotlin.String){}[0]
+    }
+}
+
+final class at.quickme.kotlinmailer.jmap/JmapException : at.quickme.kotlinmailer.delivery/MailException { // at.quickme.kotlinmailer.jmap/JmapException|null[0]
+    constructor <init>(kotlin/String, kotlin/String? = ..., kotlin/Int? = ..., kotlin/Throwable? = ...) // at.quickme.kotlinmailer.jmap/JmapException.<init>|<init>(kotlin.String;kotlin.String?;kotlin.Int?;kotlin.Throwable?){}[0]
+
+    final val httpStatus // at.quickme.kotlinmailer.jmap/JmapException.httpStatus|{}httpStatus[0]
+        final fun <get-httpStatus>(): kotlin/Int? // at.quickme.kotlinmailer.jmap/JmapException.httpStatus.<get-httpStatus>|<get-httpStatus>(){}[0]
+    final val type // at.quickme.kotlinmailer.jmap/JmapException.type|{}type[0]
+        final fun <get-type>(): kotlin/String? // at.quickme.kotlinmailer.jmap/JmapException.type.<get-type>|<get-type>(){}[0]
+}
+
+final class at.quickme.kotlinmailer.jmap/JmapMailer : at.quickme.kotlinmailer.delivery/Mailer { // at.quickme.kotlinmailer.jmap/JmapMailer|null[0]
+    constructor <init>(at.quickme.kotlinmailer.jmap/JmapConfig) // at.quickme.kotlinmailer.jmap/JmapMailer.<init>|<init>(at.quickme.kotlinmailer.jmap.JmapConfig){}[0]
+
+    final val config // at.quickme.kotlinmailer.jmap/JmapMailer.config|{}config[0]
+        final fun <get-config>(): at.quickme.kotlinmailer.jmap/JmapConfig // at.quickme.kotlinmailer.jmap/JmapMailer.config.<get-config>|<get-config>(){}[0]
+
+    final suspend fun close() // at.quickme.kotlinmailer.jmap/JmapMailer.close|close(){}[0]
+    final suspend fun send(at.quickme.kotlinmailer.email/Email): at.quickme.kotlinmailer.delivery/SendReceipt // at.quickme.kotlinmailer.jmap/JmapMailer.send|send(at.quickme.kotlinmailer.email.Email){}[0]
+}
+
+final class at.quickme.kotlinmailer.jmap/JmapMailerBuilder { // at.quickme.kotlinmailer.jmap/JmapMailerBuilder|null[0]
+    constructor <init>(kotlin/String) // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.<init>|<init>(kotlin.String){}[0]
+
+    final var auth // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.auth|{}auth[0]
+        final fun <get-auth>(): at.quickme.kotlinmailer.jmap/JmapAuth? // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.auth.<get-auth>|<get-auth>(){}[0]
+        final fun <set-auth>(at.quickme.kotlinmailer.jmap/JmapAuth?) // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.auth.<set-auth>|<set-auth>(at.quickme.kotlinmailer.jmap.JmapAuth?){}[0]
+    final var httpClient // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.httpClient|{}httpClient[0]
+        final fun <get-httpClient>(): io.ktor.client/HttpClient? // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.httpClient.<get-httpClient>|<get-httpClient>(){}[0]
+        final fun <set-httpClient>(io.ktor.client/HttpClient?) // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.httpClient.<set-httpClient>|<set-httpClient>(io.ktor.client.HttpClient?){}[0]
+    final var identityId // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.identityId|{}identityId[0]
+        final fun <get-identityId>(): kotlin/String? // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.identityId.<get-identityId>|<get-identityId>(){}[0]
+        final fun <set-identityId>(kotlin/String?) // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.identityId.<set-identityId>|<set-identityId>(kotlin.String?){}[0]
+    final var sessionUrl // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.sessionUrl|{}sessionUrl[0]
+        final fun <get-sessionUrl>(): kotlin/String // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.sessionUrl.<get-sessionUrl>|<get-sessionUrl>(){}[0]
+        final fun <set-sessionUrl>(kotlin/String) // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.sessionUrl.<set-sessionUrl>|<set-sessionUrl>(kotlin.String){}[0]
+
+    final fun basic(kotlin/String, kotlin/String) // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.basic|basic(kotlin.String;kotlin.String){}[0]
+    final fun bearer(kotlin.coroutines/SuspendFunction0<kotlin/String>) // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.bearer|bearer(kotlin.coroutines.SuspendFunction0<kotlin.String>){}[0]
+    final fun bearer(kotlin/String) // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.bearer|bearer(kotlin.String){}[0]
+    final fun build(): at.quickme.kotlinmailer.jmap/JmapConfig // at.quickme.kotlinmailer.jmap/JmapMailerBuilder.build|build(){}[0]
+}
+
+final inline fun at.quickme.kotlinmailer.jmap/jmapMailer(kotlin/String, kotlin/Function1<at.quickme.kotlinmailer.jmap/JmapMailerBuilder, kotlin/Unit>): at.quickme.kotlinmailer.jmap/JmapMailer // at.quickme.kotlinmailer.jmap/jmapMailer|jmapMailer(kotlin.String;kotlin.Function1<at.quickme.kotlinmailer.jmap.JmapMailerBuilder,kotlin.Unit>){}[0]

@@ -1,0 +1,187 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, linuxArm64, linuxX64, macosArm64, mingwX64]
+// Alias: apple => [iosArm64, iosSimulatorArm64, macosArm64]
+// Alias: linux => [linuxArm64, linuxX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <at.quickme.kotlinmailer:smtp>
+final enum class at.quickme.kotlinmailer.smtp/SmtpSecurity : kotlin/Enum<at.quickme.kotlinmailer.smtp/SmtpSecurity> { // at.quickme.kotlinmailer.smtp/SmtpSecurity|null[0]
+    enum entry NONE // at.quickme.kotlinmailer.smtp/SmtpSecurity.NONE|null[0]
+    enum entry STARTTLS // at.quickme.kotlinmailer.smtp/SmtpSecurity.STARTTLS|null[0]
+    enum entry STARTTLS_IF_AVAILABLE // at.quickme.kotlinmailer.smtp/SmtpSecurity.STARTTLS_IF_AVAILABLE|null[0]
+    enum entry TLS // at.quickme.kotlinmailer.smtp/SmtpSecurity.TLS|null[0]
+
+    final val entries // at.quickme.kotlinmailer.smtp/SmtpSecurity.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<at.quickme.kotlinmailer.smtp/SmtpSecurity> // at.quickme.kotlinmailer.smtp/SmtpSecurity.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): at.quickme.kotlinmailer.smtp/SmtpSecurity // at.quickme.kotlinmailer.smtp/SmtpSecurity.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<at.quickme.kotlinmailer.smtp/SmtpSecurity> // at.quickme.kotlinmailer.smtp/SmtpSecurity.values|values#static(){}[0]
+}
+
+abstract fun interface at.quickme.kotlinmailer.smtp/SmtpSocketFactory { // at.quickme.kotlinmailer.smtp/SmtpSocketFactory|null[0]
+    abstract suspend fun connect(kotlin/String, kotlin/Int, kotlin/Boolean, kotlin.time/Duration): at.quickme.kotlinmailer.smtp/SmtpSocket // at.quickme.kotlinmailer.smtp/SmtpSocketFactory.connect|connect(kotlin.String;kotlin.Int;kotlin.Boolean;kotlin.time.Duration){}[0]
+}
+
+abstract interface at.quickme.kotlinmailer.smtp/SmtpSocket { // at.quickme.kotlinmailer.smtp/SmtpSocket|null[0]
+    abstract val isSecure // at.quickme.kotlinmailer.smtp/SmtpSocket.isSecure|{}isSecure[0]
+        abstract fun <get-isSecure>(): kotlin/Boolean // at.quickme.kotlinmailer.smtp/SmtpSocket.isSecure.<get-isSecure>|<get-isSecure>(){}[0]
+
+    abstract fun close() // at.quickme.kotlinmailer.smtp/SmtpSocket.close|close(){}[0]
+    abstract suspend fun flush() // at.quickme.kotlinmailer.smtp/SmtpSocket.flush|flush(){}[0]
+    abstract suspend fun readLine(): kotlin/String? // at.quickme.kotlinmailer.smtp/SmtpSocket.readLine|readLine(){}[0]
+    abstract suspend fun startTls() // at.quickme.kotlinmailer.smtp/SmtpSocket.startTls|startTls(){}[0]
+    abstract suspend fun write(kotlin/ByteArray) // at.quickme.kotlinmailer.smtp/SmtpSocket.write|write(kotlin.ByteArray){}[0]
+}
+
+sealed interface at.quickme.kotlinmailer.smtp/SmtpAuth { // at.quickme.kotlinmailer.smtp/SmtpAuth|null[0]
+    abstract val username // at.quickme.kotlinmailer.smtp/SmtpAuth.username|{}username[0]
+        abstract fun <get-username>(): kotlin/String // at.quickme.kotlinmailer.smtp/SmtpAuth.username.<get-username>|<get-username>(){}[0]
+
+    final class OAuth2 : at.quickme.kotlinmailer.smtp/SmtpAuth { // at.quickme.kotlinmailer.smtp/SmtpAuth.OAuth2|null[0]
+        constructor <init>(kotlin/String, kotlin.coroutines/SuspendFunction0<kotlin/String>) // at.quickme.kotlinmailer.smtp/SmtpAuth.OAuth2.<init>|<init>(kotlin.String;kotlin.coroutines.SuspendFunction0<kotlin.String>){}[0]
+
+        final val accessToken // at.quickme.kotlinmailer.smtp/SmtpAuth.OAuth2.accessToken|{}accessToken[0]
+            final fun <get-accessToken>(): kotlin.coroutines/SuspendFunction0<kotlin/String> // at.quickme.kotlinmailer.smtp/SmtpAuth.OAuth2.accessToken.<get-accessToken>|<get-accessToken>(){}[0]
+        final val username // at.quickme.kotlinmailer.smtp/SmtpAuth.OAuth2.username|{}username[0]
+            final fun <get-username>(): kotlin/String // at.quickme.kotlinmailer.smtp/SmtpAuth.OAuth2.username.<get-username>|<get-username>(){}[0]
+
+        final fun toString(): kotlin/String // at.quickme.kotlinmailer.smtp/SmtpAuth.OAuth2.toString|toString(){}[0]
+    }
+
+    final class Password : at.quickme.kotlinmailer.smtp/SmtpAuth { // at.quickme.kotlinmailer.smtp/SmtpAuth.Password|null[0]
+        constructor <init>(kotlin/String, kotlin/String) // at.quickme.kotlinmailer.smtp/SmtpAuth.Password.<init>|<init>(kotlin.String;kotlin.String){}[0]
+
+        final val password // at.quickme.kotlinmailer.smtp/SmtpAuth.Password.password|{}password[0]
+            final fun <get-password>(): kotlin/String // at.quickme.kotlinmailer.smtp/SmtpAuth.Password.password.<get-password>|<get-password>(){}[0]
+        final val username // at.quickme.kotlinmailer.smtp/SmtpAuth.Password.username|{}username[0]
+            final fun <get-username>(): kotlin/String // at.quickme.kotlinmailer.smtp/SmtpAuth.Password.username.<get-username>|<get-username>(){}[0]
+
+        final fun toString(): kotlin/String // at.quickme.kotlinmailer.smtp/SmtpAuth.Password.toString|toString(){}[0]
+    }
+}
+
+final class at.quickme.kotlinmailer.smtp/SmtpConfig { // at.quickme.kotlinmailer.smtp/SmtpConfig|null[0]
+    constructor <init>(kotlin/String, kotlin/Int = ..., at.quickme.kotlinmailer.smtp/SmtpSecurity = ..., at.quickme.kotlinmailer.smtp/SmtpAuth? = ..., kotlin/String = ..., kotlin.time/Duration = ..., kotlin.time/Duration = ..., kotlin.time/Duration = ..., kotlin/Int = ..., kotlin/Boolean = ..., kotlin/Boolean = ..., kotlin/Boolean = ..., at.quickme.kotlinmailer.smtp/SmtpSocketFactory = ...) // at.quickme.kotlinmailer.smtp/SmtpConfig.<init>|<init>(kotlin.String;kotlin.Int;at.quickme.kotlinmailer.smtp.SmtpSecurity;at.quickme.kotlinmailer.smtp.SmtpAuth?;kotlin.String;kotlin.time.Duration;kotlin.time.Duration;kotlin.time.Duration;kotlin.Int;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;at.quickme.kotlinmailer.smtp.SmtpSocketFactory){}[0]
+
+    final val allowInsecureAuth // at.quickme.kotlinmailer.smtp/SmtpConfig.allowInsecureAuth|{}allowInsecureAuth[0]
+        final fun <get-allowInsecureAuth>(): kotlin/Boolean // at.quickme.kotlinmailer.smtp/SmtpConfig.allowInsecureAuth.<get-allowInsecureAuth>|<get-allowInsecureAuth>(){}[0]
+    final val auth // at.quickme.kotlinmailer.smtp/SmtpConfig.auth|{}auth[0]
+        final fun <get-auth>(): at.quickme.kotlinmailer.smtp/SmtpAuth? // at.quickme.kotlinmailer.smtp/SmtpConfig.auth.<get-auth>|<get-auth>(){}[0]
+    final val clientHostname // at.quickme.kotlinmailer.smtp/SmtpConfig.clientHostname|{}clientHostname[0]
+        final fun <get-clientHostname>(): kotlin/String // at.quickme.kotlinmailer.smtp/SmtpConfig.clientHostname.<get-clientHostname>|<get-clientHostname>(){}[0]
+    final val commandTimeout // at.quickme.kotlinmailer.smtp/SmtpConfig.commandTimeout|{}commandTimeout[0]
+        final fun <get-commandTimeout>(): kotlin.time/Duration // at.quickme.kotlinmailer.smtp/SmtpConfig.commandTimeout.<get-commandTimeout>|<get-commandTimeout>(){}[0]
+    final val connectTimeout // at.quickme.kotlinmailer.smtp/SmtpConfig.connectTimeout|{}connectTimeout[0]
+        final fun <get-connectTimeout>(): kotlin.time/Duration // at.quickme.kotlinmailer.smtp/SmtpConfig.connectTimeout.<get-connectTimeout>|<get-connectTimeout>(){}[0]
+    final val dataTimeout // at.quickme.kotlinmailer.smtp/SmtpConfig.dataTimeout|{}dataTimeout[0]
+        final fun <get-dataTimeout>(): kotlin.time/Duration // at.quickme.kotlinmailer.smtp/SmtpConfig.dataTimeout.<get-dataTimeout>|<get-dataTimeout>(){}[0]
+    final val failOnRejectedRecipient // at.quickme.kotlinmailer.smtp/SmtpConfig.failOnRejectedRecipient|{}failOnRejectedRecipient[0]
+        final fun <get-failOnRejectedRecipient>(): kotlin/Boolean // at.quickme.kotlinmailer.smtp/SmtpConfig.failOnRejectedRecipient.<get-failOnRejectedRecipient>|<get-failOnRejectedRecipient>(){}[0]
+    final val host // at.quickme.kotlinmailer.smtp/SmtpConfig.host|{}host[0]
+        final fun <get-host>(): kotlin/String // at.quickme.kotlinmailer.smtp/SmtpConfig.host.<get-host>|<get-host>(){}[0]
+    final val maxConnections // at.quickme.kotlinmailer.smtp/SmtpConfig.maxConnections|{}maxConnections[0]
+        final fun <get-maxConnections>(): kotlin/Int // at.quickme.kotlinmailer.smtp/SmtpConfig.maxConnections.<get-maxConnections>|<get-maxConnections>(){}[0]
+    final val port // at.quickme.kotlinmailer.smtp/SmtpConfig.port|{}port[0]
+        final fun <get-port>(): kotlin/Int // at.quickme.kotlinmailer.smtp/SmtpConfig.port.<get-port>|<get-port>(){}[0]
+    final val reuseConnections // at.quickme.kotlinmailer.smtp/SmtpConfig.reuseConnections|{}reuseConnections[0]
+        final fun <get-reuseConnections>(): kotlin/Boolean // at.quickme.kotlinmailer.smtp/SmtpConfig.reuseConnections.<get-reuseConnections>|<get-reuseConnections>(){}[0]
+    final val security // at.quickme.kotlinmailer.smtp/SmtpConfig.security|{}security[0]
+        final fun <get-security>(): at.quickme.kotlinmailer.smtp/SmtpSecurity // at.quickme.kotlinmailer.smtp/SmtpConfig.security.<get-security>|<get-security>(){}[0]
+    final val socketFactory // at.quickme.kotlinmailer.smtp/SmtpConfig.socketFactory|{}socketFactory[0]
+        final fun <get-socketFactory>(): at.quickme.kotlinmailer.smtp/SmtpSocketFactory // at.quickme.kotlinmailer.smtp/SmtpConfig.socketFactory.<get-socketFactory>|<get-socketFactory>(){}[0]
+}
+
+final class at.quickme.kotlinmailer.smtp/SmtpException : at.quickme.kotlinmailer.delivery/MailException { // at.quickme.kotlinmailer.smtp/SmtpException|null[0]
+    constructor <init>(kotlin/String, kotlin/Int? = ..., kotlin/String? = ..., kotlin/Throwable? = ...) // at.quickme.kotlinmailer.smtp/SmtpException.<init>|<init>(kotlin.String;kotlin.Int?;kotlin.String?;kotlin.Throwable?){}[0]
+
+    final val enhancedStatusCode // at.quickme.kotlinmailer.smtp/SmtpException.enhancedStatusCode|{}enhancedStatusCode[0]
+        final fun <get-enhancedStatusCode>(): kotlin/String? // at.quickme.kotlinmailer.smtp/SmtpException.enhancedStatusCode.<get-enhancedStatusCode>|<get-enhancedStatusCode>(){}[0]
+    final val isTransient // at.quickme.kotlinmailer.smtp/SmtpException.isTransient|{}isTransient[0]
+        final fun <get-isTransient>(): kotlin/Boolean // at.quickme.kotlinmailer.smtp/SmtpException.isTransient.<get-isTransient>|<get-isTransient>(){}[0]
+    final val replyCode // at.quickme.kotlinmailer.smtp/SmtpException.replyCode|{}replyCode[0]
+        final fun <get-replyCode>(): kotlin/Int? // at.quickme.kotlinmailer.smtp/SmtpException.replyCode.<get-replyCode>|<get-replyCode>(){}[0]
+}
+
+final class at.quickme.kotlinmailer.smtp/SmtpMailer : at.quickme.kotlinmailer.delivery/Mailer { // at.quickme.kotlinmailer.smtp/SmtpMailer|null[0]
+    constructor <init>(at.quickme.kotlinmailer.smtp/SmtpConfig) // at.quickme.kotlinmailer.smtp/SmtpMailer.<init>|<init>(at.quickme.kotlinmailer.smtp.SmtpConfig){}[0]
+
+    final val config // at.quickme.kotlinmailer.smtp/SmtpMailer.config|{}config[0]
+        final fun <get-config>(): at.quickme.kotlinmailer.smtp/SmtpConfig // at.quickme.kotlinmailer.smtp/SmtpMailer.config.<get-config>|<get-config>(){}[0]
+
+    final suspend fun close() // at.quickme.kotlinmailer.smtp/SmtpMailer.close|close(){}[0]
+    final suspend fun send(at.quickme.kotlinmailer.email/Email): at.quickme.kotlinmailer.delivery/SendReceipt // at.quickme.kotlinmailer.smtp/SmtpMailer.send|send(at.quickme.kotlinmailer.email.Email){}[0]
+    final suspend fun testConnection() // at.quickme.kotlinmailer.smtp/SmtpMailer.testConnection|testConnection(){}[0]
+}
+
+final class at.quickme.kotlinmailer.smtp/SmtpMailerBuilder { // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder|null[0]
+    constructor <init>(kotlin/String) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.<init>|<init>(kotlin.String){}[0]
+
+    final var allowInsecureAuth // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.allowInsecureAuth|{}allowInsecureAuth[0]
+        final fun <get-allowInsecureAuth>(): kotlin/Boolean // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.allowInsecureAuth.<get-allowInsecureAuth>|<get-allowInsecureAuth>(){}[0]
+        final fun <set-allowInsecureAuth>(kotlin/Boolean) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.allowInsecureAuth.<set-allowInsecureAuth>|<set-allowInsecureAuth>(kotlin.Boolean){}[0]
+    final var auth // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.auth|{}auth[0]
+        final fun <get-auth>(): at.quickme.kotlinmailer.smtp/SmtpAuth? // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.auth.<get-auth>|<get-auth>(){}[0]
+        final fun <set-auth>(at.quickme.kotlinmailer.smtp/SmtpAuth?) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.auth.<set-auth>|<set-auth>(at.quickme.kotlinmailer.smtp.SmtpAuth?){}[0]
+    final var clientHostname // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.clientHostname|{}clientHostname[0]
+        final fun <get-clientHostname>(): kotlin/String // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.clientHostname.<get-clientHostname>|<get-clientHostname>(){}[0]
+        final fun <set-clientHostname>(kotlin/String) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.clientHostname.<set-clientHostname>|<set-clientHostname>(kotlin.String){}[0]
+    final var commandTimeout // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.commandTimeout|{}commandTimeout[0]
+        final fun <get-commandTimeout>(): kotlin.time/Duration // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.commandTimeout.<get-commandTimeout>|<get-commandTimeout>(){}[0]
+        final fun <set-commandTimeout>(kotlin.time/Duration) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.commandTimeout.<set-commandTimeout>|<set-commandTimeout>(kotlin.time.Duration){}[0]
+    final var connectTimeout // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.connectTimeout|{}connectTimeout[0]
+        final fun <get-connectTimeout>(): kotlin.time/Duration // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.connectTimeout.<get-connectTimeout>|<get-connectTimeout>(){}[0]
+        final fun <set-connectTimeout>(kotlin.time/Duration) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.connectTimeout.<set-connectTimeout>|<set-connectTimeout>(kotlin.time.Duration){}[0]
+    final var dataTimeout // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.dataTimeout|{}dataTimeout[0]
+        final fun <get-dataTimeout>(): kotlin.time/Duration // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.dataTimeout.<get-dataTimeout>|<get-dataTimeout>(){}[0]
+        final fun <set-dataTimeout>(kotlin.time/Duration) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.dataTimeout.<set-dataTimeout>|<set-dataTimeout>(kotlin.time.Duration){}[0]
+    final var failOnRejectedRecipient // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.failOnRejectedRecipient|{}failOnRejectedRecipient[0]
+        final fun <get-failOnRejectedRecipient>(): kotlin/Boolean // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.failOnRejectedRecipient.<get-failOnRejectedRecipient>|<get-failOnRejectedRecipient>(){}[0]
+        final fun <set-failOnRejectedRecipient>(kotlin/Boolean) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.failOnRejectedRecipient.<set-failOnRejectedRecipient>|<set-failOnRejectedRecipient>(kotlin.Boolean){}[0]
+    final var host // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.host|{}host[0]
+        final fun <get-host>(): kotlin/String // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.host.<get-host>|<get-host>(){}[0]
+        final fun <set-host>(kotlin/String) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.host.<set-host>|<set-host>(kotlin.String){}[0]
+    final var maxConnections // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.maxConnections|{}maxConnections[0]
+        final fun <get-maxConnections>(): kotlin/Int // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.maxConnections.<get-maxConnections>|<get-maxConnections>(){}[0]
+        final fun <set-maxConnections>(kotlin/Int) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.maxConnections.<set-maxConnections>|<set-maxConnections>(kotlin.Int){}[0]
+    final var port // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.port|{}port[0]
+        final fun <get-port>(): kotlin/Int? // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.port.<get-port>|<get-port>(){}[0]
+        final fun <set-port>(kotlin/Int?) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.port.<set-port>|<set-port>(kotlin.Int?){}[0]
+    final var reuseConnections // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.reuseConnections|{}reuseConnections[0]
+        final fun <get-reuseConnections>(): kotlin/Boolean // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.reuseConnections.<get-reuseConnections>|<get-reuseConnections>(){}[0]
+        final fun <set-reuseConnections>(kotlin/Boolean) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.reuseConnections.<set-reuseConnections>|<set-reuseConnections>(kotlin.Boolean){}[0]
+    final var security // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.security|{}security[0]
+        final fun <get-security>(): at.quickme.kotlinmailer.smtp/SmtpSecurity // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.security.<get-security>|<get-security>(){}[0]
+        final fun <set-security>(at.quickme.kotlinmailer.smtp/SmtpSecurity) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.security.<set-security>|<set-security>(at.quickme.kotlinmailer.smtp.SmtpSecurity){}[0]
+    final var socketFactory // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.socketFactory|{}socketFactory[0]
+        final fun <get-socketFactory>(): at.quickme.kotlinmailer.smtp/SmtpSocketFactory // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.socketFactory.<get-socketFactory>|<get-socketFactory>(){}[0]
+        final fun <set-socketFactory>(at.quickme.kotlinmailer.smtp/SmtpSocketFactory) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.socketFactory.<set-socketFactory>|<set-socketFactory>(at.quickme.kotlinmailer.smtp.SmtpSocketFactory){}[0]
+
+    final fun build(): at.quickme.kotlinmailer.smtp/SmtpConfig // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.build|build(){}[0]
+    final fun credentials(kotlin/String, kotlin/String) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.credentials|credentials(kotlin.String;kotlin.String){}[0]
+    final fun oauth2(kotlin/String, kotlin.coroutines/SuspendFunction0<kotlin/String>) // at.quickme.kotlinmailer.smtp/SmtpMailerBuilder.oauth2|oauth2(kotlin.String;kotlin.coroutines.SuspendFunction0<kotlin.String>){}[0]
+}
+
+final fun at.quickme.kotlinmailer.smtp/defaultSmtpSocketFactory(): at.quickme.kotlinmailer.smtp/SmtpSocketFactory // at.quickme.kotlinmailer.smtp/defaultSmtpSocketFactory|defaultSmtpSocketFactory(){}[0]
+final inline fun at.quickme.kotlinmailer.smtp/smtpMailer(kotlin/String, kotlin/Function1<at.quickme.kotlinmailer.smtp/SmtpMailerBuilder, kotlin/Unit> = ...): at.quickme.kotlinmailer.smtp/SmtpMailer // at.quickme.kotlinmailer.smtp/smtpMailer|smtpMailer(kotlin.String;kotlin.Function1<at.quickme.kotlinmailer.smtp.SmtpMailerBuilder,kotlin.Unit>){}[0]
+
+// Targets: [apple]
+final object at.quickme.kotlinmailer.smtp/AppleSmtpSocketFactory : at.quickme.kotlinmailer.smtp/SmtpSocketFactory { // at.quickme.kotlinmailer.smtp/AppleSmtpSocketFactory|null[0]
+    final suspend fun connect(kotlin/String, kotlin/Int, kotlin/Boolean, kotlin.time/Duration): at.quickme.kotlinmailer.smtp/SmtpSocket // at.quickme.kotlinmailer.smtp/AppleSmtpSocketFactory.connect|connect(kotlin.String;kotlin.Int;kotlin.Boolean;kotlin.time.Duration){}[0]
+}
+
+// Targets: [linux, mingwX64]
+final class at.quickme.kotlinmailer.smtp/KtorSmtpSocketFactory : at.quickme.kotlinmailer.smtp/SmtpSocketFactory { // at.quickme.kotlinmailer.smtp/KtorSmtpSocketFactory|null[0]
+    constructor <init>(kotlin/Function1<io.ktor.network.tls/TLSConfigBuilder, kotlin/Unit> = ...) // at.quickme.kotlinmailer.smtp/KtorSmtpSocketFactory.<init>|<init>(kotlin.Function1<io.ktor.network.tls.TLSConfigBuilder,kotlin.Unit>){}[0]
+
+    final suspend fun connect(kotlin/String, kotlin/Int, kotlin/Boolean, kotlin.time/Duration): at.quickme.kotlinmailer.smtp/SmtpSocket // at.quickme.kotlinmailer.smtp/KtorSmtpSocketFactory.connect|connect(kotlin.String;kotlin.Int;kotlin.Boolean;kotlin.time.Duration){}[0]
+}
+
+// Targets: [js]
+final class at.quickme.kotlinmailer.smtp/NodeSmtpSocketFactory : at.quickme.kotlinmailer.smtp/SmtpSocketFactory { // at.quickme.kotlinmailer.smtp/NodeSmtpSocketFactory|null[0]
+    constructor <init>(dynamic = ...) // at.quickme.kotlinmailer.smtp/NodeSmtpSocketFactory.<init>|<init>(<dynamic>){}[0]
+
+    final suspend fun connect(kotlin/String, kotlin/Int, kotlin/Boolean, kotlin.time/Duration): at.quickme.kotlinmailer.smtp/SmtpSocket // at.quickme.kotlinmailer.smtp/NodeSmtpSocketFactory.connect|connect(kotlin.String;kotlin.Int;kotlin.Boolean;kotlin.time.Duration){}[0]
+}
