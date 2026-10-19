@@ -36,3 +36,8 @@ detekt {
     config.setFrom(rootProject.file("config/detekt/detekt.yml"))
     source.setFrom("src")
 }
+
+// detekt defaults to the JDK running Gradle, which may be newer than it supports
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+    jvmTarget = "11"
+}

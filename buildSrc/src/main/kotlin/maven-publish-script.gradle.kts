@@ -3,7 +3,6 @@ import org.jreleaser.model.Signing
 
 val githubProject = "BierDav/Kotlinmailer"
 val projectName: String = project.name
-val projectDescription: String? = project.description
 
 plugins {
     kotlin("multiplatform")
@@ -12,11 +11,19 @@ plugins {
     id("org.jreleaser")
 }
 
+// Maven Central requires a javadoc jar for every publication
+val dokkaJar = tasks.register<Jar>("dokkaJar") {
+    archiveClassifier.set("javadoc")
+    from(tasks.dokkaGeneratePublicationHtml.flatMap { it.outputDirectory })
+}
+
 publishing {
     publications.withType<MavenPublication>().configureEach {
+        artifact(dokkaJar)
+
         pom {
             name = projectName
-            description = projectDescription
+            description = provider { project.description }
             url = "https://github.com/$githubProject"
 
             developers {
@@ -94,5 +101,21 @@ dokka {
     pluginsConfiguration.html {
         customAssets.from(rootProject.file(".idea/icon.png"))
         footerMessage.set("(c) David Emanuel Bieregger")
+    }
+}
+
+// Kotlin/Native, JS and Wasm publications contain a klib instead of a jar
+afterEvaluate {
+    jreleaser.deploy.maven.mavenCentral.getByName("sonatype") {
+        publishing.publications.withType<MavenPublication>()
+            .filter { it.name != "jvm" && it.name != "kotlinMultiplatform" }
+            .forEach { publication ->
+                artifactOverride {
+                    artifactId = publication.artifactId
+                    jar = false
+                    // the POM checker doesn't know the klib packaging
+                    verifyPom = false
+                }
+            }
     }
 }
