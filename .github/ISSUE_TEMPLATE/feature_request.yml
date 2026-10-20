@@ -1,0 +1,71 @@
+name: Feature request
+description: Suggest a new feature, or ask for a feature that 1.x had but 2.0 doesn't
+labels: [ enhancement ]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping to improve Kotlinmailer! Please check the
+        [existing issues](https://github.com/BierDav/Kotlinmailer/issues?q=is%3Aissue+label%3Aenhancement) first,
+        and add a 👍 to an existing request instead of opening a duplicate.
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      description: Which module should the feature belong to?
+      options:
+        - core (email model, DSL, MIME)
+        - smtp
+        - jmap
+        - html
+        - new module
+        - not sure
+    validations:
+      required: true
+  - type: dropdown
+    id: legacy-feature
+    attributes:
+      label: Feature from 1.x
+      description: Is this a SimpleJavaMail feature from 1.x that was removed in 2.0?
+      options:
+        - "No, it's a new feature"
+        - S/MIME signing or encryption
+        - DKIM signing
+        - Batch sending
+        - Proxy support
+        - Calendar invites
+        - Parsing emails (String.toEmail, MimeMessage.email)
+        - Other 1.x feature
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: What are you trying to do, and why isn't it possible today?
+      placeholder: I need to sign outgoing emails with DKIM because ...
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed API
+      description: How would you like to use it? A short Kotlin snippet helps a lot.
+      render: kotlin
+  - type: input
+    id: platforms
+    attributes:
+      label: Platforms
+      description: Which Kotlin targets do you need it on?
+      placeholder: JVM, Android, iOS, JS (browser), ...
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: Workarounds or other libraries you've considered.
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I'd like to help implement this
