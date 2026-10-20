@@ -45,5 +45,6 @@ jobs:
           ORG_GRADLE_PROJECT_signingSecretKey: ${{ secrets.MAVEN_CENTRAL_GPG_SECRET_KEY }}
           ORG_GRADLE_PROJECT_signingPublicKey: ${{ secrets.MAVEN_CENTRAL_GPG_PUBLIC_KEY }}
         run: |
-          mkdir -p target/staging-deploy
-          ./gradlew publish jreleaserDeploy
+          # separate invocations: Gradle doesn't order jreleaserDeploy after the staging publications
+          ./gradlew publish
+          ./gradlew jreleaserDeploy
