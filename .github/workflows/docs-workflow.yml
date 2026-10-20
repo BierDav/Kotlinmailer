@@ -36,7 +36,7 @@ jobs:
         contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ref: ${{ inputs.ref || format('v{0}', inputs.version) }}
@@ -62,7 +62,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ref: ${{ inputs.ref || format('v{0}', inputs.version) }}
@@ -97,7 +97,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ref: ${{ inputs.ref || format('v{0}', inputs.version) }}
