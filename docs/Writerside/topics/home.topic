@@ -25,6 +25,7 @@
             <a href="mailer.md">SMTP and JMAP</a>
             <a href="html.md">Kotlin HTML DSL</a>
             <a href="tls.md">TLS</a>
+            <a href="https://bierdav.github.io/Kotlinmailer/demo/">Live demo: JMAP in the browser</a>
         </primary>
         <secondary>
             <title>Release and Contribution</title>

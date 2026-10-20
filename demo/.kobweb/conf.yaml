@@ -1,0 +1,16 @@
+site:
+  title: "Kotlinmailer JMAP demo"
+  # served at https://bierdav.github.io/Kotlinmailer/demo/
+  basePath: "Kotlinmailer/demo"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/kotlin-webpack/js/developmentExecutable/kotlinmailer-demo.js"
+      api: "build/libs/kotlinmailer-demo.jar"
+    prod:
+      script: "build/kotlin-webpack/js/productionExecutable/kotlinmailer-demo.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080

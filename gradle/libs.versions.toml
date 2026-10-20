@@ -7,6 +7,9 @@ kotlinx-html = "0.12.0"
 ktor = "3.6.0"
 kotlinx-datetime = "0.8.0"
 greenmail = "2.1.14"
+kobweb = "0.25.1"
+compose-html = "1.11.1"
+compose-runtime = "1.12.0"
 
 jreleaser = "1.26.0"
 dokka = "2.2.0"
@@ -21,13 +24,20 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
+ktor-client-js = { group = "io.ktor", name = "ktor-client-js", version.ref = "ktor" }
 ktor-network = { group = "io.ktor", name = "ktor-network", version.ref = "ktor" }
 ktor-network-tls = { group = "io.ktor", name = "ktor-network-tls", version.ref = "ktor" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
+kobweb-core = { group = "com.varabyte.kobweb", name = "kobweb-core", version.ref = "kobweb" }
+compose-html-core = { group = "org.jetbrains.compose.html", name = "html-core", version.ref = "compose-html" }
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose-runtime" }
+
 greenmail = { group = "com.icegreen", name = "greenmail", version.ref = "greenmail" }
 
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin.multiplatform", name = "org.jetbrains.kotlin.multiplatform.gradle.plugin", version.ref = "kotlin" }
+compose-compiler-gradle-plugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
+kobweb-gradle-plugin = { group = "com.varabyte.kobweb.gradle", name = "application", version.ref = "kobweb" }
 jreleaser-gradle-plugin = { group = "org.jreleaser", name = "jreleaser-gradle-plugin", version.ref = "jreleaser" }
 dokka-gradle-plugin = { group = "org.jetbrains.dokka", name = "dokka-gradle-plugin", version.ref = "dokka" }
 detekt-gradle-plugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
