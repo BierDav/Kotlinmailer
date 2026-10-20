@@ -68,7 +68,7 @@ jobs:
           ref: ${{ inputs.ref || format('v{0}', inputs.version) }}
 
       - name: Setup Java
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v6
         with:
           distribution: 'temurin'
           java-version: '21'
@@ -103,7 +103,7 @@ jobs:
           ref: ${{ inputs.ref || format('v{0}', inputs.version) }}
 
       - name: Setup Java
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v6
         with:
           distribution: 'temurin'
           java-version: '21'
