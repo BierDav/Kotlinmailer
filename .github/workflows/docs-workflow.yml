@@ -7,6 +7,10 @@ on:
         description: 'Version'
         type: string
         required: true
+      ref:
+        description: 'Git ref to build, e.g. main to publish docs fixes between releases (default: the version tag)'
+        type: string
+        required: false
   workflow_call:
     inputs:
       version:
@@ -35,7 +39,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          ref: v${{ inputs.version }}
+          ref: ${{ inputs.ref || format('v{0}', inputs.version) }}
 
       - name: Build docs using Writerside Docker builder
         uses: JetBrains/writerside-github-action@v4
@@ -61,7 +65,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          ref: v${{ inputs.version }}
+          ref: ${{ inputs.ref || format('v{0}', inputs.version) }}
 
       - name: Setup Java
         uses: actions/setup-java@v5
@@ -96,7 +100,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          ref: v${{ inputs.version }}
+          ref: ${{ inputs.ref || format('v{0}', inputs.version) }}
 
       - name: Setup Java
         uses: actions/setup-java@v5
