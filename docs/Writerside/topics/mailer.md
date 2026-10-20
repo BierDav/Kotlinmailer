@@ -58,6 +58,36 @@ The <code>jmap</code> module only depends on <code>ktor-client-core</code>. Add 
 <code>httpClient</code>.
 </note>
 
+### In the browser
+
+Browsers cannot open TCP connections, so SMTP is not available there, but JMAP works in Kotlin/JS and Kotlin/Wasm
+web apps. Add `ktor-client-js` and send as usual:
+
+```kotlin
+val mailer = jmapMailer("https://api.fastmail.com/jmap/session") {
+    bearer(apiToken)
+    httpClient = HttpClient(Js)
+}
+
+scope.launch {
+    emailBuilder {
+        from("you@fastmail.com")
+        to("alice@example.com")
+        subject = "Sent from the browser"
+        text = "No backend involved."
+    }.send(mailer)
+}
+```
+
+The JMAP server has to allow cross-origin (CORS) requests from your site; Fastmail does. Keep in mind that the
+credentials are visible to whoever uses the page, so only use tokens of the user that is signed in, never your own.
+
+<tip>
+Try it in the <a href="https://bierdav.github.io/Kotlinmailer/demo/">live demo</a>, a
+<a href="https://kobweb.varabyte.com">Kobweb</a> app that sends emails over JMAP from your browser. Its source is in
+the <a href="https://github.com/BierDav/Kotlinmailer/tree/main/demo"><code>demo</code></a> folder.
+</tip>
+
 ## Send emails
 
 `send` suspends until the server accepted the email and returns a `SendReceipt`.

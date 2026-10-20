@@ -87,11 +87,55 @@ jobs:
           path: |
             ${{ env.DOKKA_ARTIFACT }}
           retention-days: 1
+  build-demo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: v${{ inputs.version }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Query browser cache id
+        id: browser-cache-id
+        run: echo "value=$(./gradlew -q :demo:kobwebBrowserCacheId)" >> $GITHUB_OUTPUT
+
+      # Kobweb renders the static pages with a Playwright browser
+      - name: Cache browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.browser-cache-id.outputs.value }}
+
+      - name: Export JMAP demo with Kobweb
+        run: >
+          ./gradlew :demo:kobwebExport
+          -PkobwebExportLayout=STATIC -PkobwebReuseServer=false -PkobwebEnv=DEV
+          -PkobwebRunLayout=STATIC -PkobwebBuildTarget=RELEASE
+
+      - name: Save artifact with build results
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-site
+          path: demo/.kobweb/site
+          include-hidden-files: true
+          retention-days: 1
   deploy-docs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: [ build-writerside, build-dokka ]
+    needs: [ build-writerside, build-dokka, build-demo ]
     runs-on: ubuntu-latest
     steps:
       - name: Download writerside artifacts
@@ -109,6 +153,12 @@ jobs:
 
       - name: Unzip dokka artifact
         run: unzip -O UTF-8 -qq '${{ env.DOKKA_ARTIFACT }}' -d www/api
+
+      - name: Download demo artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: demo-site
+          path: www/demo
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

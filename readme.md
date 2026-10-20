@@ -35,6 +35,9 @@ emailBuilder {
 | `core`, `html`, `jmap` | JVM, JS, Wasm, macOS, iOS, Linux, Windows                  |
 | `smtp` | JVM (incl. Android), Node.js, macOS, iOS, Linux and Windows (without TLS)   |
 
+**[Live demo](https://bierdav.github.io/Kotlinmailer/demo/)**: a [Kobweb](https://kobweb.varabyte.com) website
+that sends emails over JMAP straight from your browser, see [`demo`](demo).
+
 ## To get started, visit the **[Documentation](https://bierdav.github.io/Kotlinmailer/)**.
 
 ## Setup with Gradle or Maven visit **[Installation](https://bierdav.github.io/Kotlinmailer/modules)**.
