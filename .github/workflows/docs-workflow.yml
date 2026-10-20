@@ -139,7 +139,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download writerside artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: writerside-docs
 
@@ -147,7 +147,7 @@ jobs:
         run: unzip -O UTF-8 -qq '${{ env.WRITERSIDE_ARTIFACT }}' -d www
 
       - name: Download dokka artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: dokka-docs
 
@@ -155,7 +155,7 @@ jobs:
         run: unzip -O UTF-8 -qq '${{ env.DOKKA_ARTIFACT }}' -d www/api
 
       - name: Download demo artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: demo-site
           path: www/demo
