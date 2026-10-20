@@ -57,4 +57,6 @@ you really need to block.
 ### Removed features
 
 The advanced SimpleJavaMail features (S/MIME, DKIM signing, batch module, proxies, calendar invites, ...) are not
-part of 2.0. Stay on 1.x if you depend on them.
+part of 2.0. If you need one of them, please
+[open a feature request](https://github.com/BierDav/Kotlinmailer/issues/new?template=feature_request.yml) and describe
+your use case, or add a 👍 to an existing one. Until it is available, stay on 1.x.
