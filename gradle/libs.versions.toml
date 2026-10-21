@@ -8,7 +8,7 @@ ktor = "3.6.0"
 kotlinx-datetime = "0.8.0"
 greenmail = "2.1.14"
 kobweb = "0.25.1"
-compose-html = "1.11.1"
+compose-html = "1.12.2"
 compose-runtime = "1.12.0"
 
 jreleaser = "1.26.0"
